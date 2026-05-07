@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>know thyself | 現場の知恵を、会社の資産に</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --green:#1F4D3A;
+      --green-2:#0F3D2F;
+      --gold:#C6A85C;
+      --beige:#F5F3E7;
+      --yellow:#D6E300;
+      --navy:#243A5E;
+      --ink:#17352D;
+      --text:#21342F;
+      --muted:#6B7A75;
+      --line:#E4E2D8;
+      --white:#FFFFFF;
+      --shadow:0 14px 36px rgba(24,45,40,.08);
+      --radius:6px;
+      --max:1180px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:"Inter","Zen Kaku Gothic New",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      color:var(--text);
+      background:#fff;
+      letter-spacing:.02em;
+    }
+    a{color:inherit;text-decoration:none}
+    img,svg{display:block;max-width:100%}
+    .page{overflow:hidden;background:linear-gradient(90deg,#fff 0%,#fff 55%,#fbfaf4 100%)}
+    .container{width:min(var(--max),calc(100% - 64px));margin:0 auto}
+
+    /* Header */
+    .header{
+      position:relative;
+      z-index:10;
+      height:78px;
+      background:rgba(255,255,255,.84);
+      backdrop-filter:blur(16px);
+      border-bottom:1px solid rgba(228,226,216,.55);
+    }
+    .header-inner{height:78px;display:flex;align-items:center;justify-content:space-between;gap:32px}
+    .brand{min-width:178px;line-height:1}
+    .brand-main{
+      font-size:30px;
+      font-weight:800;
+      letter-spacing:-.04em;
+      color:#213837;
+    }
+    .brand-sub{
+      margin-top:9px;
+      font-family:"Zen Kaku Gothic New",sans-serif;
+      font-size:11px;
+      font-weight:700;
+      color:#56645f;
+      letter-spacing:.08em;
+    }
+    .nav{display:flex;align-items:center;gap:40px;margin-left:auto;font-size:13px;font-weight:800;color:#2F3D3A;white-space:nowrap}
+    .header-actions{display:flex;align-items:center;gap:12px;white-space:nowrap}
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      min-height:52px;
+      padding:0 26px;
+      border-radius:3px;
+      font-family:"Zen Kaku Gothic New",sans-serif;
+      font-size:14px;
+      font-weight:800;
+      letter-spacing:.04em;
+      border:1px solid transparent;
+      transition:.22s ease;
+    }
+    .btn:hover{transform:translateY(-1px);box-shadow:0 12px 28px rgba(31,77,58,.14)}
+    .btn-green{background:var(--green);color:#fff}
+    .btn-white{background:#fff;color:#2A3835;border-color:#C9CEC7}
+    .btn-gold{background:var(--gold);color:#fff}
+    .btn-yellow{background:var(--yellow);color:#203326;box-shadow:0 10px 26px rgba(214,227,0,.2)}
+    .btn-darkline{background:transparent;color:#fff;border-color:rgba(255,255,255,.45)}
+    .arrow{font-size:19px;line-height:1;transform:translateY(-1px)}
+
+    /* Hero */
+    .hero{position:relative;min-height:626px;background:linear-gradient(105deg,#fff 0%,#fff 53%,#faf8ee 100%)}
+    .hero .container{position:relative;display:grid;grid-template-columns:48% 52%;min-height:626px;align-items:center}
+    .hero-copy{padding-top:10px;position:relative;z-index:2}
+    .headline{
+      margin:0;
+      font-family:"Zen Kaku Gothic New",sans-serif;
+      font-size:64px;
+      line-height:1.31;
+      letter-spacing:.02em;
+      font-weight:900;
+      color:#1D3A35;
+    }
+    .headline span{color:var(--gold)}
+    .subheadline{
+      margin:30px 0 0;
+      font-family:"Zen Kaku Gothic New",sans-serif;
+      font-size:29px;
+      line-height:1.72;
+      font-weight:900;
+      color:#213A35;
+      letter-spacing:.03em;
+    }
+    .hero-text{
+      margin:33px 0 0;
+      width:560px;
+      max-width:100%;
+      font-size:15px;
+      line-height:2.15;
+      color:#53635E;
+      font-weight:600;
+    }
+    .hero-actions{display:flex;align-items:center;gap:22px;margin-top:42px}
+    .hero-art{position:absolute;right:-92px;top:8px;width:704px;height:600px;z-index:1;opacity:.98}
+    .art-fade{position:absolute;inset:auto -160px -20px auto;width:640px;height:240px;background:linear-gradient(180deg,rgba(255,255,255,0),rgba(255,255,255,.86));z-index:0}
+
+    /* Problem */
+    .section{background:#fff}
+    .problem{padding:48px 0 54px;border-top:1px solid rgba(228,226,216,.55);border-bottom:1px solid rgba(228,226,216,.7)}
+    .section-title{
+      margin:0;
+      text-align:center;
+      font-family:"Zen Kaku Gothic New",sans-serif;
+      font-size:25px;
+      font-weight:900;
+      letter-spacing:.06em;
+      color:#203B36;
+    }
+    .title-line{width:32px;height:2px;background:linear-gradient(90deg,var(--green) 0 46%,var(--gold) 46% 100%);margin:16px auto 0;border-radius:20px}
+    .problem-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:17px;margin-top:29px}
+    .problem-card{
+      min-height:186px;
+      border:1px solid #E4E4DD;
+      background:#fff;
+      box-shadow:0 10px 22px rgba(20,48,42,.045);
+      border-radius:4px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      padding:24px 18px 20px;
+    }
+    .problem-card svg{width:50px;height:50px;margin-bottom:22px;color:var(--green)}
+    .problem-card:nth-child(1) svg{color:var(--gold)}
+    .problem-card p{margin:0;text-align:center;font-family:"Zen Kaku Gothic New",sans-serif;font-size:14px;line-height:1.85;font-weight:700;color:#495853}
+
+    /* Concept */
+    .concept{position:relative;padding:74px 0 86px;background:linear-gradient(90deg,#fff 0%,#fff 50%,#fbfaf4 100%);overflow:hidden}
+    .concept::before,.concept::after{content:"";position:absolute;border:1px solid rgba(198,168,92,.22);border-radius:50%;pointer-events:none}
+    .concept::before{width:1080px;height:140px;left:50%;top:74px;transform:translateX(-50%) rotate(-3deg)}
+    .concept::after{width:980px;height:96px;left:50%;top:92px;transform:translateX(-50%) rotate(4deg)}
+    .eyebrow{font-size:13px;font-weight:800;color:var(--gold);letter-spacing:.28em;text-transform:uppercase;text-align:center;margin-bottom:20px}
+    .concept h2{margin:0;text-align:center;font-family:"Zen Kaku Gothic New",sans-serif;font-size:34px;line-height:1.42;font-weight:900;color:var(--green)}
+    .concept p{margin:24px auto 0;width:650px;max-width:100%;text-align:center;font-size:15px;line-height:2.2;color:#5B6864;font-weight:600}
+
+    /* Steps */
+    .steps{padding:50px 0 64px;background:#fff;border-top:1px solid rgba(228,226,216,.65)}
+    .steps h2{margin:0;text-align:center;font-family:"Zen Kaku Gothic New",sans-serif;font-size:31px;font-weight:900;color:var(--green)}
+    .step-flow{display:grid;grid-template-columns:1fr 34px 1fr 34px 1fr;gap:24px;align-items:center;margin-top:48px}
+    .step-item{display:grid;grid-template-columns:90px 1fr;gap:23px;align-items:center}
+    .step-icon{width:90px;height:90px;border:1px solid #E1E4DE;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#fff;box-shadow:0 12px 30px rgba(24,45,40,.055)}
+    .step-icon svg{width:44px;height:44px;color:var(--green)}
+    .step-num{font-size:28px;font-weight:800;color:var(--gold);letter-spacing:.04em;margin-bottom:7px}
+    .step-title{font-family:"Zen Kaku Gothic New",sans-serif;font-size:17px;font-weight:900;color:var(--green);margin-bottom:10px}
+    .step-desc{font-size:13px;line-height:1.8;color:#64716D;font-weight:600}
+    .chev{color:#214039;font-size:54px;font-weight:200;text-align:center;line-height:1;opacity:.8}
+
+    /* Ecosystem */
+    .ecosystem{padding:0 0 64px;background:#fff}
+    .ecosystem h2{margin:0;text-align:center;font-family:"Zen Kaku Gothic New",sans-serif;font-size:30px;font-weight:900;color:#263B36}
+    .tool-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:34px}
+    .tool-card{min-height:190px;border:1px solid #E3E3DC;border-radius:5px;background:#fff;box-shadow:0 12px 28px rgba(20,48,42,.05);padding:28px 25px 22px;display:flex;flex-direction:column;justify-content:space-between}
+    .tool-head{display:flex;align-items:center;gap:12px;margin-bottom:15px}
+    .tool-head svg{width:38px;height:38px;color:var(--green)}
+    .tool-name{font-size:27px;font-weight:800;color:#1F4D3A;letter-spacing:.01em}
+    .tool-card:nth-child(2) .tool-name,.tool-card:nth-child(3) .tool-name,.tool-card:nth-child(4) .tool-name{font-size:25px;color:#2E3B38}
+    .tool-card p{margin:0;font-size:13px;line-height:1.85;color:#687470;font-weight:600}
+    .more{margin-top:18px;font-size:14px;font-weight:800;color:#2D403B;display:flex;gap:10px;align-items:center}
+
+    /* Trust */
+    .trust{position:relative;background:linear-gradient(105deg,#183556 0%,#1D3B5C 56%,#203D5D 100%);color:#fff;overflow:hidden}
+    .trust::after{content:"";position:absolute;right:0;bottom:0;width:320px;height:220px;background:linear-gradient(90deg,rgba(36,58,94,.65),rgba(36,58,94,.15)),url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="340" height="220" viewBox="0 0 340 220"><g fill="none" stroke="%23ffffff" stroke-opacity="0.20"><path d="M90 205V78h160v127"/><path d="M110 205V100h20v105M155 205V100h20v105M200 205V100h20v105"/><path d="M70 78h200L170 25 70 78Z"/><path d="M95 78V65h150v13"/><path d="M55 205h230"/></g></svg>') bottom right/320px 220px no-repeat;opacity:.85}
+    .trust-inner{position:relative;z-index:1;display:grid;grid-template-columns:32% 1fr;gap:70px;align-items:center;min-height:250px;padding:45px 0}
+    .trust .eyebrow{text-align:left;margin-bottom:16px;color:var(--gold)}
+    .trust h2{margin:0;font-family:"Zen Kaku Gothic New",sans-serif;font-size:32px;line-height:1.5;font-weight:900;letter-spacing:.04em}
+    .trust p{margin:18px 0 25px;font-size:13px;line-height:2;color:rgba(255,255,255,.82);font-weight:600}
+    .trust-logos{display:grid;grid-template-columns:repeat(3,1fr);gap:34px;align-items:center;padding-right:100px}
+    .gov-logo{min-height:116px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;color:#fff}
+    .gov-mark{display:flex;align-items:center;gap:14px;font-size:30px;font-weight:900;font-family:"Zen Kaku Gothic New",sans-serif;letter-spacing:.02em}
+    .gov-mark svg{width:44px;height:44px;color:#fff}
+    .gov-logo p{margin:18px 0 0;font-size:14px;line-height:1.75;color:#fff;font-weight:800}
+
+    /* Vision */
+    .vision{padding:58px 0 66px;background:linear-gradient(90deg,#fff 0%,#fff 52%,#fbfaf4 100%)}
+    .vision-inner{display:grid;grid-template-columns:47% 53%;gap:40px;align-items:center}
+    .vision .eyebrow{text-align:left;margin-bottom:15px}
+    .vision h2{margin:0;font-family:"Zen Kaku Gothic New",sans-serif;font-size:28px;line-height:1.62;font-weight:900;color:#203D38}
+    .vision p{margin:18px 0 28px;font-size:14px;line-height:2;color:#65716D;font-weight:600;width:470px;max-width:100%}
+    .vision-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .vision-card{height:166px;background:#fff;border:1px solid #E3E3DC;border-radius:5px;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 12px 28px rgba(20,48,42,.05);position:relative;overflow:hidden}
+    .vision-card::before{content:"✦";position:absolute;left:20px;top:18px;color:#D9D5C5;font-size:16px}
+    .vision-card svg{width:48px;height:48px;color:#243A5E;margin-bottom:20px}
+    .vision-card b{font-family:"Zen Kaku Gothic New",sans-serif;font-size:15px;line-height:1.6;text-align:center;color:#2C3C38}
+
+    /* CTA */
+    .cta{background:linear-gradient(105deg,var(--green) 0%,#0F3D2F 100%);color:#fff}
+    .cta-inner{min-height:130px;display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center}
+    .cta h2{margin:0;font-family:"Zen Kaku Gothic New",sans-serif;font-size:31px;font-weight:900;letter-spacing:.03em}
+    .cta p{margin:14px 0 0;font-size:14px;color:rgba(255,255,255,.8);font-weight:600}
+    .cta-actions{display:flex;gap:18px;align-items:center}
+
+    /* Footer */
+    .footer{height:88px;background:#fff;border-top:1px solid #E5E4DC}
+    .footer-inner{height:88px;display:flex;align-items:center;justify-content:space-between;gap:32px}
+    .footer .brand-main{font-size:28px}
+    .footer-nav{display:flex;gap:36px;font-size:12px;font-weight:800;color:#51605B;white-space:nowrap}
+    .copyright{font-size:12px;color:#6C7874;font-weight:600;white-space:nowrap}
+
+    /* SVG line art */
+    .line-art text{font-family:"Inter",sans-serif}
+    .line-art .thin{stroke:#1F4D3A;stroke-width:1.2;fill:none;opacity:.63}
+    .line-art .gold{stroke:#C6A85C;stroke-width:1.1;fill:none;opacity:.72}
+    .line-art .faint{stroke:#C6A85C;stroke-width:.8;fill:none;opacity:.26}
+    .line-art .dot-g{fill:#1F4D3A}
+    .line-art .dot-y{fill:#C6A85C}
+    .line-art .dot-w{fill:#fff;stroke:#1F4D3A;stroke-width:1.2}
+
+    @media (max-width:1080px){
+      .container{width:min(var(--max),calc(100% - 40px))}
+      .nav{display:none}
+      .hero .container{grid-template-columns:1fr;min-height:760px;align-items:start;padding-top:86px}
+      .hero-art{right:-200px;top:330px;width:620px;opacity:.55}
+      .problem-grid,.tool-grid{grid-template-columns:repeat(2,1fr)}
+      .step-flow{grid-template-columns:1fr;gap:20px}.chev{transform:rotate(90deg);font-size:38px}
+      .trust-inner,.vision-inner,.cta-inner{grid-template-columns:1fr}
+      .trust-logos{grid-template-columns:1fr;padding-right:0}.cta-actions{flex-wrap:wrap}
+      .footer{height:auto}.footer-inner{height:auto;padding:26px 0;align-items:flex-start;flex-direction:column}.footer-nav{flex-wrap:wrap;gap:18px 26px}
+    }
+    @media (max-width:680px){
+      .header-actions .btn-gold{display:none}.header{height:70px}.header-inner{height:70px}.brand-main{font-size:24px}.brand-sub{font-size:10px}
+      .headline{font-size:43px}.subheadline{font-size:21px}.hero-actions{flex-direction:column;align-items:stretch}.btn{width:100%}
+      .problem-grid,.tool-grid,.vision-cards{grid-template-columns:1fr}.problem-card{min-height:150px}
+      .concept h2,.steps h2,.trust h2,.cta h2{font-size:25px}
+      .step-item{grid-template-columns:72px 1fr}.step-icon{width:72px;height:72px}.step-icon svg{width:34px;height:34px}
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <div class="container header-inner">
+        <a class="brand" href="#">
+          <div class="brand-main">know thyself</div>
+          <div class="brand-sub">構造から、未来をデザインする。</div>
+        </a>
+        <nav class="nav" aria-label="グローバルナビゲーション">
+          <a href="service.html">サービス</a>
+          <a href="blog.html">導入事例</a>
+          <a href="company.html">会社紹介</a>
+          <a href="recruit.html">採用情報</a>
+        </nav>
+        <div class="header-actions">
+          <a class="btn btn-green" href="#download">資料ダウンロード ↓</a>
+          <a class="btn btn-gold" href="contact.html">お問い合わせ ✉</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" id="top">
+        <div class="container">
+          <div class="hero-copy">
+            <h1 class="headline">現場の知恵を、<br><span>会社の資産</span>に</h1>
+            <p class="subheadline">現場から始めるDXで<br>業務を再現可能な仕組みに変える</p>
+            <p class="hero-text">know thyselfは、現場に眠る知識や経験を「構造知」へ変換し、再現性と学習性のある組織へと導くDXコンサルティングファームです。</p>
+            <div class="hero-actions">
+              <a class="btn btn-green" href="#download">資料をダウンロードする <span class="arrow">→</span></a>
+              <a class="btn btn-white" href="contact.html">まずは相談してみる <span class="arrow">→</span></a>
+            </div>
+          </div>
+          <svg class="hero-art line-art" viewBox="0 0 760 650" aria-hidden="true">
+            <defs>
+              <radialGradient id="glow" cx="44%" cy="44%" r="56%"><stop offset="0" stop-color="#F5F3E7" stop-opacity=".7"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>
+            </defs>
+            <rect width="760" height="650" fill="url(#glow)"/>
+            <g transform="translate(60 0)">
+              <circle class="faint" cx="310" cy="250" r="145"/>
+              <circle class="faint" cx="310" cy="250" r="205"/>
+              <ellipse class="faint" cx="310" cy="250" rx="250" ry="74" transform="rotate(-24 310 250)"/>
+              <ellipse class="faint" cx="310" cy="250" rx="300" ry="90" transform="rotate(15 310 250)"/>
+              <path class="faint" d="M105 412 C130 300,205 320,222 230 S260 85,348 108"/>
+              <path class="faint" d="M88 196 C170 155,206 86,308 112 S482 100,564 36"/>
+              <path class="faint" d="M80 515 C190 448,195 352,310 250 S515 150,665 118"/>
+              <path class="gold" d="M310 250 L690 50"/>
+              <path class="gold" d="M310 250 L710 172"/>
+              <path class="gold" d="M310 250 L708 268"/>
+              <path class="gold" d="M310 250 L676 368"/>
+              <path class="gold" d="M310 250 L515 560"/>
+              <path class="thin" d="M310 250 L650 13"/>
+              <path class="thin" d="M310 250 L680 118"/>
+              <path class="thin" d="M310 250 L715 222"/>
+              <path class="thin" d="M310 250 L740 318"/>
+              <path class="thin" d="M310 250 L610 510"/>
+              <path class="thin" d="M310 250 L190 25"/>
+              <path class="gold" d="M310 250 L168 80"/>
+              <path class="thin" d="M310 250 L102 136"/>
+              <path class="thin" d="M310 250 L44 238"/>
+              <path class="gold" d="M310 250 L36 372"/>
+              <path class="thin" d="M310 250 L132 548"/>
+              <path class="thin" d="M310 250 L310 0"/>
+              <path class="gold" d="M360 16 L360 610"/>
+              <path class="thin" d="M412 0 L412 610" opacity=".45"/>
+              <g>
+                <circle class="dot-g" cx="310" cy="250" r="5"/>
+                <circle class="dot-y" cx="186" cy="82" r="6"/>
+                <circle class="dot-g" cx="106" cy="136" r="9"/>
+                <circle class="dot-w" cx="44" cy="238" r="6"/>
+                <circle class="dot-y" cx="36" cy="372" r="4"/>
+                <circle class="dot-y" cx="360" cy="74" r="5"/>
+                <circle class="dot-g" cx="650" cy="13" r="8"/>
+                <circle class="dot-y" cx="690" cy="50" r="4"/>
+                <circle class="dot-w" cx="680" cy="118" r="7"/>
+                <circle class="dot-g" cx="715" cy="222" r="10"/>
+                <circle class="dot-y" cx="676" cy="368" r="9"/>
+                <circle class="dot-w" cx="610" cy="510" r="7"/>
+                <circle class="dot-y" cx="264" cy="368" r="10"/>
+                <circle class="dot-w" cx="135" cy="548" r="7"/>
+              </g>
+              <g transform="translate(270 318) rotate(-16)">
+                <path d="M88 0 C60 58 44 115 44 170 L132 170 C132 115 116 58 88 0Z" fill="#FFFDF5" stroke="#1F4D3A" stroke-width="3"/>
+                <path d="M88 0 L88 128" stroke="#1F4D3A" stroke-width="3" fill="none"/>
+                <circle cx="88" cy="114" r="14" fill="#C6A85C" stroke="#1F4D3A" stroke-width="2"/>
+                <path d="M44 170 L132 170 L152 246 L24 246Z" fill="#FFFDF5" stroke="#1F4D3A" stroke-width="3"/>
+                <path d="M33 206 H143" stroke="#C6A85C" stroke-width="1.5"/>
+                <path d="M18 246 H158 V310 H18Z" fill="#FFFDF5" stroke="#1F4D3A" stroke-width="3"/>
+                <path d="M35 260 H141" stroke="#C6A85C" stroke-width="1.5"/>
+              </g>
+            </g>
+          </svg>
+          <div class="art-fade"></div>
+        </div>
+      </section>
+
+      <section class="problem section" id="service">
+        <div class="container">
+          <h2 class="section-title">こんなお悩みはありませんか？</h2>
+          <div class="title-line"></div>
+          <div class="problem-grid">
+            <article class="problem-card">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M31 31v-3c0-5 7-5 7-11 0-5-4-8-9-8-4 0-7 2-9 5"/><path d="M31 40h.1" stroke-width="4"/><circle cx="16" cy="43" r="5"/><circle cx="32" cy="43" r="5"/><circle cx="48" cy="43" r="5"/><path d="M7 57c1-7 17-7 18 0M23 57c1-7 17-7 18 0M39 57c1-7 17-7 18 0"/></svg>
+              <p>属人化が強み、<br>業務の品質にバラつき</p>
+            </article>
+            <article class="problem-card">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 8h25l11 11v37H14Z"/><path d="M39 8v13h11"/><path d="M22 29h20M22 37h20M22 45h13"/><path d="M6 17h10v39H6z" opacity=".5"/></svg>
+              <p>業務のやり方が<br>言語化されていない</p>
+            </article>
+            <article class="problem-card">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M32 9v12M20 21h24v14H20zM10 49h16V35H10zM38 49h16V35H38zM32 35v14"/><path d="M18 49h28"/></svg>
+              <p>組織や事業の変化に、<br>仕組みが追いつかない</p>
+            </article>
+            <article class="problem-card">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 54C18 30 32 17 53 14c-2 21-15 35-35 40Z"/><path d="M18 54c5-16 17-25 31-34"/><path d="M16 38C8 32 10 20 15 12c12 7 15 16 10 28"/></svg>
+              <p>人が育たず、<br>現場の学習が進まない</p>
+            </article>
+            <article class="problem-card">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10 8v46h46"/><path d="M18 25l10 8 8-6 12 11"/><path d="M48 38l5-1-1-5" stroke="#C6A85C"/></svg>
+              <p>がんばっているのに、<br>成果につながりにくい</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="concept" id="solution">
+        <div class="container">
+          <div class="eyebrow">CONCEPT</div>
+          <h2>知を構造化し、再現できる組織へ</h2>
+          <p>現場の暗黙知を構造知に変え、業務を再現可能にする。それが、変化に強く、学習し続ける組織の基盤になります。know thyselfは、構造設計・可視化・実装支援を通じて、企業のDXを根本から支援します。</p>
+        </div>
+      </section>
+
+      <section class="steps" id="case">
+        <div class="container">
+          <h2>構造変革の3ステップ</h2>
+          <div class="title-line"></div>
+          <div class="step-flow">
+            <article class="step-item">
+              <div class="step-icon"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2"><circle cx="28" cy="28" r="15"/><path d="M39 39l13 13"/><circle cx="28" cy="28" r="9" stroke="#C6A85C"/></svg></div>
+              <div><div class="step-num">01</div><div class="step-title">現場の知を可視化する</div><div class="step-desc">現場・業務・知識を丁寧にヒアリングし、暗黙知を構造として可視化します。</div></div>
+            </article>
+            <div class="chev">›</div>
+            <article class="step-item">
+              <div class="step-icon"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2"><circle cx="32" cy="12" r="5"/><circle cx="14" cy="32" r="5"/><circle cx="50" cy="32" r="5"/><circle cx="32" cy="52" r="5"/><circle cx="32" cy="32" r="5"/><path d="M32 17v10M19 32h8M37 32h8M32 37v10"/></svg></div>
+              <div><div class="step-num">02</div><div class="step-title">構造を設計する</div><div class="step-desc">あるべき姿から逆算し、再現性のある業務・組織・仕組みを設計します。</div></div>
+            </article>
+            <div class="chev">›</div>
+            <article class="step-item">
+              <div class="step-icon"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 52h40"/><path d="M18 52V34h8v18M30 52V25h8v27M42 52V15h8v37"/><path d="M20 18l11-6 10 3 10-9" stroke="#C6A85C"/><path d="M46 6h5v5" stroke="#C6A85C"/></svg></div>
+              <div><div class="step-num">03</div><div class="step-title">実装し、進化させる</div><div class="step-desc">設計した仕組みを実装し、学習と改善を通じて進化させます。</div></div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="ecosystem" id="knowledge">
+        <div class="container">
+          <h2>ツールエコシステム</h2>
+          <div class="title-line"></div>
+          <div class="tool-grid">
+            <article class="tool-card">
+              <div>
+                <div class="tool-head"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 46H48a12 12 0 0 0 0-24 18 18 0 0 0-34-5A14 14 0 0 0 22 46Z"/></svg><div class="tool-name">SOKUMO</div></div>
+                <p>構造化の力を、すべての組織へ。知識の構造化・可視化・活用を支援するクラウドサービス。</p>
+              </div><a class="more" href="https://sokumolp.vercel.app/" target="_blank" rel="noopener">詳しく見る <span>→</span></a>
+            </article>
+            <article class="tool-card">
+              <div>
+                <div class="tool-head"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2"><path d="M32 6 54 18v28L32 58 10 46V18Z"/><path d="M10 18l22 12 22-12M32 30v28"/></svg><div class="tool-name">CAD</div></div>
+                <p>設計・図面・構造データを組織的に管理・連携し、業務の再現性を高めます。</p>
+              </div><a class="more" href="service.html">詳しく見る <span>→</span></a>
+            </article>
+            <article class="tool-card">
+              <div>
+                <div class="tool-head"><svg viewBox="0 0 64 64"><rect x="9" y="9" width="21" height="21" fill="#F25022"/><rect x="34" y="9" width="21" height="21" fill="#7FBA00"/><rect x="9" y="34" width="21" height="21" fill="#00A4EF"/><rect x="34" y="34" width="21" height="21" fill="#FFB900"/></svg><div class="tool-name">Microsoft</div></div>
+                <p>Microsoft 365 / Azure と連携し、安全で柔軟な情報基盤を構築します。</p>
+              </div><a class="more" href="service.html">詳しく見る <span>→</span></a>
+            </article>
+            <article class="tool-card">
+              <div>
+                <div class="tool-head"><svg viewBox="0 0 64 64"><path d="M56 33c0-2-.2-4-.6-5.8H33v11h12.8c-.6 3.2-2.4 5.8-5 7.6v6.3h8.1C53.6 47.8 56 41.2 56 33Z" fill="#4285F4"/><path d="M33 56c6.8 0 12.5-2.2 16.6-6l-8.1-6.3c-2.2 1.5-5.1 2.4-8.5 2.4-6.5 0-12.1-4.4-14.1-10.4h-8.4v6.5C14.7 50.4 23.2 56 33 56Z" fill="#34A853"/><path d="M18.9 35.7c-.5-1.5-.8-3.1-.8-4.7s.3-3.2.8-4.7v-6.5h-8.4A23 23 0 0 0 8 31c0 3.8.9 7.5 2.5 10.7l8.4-6Z" fill="#FBBC05"/><path d="M33 15.9c3.7 0 7.1 1.3 9.7 3.8l7.2-7.2C45.5 8.4 39.8 6 33 6c-9.8 0-18.3 5.6-22.5 13.8l8.4 6.5c2-6 7.6-10.4 14.1-10.4Z" fill="#EA4335"/></svg><div class="tool-name">Google</div></div>
+                <p>Google Workspace と連携し、チームの知識共有と協働を加速させます。</p>
+              </div><a class="more" href="service.html">詳しく見る <span>→</span></a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="trust" id="company">
+        <div class="container trust-inner">
+          <div>
+            <div class="eyebrow">TRUST</div>
+            <h2>行政・公的機関からも<br>信頼されています</h2>
+            <p>know thyselfは、官公庁をはじめとする公的機関と連携し、多くの社会プロジェクトで成果を上げています。</p>
+            <a class="btn btn-darkline" href="blog.html">支援実績を見る <span class="arrow">→</span></a>
+          </div>
+          <div class="trust-logos">
+            <article class="gov-logo"><div class="gov-mark"><svg viewBox="0 0 64 64" fill="currentColor"><path d="M8 19 32 6l24 13-24 13L8 19Zm0 13 24 13 24-13v13L32 58 8 45V32Z"/></svg>鳥取県</div><p>中小企業の構造転換<br>支援事業に採択</p></article>
+            <article class="gov-logo"><div class="gov-mark"><svg viewBox="0 0 64 64" fill="currentColor"><path d="M7 43c18-1 29-16 50-30-9 18-20 36-50 30Zm2 7c22 2 38-8 48-28-4 24-20 35-48 28Z"/></svg>商工会</div><p>地方創生のデジタル基盤<br>構築に関与</p></article>
+            <article class="gov-logo"><div class="gov-mark">雲南市</div><p>業務プロセス標準化の<br>モデル事業に参画</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="vision">
+        <div class="container vision-inner">
+          <div>
+            <div class="eyebrow">VISION</div>
+            <h2>未来の組織をつくるのは、<br>学び続ける人です。</h2>
+            <p>構造思考や組織設計の学びを通じて、次世代のリーダーと組織の成長を支援します。</p>
+            <a class="btn btn-white" href="recruit.html">教育・研修プログラムを見る <span class="arrow">→</span></a>
+          </div>
+          <div class="vision-cards">
+            <article class="vision-card"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 52v-8c-8-4-12-11-12-20C10 12 20 4 32 4s22 8 22 20c0 9-5 16-12 20v8"/><path d="M25 60h14"/><path d="M32 17v20M24 25h16" stroke="#C6A85C"/></svg><b>構造思考<br>トレーニング</b></article>
+            <article class="vision-card"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2"><circle cx="32" cy="18" r="8"/><circle cx="16" cy="34" r="6"/><circle cx="48" cy="34" r="6"/><path d="M20 58c1-11 23-11 24 0M5 58c1-9 19-9 20 0M39 58c1-9 19-9 20 0"/></svg><b>組織設計<br>ワークショップ</b></article>
+            <article class="vision-card"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 12c10-4 18-3 22 2v42c-4-5-12-6-22-2Z"/><path d="M54 12c-10-4-18-3-22 2v42c4-5 12-6 22-2Z"/></svg><b>ナレッジマネジメント<br>実践講座</b></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="cta" id="contact">
+        <div class="container cta-inner">
+          <div>
+            <h2>構造からはじめる、未来への一歩を。</h2>
+            <p>まずはお気軽にご相談ください。貴社の課題に合わせて、最適なアプローチをご提案します。</p>
+          </div>
+          <div class="cta-actions">
+            <a class="btn btn-yellow" href="contact.html">無料で相談してみる <span class="arrow">→</span></a>
+            <a class="btn btn-darkline" href="#download">資料をダウンロードする ↓</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <a class="brand" href="#top"><div class="brand-main">know thyself</div><div class="brand-sub">構造から、未来をデザインする。</div></a>
+        <nav class="footer-nav"><a href="service.html">サービス</a><a href="blog.html">導入事例</a><a href="company.html">会社紹介</a><a href="recruit.html">採用情報</a><a href="contact.html">お問い合わせ</a><a href="#">プライバシーポリシー</a></nav>
+        <div class="copyright">© know thyself Inc.</div>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

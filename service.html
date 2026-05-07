@@ -1,0 +1,1586 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>現場の知恵を資産に変える | know thyself</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --green: #1F4D3A;
+      --green-dark: #123428;
+      --beige: #F5F3E7;
+      --beige-2: #FBFAF4;
+      --gold: #C6A85C;
+      --yellow: #D6E300;
+      --navy: #243A5E;
+      --ink: #183228;
+      --muted: #66746D;
+      --line: rgba(31, 77, 58, 0.14);
+      --shadow: 0 14px 38px rgba(18, 52, 40, 0.08);
+      --shadow-soft: 0 8px 24px rgba(18, 52, 40, 0.065);
+      --radius-lg: 24px;
+      --radius-md: 18px;
+      --radius-sm: 12px;
+      --container: 1184px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: #ffffff;
+      font-family: "Inter", "Zen Kaku Gothic New", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.75;
+      letter-spacing: 0.035em;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: geometricPrecision;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img,
+    svg {
+      display: block;
+      max-width: 100%;
+    }
+
+    .page {
+      overflow: hidden;
+      background:
+        radial-gradient(circle at top right, rgba(198, 168, 92, 0.10), transparent 380px),
+        linear-gradient(180deg, #ffffff 0%, #ffffff 22%, var(--beige-2) 100%);
+    }
+
+    .container {
+      width: min(calc(100% - 48px), var(--container));
+      margin-inline: auto;
+    }
+
+    .site-header {
+      position: relative;
+      z-index: 10;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.82);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(31, 77, 58, 0.06);
+    }
+
+    .header-inner {
+      width: min(calc(100% - 48px), var(--container));
+      margin-inline: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+    }
+
+    .brand {
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 700;
+      font-size: 32px;
+      line-height: 1;
+      letter-spacing: 0.025em;
+      color: var(--green);
+      white-space: nowrap;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 42px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #172B24;
+      letter-spacing: 0.08em;
+    }
+
+    .hero {
+      position: relative;
+      padding: 54px 0 78px;
+      background:
+        linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.92) 42%, rgba(245,243,231,0.5) 100%);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 520px 1fr;
+      align-items: center;
+      gap: 64px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      color: var(--gold);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 36px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .hero-title {
+      margin: 0;
+      color: var(--green);
+      font-size: clamp(42px, 5.3vw, 74px);
+      line-height: 1.16;
+      font-weight: 900;
+      letter-spacing: 0.045em;
+    }
+
+    .hero-lead {
+      width: min(100%, 520px);
+      margin: 26px 0 34px;
+      color: #273F36;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 2;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      min-width: 190px;
+      height: 54px;
+      padding: 0 26px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      color: #ffffff;
+      background: var(--green);
+      box-shadow: 0 12px 22px rgba(31, 77, 58, 0.22);
+    }
+
+    .btn-secondary {
+      color: var(--green);
+      background: rgba(255, 255, 255, 0.86);
+      border: 1px solid rgba(31, 77, 58, 0.28);
+    }
+
+    .btn-yellow {
+      color: var(--green-dark);
+      background: var(--yellow);
+      min-width: 248px;
+      box-shadow: 0 12px 28px rgba(214, 227, 0, 0.24);
+    }
+
+    .arrow {
+      width: 7px;
+      height: 7px;
+      border-top: 2px solid currentColor;
+      border-right: 2px solid currentColor;
+      transform: rotate(45deg);
+    }
+
+    .hero-visual {
+      position: relative;
+      min-height: 430px;
+      border-radius: 34px;
+      isolation: isolate;
+    }
+
+    .hero-visual::before {
+      content: "";
+      position: absolute;
+      inset: 28px 0 10px 12px;
+      background:
+        radial-gradient(circle at 82% 26%, rgba(214,227,0,0.12), transparent 160px),
+        linear-gradient(135deg, rgba(245,243,231,0.8), rgba(255,255,255,0.24));
+      border-radius: 38px;
+      z-index: -2;
+    }
+
+    .hero-visual::after {
+      content: "";
+      position: absolute;
+      inset: 8px 16px;
+      background-image:
+        linear-gradient(rgba(198,168,92,0.25) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(198,168,92,0.25) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: radial-gradient(circle at center, black 0%, transparent 68%);
+      opacity: 0.52;
+      z-index: -1;
+    }
+
+    .cube-stage {
+      position: absolute;
+      right: 52px;
+      top: 44px;
+      width: 390px;
+      height: 310px;
+    }
+
+    .cube {
+      position: absolute;
+      transform-style: preserve-3d;
+      border: 1px solid rgba(31, 77, 58, 0.1);
+      box-shadow: 0 20px 45px rgba(31, 77, 58, 0.12);
+    }
+
+    .cube.big {
+      right: 110px;
+      top: 88px;
+      width: 152px;
+      height: 152px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.72), rgba(245,243,231,0.88));
+    }
+
+    .cube.top {
+      right: 128px;
+      top: 12px;
+      width: 92px;
+      height: 92px;
+      background: linear-gradient(135deg, #2E6650, var(--green-dark));
+    }
+
+    .cube.gold {
+      right: 36px;
+      top: 184px;
+      width: 112px;
+      height: 82px;
+      background: linear-gradient(135deg, #D9BE6E, var(--gold));
+    }
+
+    .cube.green {
+      right: 122px;
+      top: 224px;
+      width: 74px;
+      height: 66px;
+      background: linear-gradient(135deg, #2B634E, #1B3C2E);
+      opacity: 0.96;
+    }
+
+    .diagram-line {
+      position: absolute;
+      border: 1px solid rgba(198, 168, 92, 0.38);
+      border-left: 0;
+      border-bottom: 0;
+      border-radius: 0 16px 0 0;
+    }
+
+    .line-1 { width: 210px; height: 110px; left: 24px; top: 80px; }
+    .line-2 { width: 150px; height: 70px; right: 4px; top: 86px; }
+    .line-3 { width: 300px; height: 150px; left: 0; bottom: 18px; }
+
+    .dot-grid {
+      position: absolute;
+      left: 26px;
+      top: 26px;
+      width: 120px;
+      height: 88px;
+      background-image: radial-gradient(rgba(198,168,92,0.58) 2px, transparent 2px);
+      background-size: 18px 18px;
+    }
+
+    .mini-chart {
+      position: absolute;
+      right: 8px;
+      top: 148px;
+      width: 92px;
+      height: 84px;
+      border: 1px solid rgba(198,168,92,0.35);
+      border-radius: 16px;
+      background: rgba(255,255,255,0.55);
+    }
+
+    .mini-chart span {
+      position: absolute;
+      bottom: 18px;
+      width: 8px;
+      background: var(--gold);
+      border-radius: 8px 8px 0 0;
+      opacity: 0.88;
+    }
+
+    .mini-chart span:nth-child(1) { left: 22px; height: 18px; }
+    .mini-chart span:nth-child(2) { left: 40px; height: 31px; }
+    .mini-chart span:nth-child(3) { left: 58px; height: 48px; }
+
+    .section {
+      padding: 70px 0;
+      position: relative;
+    }
+
+    .section-soft {
+      background: linear-gradient(90deg, #ffffff 0%, var(--beige) 100%);
+    }
+
+    .section-beige {
+      background: var(--beige-2);
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 56px;
+      align-items: start;
+    }
+
+    .section-title {
+      margin: 0;
+      color: var(--green);
+      font-size: 32px;
+      line-height: 1.55;
+      font-weight: 900;
+      letter-spacing: 0.075em;
+    }
+
+    .title-line {
+      width: 42px;
+      height: 2px;
+      margin-top: 22px;
+      background: var(--gold);
+    }
+
+    .section-copy {
+      margin: 20px 0 0;
+      color: #344A41;
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 2.05;
+    }
+
+    .cards-2x2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px 22px;
+    }
+
+    .problem-card {
+      min-height: 90px;
+      padding: 24px 28px;
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      background: #ffffff;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-soft);
+      font-size: 18px;
+      line-height: 1.65;
+      font-weight: 800;
+      color: #223C32;
+    }
+
+    .icon {
+      width: 46px;
+      height: 46px;
+      flex: 0 0 46px;
+      display: grid;
+      place-items: center;
+      color: var(--green);
+    }
+
+    .icon svg {
+      width: 44px;
+      height: 44px;
+      stroke: currentColor;
+      stroke-width: 1.7;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .structure-grid {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 56px;
+      align-items: center;
+    }
+
+    .diagram-compare {
+      display: grid;
+      grid-template-columns: 1fr 58px 1fr;
+      gap: 22px;
+      align-items: center;
+    }
+
+    .diagram-card {
+      min-height: 292px;
+      padding: 28px;
+      background: rgba(255, 255, 255, 0.86);
+      border: 1px solid rgba(31, 77, 58, 0.10);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .diagram-label {
+      margin: 0 0 20px;
+      text-align: center;
+      color: #1F302A;
+      font-weight: 900;
+      font-size: 14px;
+      letter-spacing: 0.08em;
+    }
+
+    .scatter {
+      height: 112px;
+      position: relative;
+      margin-bottom: 18px;
+    }
+
+    .scatter .node,
+    .system-map .node {
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border-radius: 999px;
+      background: #AEB7B2;
+    }
+
+    .scatter .paper {
+      position: absolute;
+      width: 36px;
+      height: 42px;
+      border: 2px solid rgba(31,77,58,0.45);
+      border-radius: 5px;
+      background: #fff;
+    }
+
+    .scatter .paper::after {
+      content: "";
+      position: absolute;
+      left: 8px;
+      top: 12px;
+      width: 17px;
+      height: 2px;
+      background: rgba(31,77,58,0.35);
+      box-shadow: 0 8px 0 rgba(31,77,58,0.25), 0 16px 0 rgba(31,77,58,0.2);
+    }
+
+    .scatter .n1 { left: 34px; top: 20px; }
+    .scatter .n2 { left: 160px; top: 8px; }
+    .scatter .n3 { left: 250px; top: 64px; }
+    .scatter .n4 { left: 108px; top: 84px; }
+    .scatter .p1 { left: 58px; top: 48px; }
+    .scatter .p2 { left: 138px; top: 34px; }
+    .scatter .p3 { left: 210px; top: 18px; border-radius: 50%; }
+
+    .system-map {
+      height: 132px;
+      position: relative;
+      margin-bottom: 10px;
+      display: grid;
+      place-items: center;
+    }
+
+    .system-map::before {
+      content: "ルール・判断基準";
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      min-width: 164px;
+      padding: 8px 14px;
+      text-align: center;
+      border: 1px solid rgba(31,77,58,0.28);
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 800;
+      background: #fff;
+    }
+
+    .map-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      width: 100%;
+      padding-top: 40px;
+    }
+
+    .map-box {
+      padding: 9px 10px;
+      text-align: center;
+      border: 1px solid rgba(31,77,58,0.32);
+      border-radius: 6px;
+      background: #fff;
+      font-size: 12px;
+      font-weight: 800;
+      color: #233B32;
+    }
+
+    .db {
+      width: 44px;
+      height: 36px;
+      margin: 10px auto 0;
+      border: 2px solid rgba(31,77,58,0.38);
+      border-radius: 50% / 18%;
+      position: relative;
+    }
+
+    .db::before,
+    .db::after {
+      content: "";
+      position: absolute;
+      left: -2px;
+      right: -2px;
+      height: 12px;
+      border: 2px solid rgba(31,77,58,0.38);
+      border-top: 0;
+      border-radius: 50% / 18%;
+    }
+
+    .db::before { top: 10px; }
+    .db::after { top: 20px; }
+
+    .diagram-list {
+      margin: 0;
+      padding-left: 18px;
+      color: #344A41;
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.9;
+    }
+
+    .next-circle {
+      width: 54px;
+      height: 54px;
+      display: grid;
+      place-items: center;
+      color: #ffffff;
+      background: var(--gold);
+      border-radius: 999px;
+      box-shadow: 0 12px 24px rgba(198,168,92,0.32);
+      margin-inline: auto;
+    }
+
+    .next-circle::before {
+      content: "";
+      width: 12px;
+      height: 12px;
+      border-top: 3px solid currentColor;
+      border-right: 3px solid currentColor;
+      transform: rotate(45deg) translateX(-2px);
+    }
+
+    .steps-3,
+    .pillars,
+    .industry-grid {
+      display: grid;
+      gap: 22px;
+    }
+
+    .steps-3 {
+      grid-template-columns: 1fr 34px 1fr 34px 1fr;
+      align-items: center;
+    }
+
+    .step-card,
+    .pillar-card,
+    .industry-card,
+    .flow-card,
+    .feature-card,
+    .tool-box {
+      background: #ffffff;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .step-card {
+      min-height: 168px;
+      padding: 24px 22px 22px;
+      position: relative;
+      text-align: center;
+    }
+
+    .badge {
+      position: absolute;
+      left: 20px;
+      top: -14px;
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      color: #ffffff;
+      background: var(--green);
+      border-radius: 999px;
+      font-weight: 900;
+      box-shadow: 0 8px 16px rgba(31,77,58,0.20);
+    }
+
+    .step-card .icon {
+      margin: 0 auto 10px;
+    }
+
+    .card-title {
+      margin: 0;
+      color: var(--green);
+      font-size: 18px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      line-height: 1.5;
+    }
+
+    .card-text {
+      margin: 8px 0 0;
+      color: #344A41;
+      font-size: 13px;
+      line-height: 1.8;
+      font-weight: 600;
+    }
+
+    .flow-arrow {
+      width: 18px;
+      height: 18px;
+      border-top: 4px solid var(--gold);
+      border-right: 4px solid var(--gold);
+      transform: rotate(45deg);
+      justify-self: center;
+      opacity: 0.9;
+    }
+
+    .pillars {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .pillar-card {
+      min-height: 206px;
+      padding: 26px 22px 24px;
+      text-align: center;
+    }
+
+    .pillar-card .icon {
+      margin: 0 auto 12px;
+    }
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 52px;
+      align-items: center;
+    }
+
+    .ecosystem {
+      position: relative;
+      min-height: 230px;
+      padding: 22px 22px 26px;
+    }
+
+    .tool-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .tool-row.bottom {
+      margin-top: 84px;
+    }
+
+    .tool-box {
+      min-height: 64px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 12px;
+      color: #1D362C;
+      font-size: 14px;
+      font-weight: 900;
+      line-height: 1.4;
+    }
+
+    .tool-box small {
+      display: block;
+      margin-top: 2px;
+      color: #63736C;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .hub {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 58px;
+      height: 58px;
+      border-radius: 999px;
+      background: var(--green);
+      box-shadow: 0 12px 26px rgba(31,77,58,0.28);
+      z-index: 3;
+    }
+
+    .ecosystem::before,
+    .ecosystem::after {
+      content: "";
+      position: absolute;
+      left: 14%;
+      right: 14%;
+      border-top: 2px dotted rgba(31,77,58,0.55);
+      z-index: 1;
+    }
+
+    .ecosystem::before { top: 104px; }
+    .ecosystem::after { bottom: 104px; }
+
+    .sokumo-grid {
+      display: grid;
+      grid-template-columns: 430px 1fr;
+      gap: 56px;
+      align-items: center;
+    }
+
+    .feature-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .feature-card {
+      padding: 20px 16px;
+      min-height: 148px;
+    }
+
+    .feature-card .icon {
+      width: 36px;
+      height: 36px;
+      margin-bottom: 8px;
+    }
+
+    .tablet {
+      position: relative;
+      padding: 16px;
+      border-radius: 30px;
+      background: #1B1E1F;
+      box-shadow: 0 22px 48px rgba(15, 30, 26, 0.24);
+    }
+
+    .tablet-screen {
+      overflow: hidden;
+      min-height: 292px;
+      display: grid;
+      grid-template-columns: 126px 1fr;
+      border-radius: 20px;
+      background: #ffffff;
+    }
+
+    .sokumo-sidebar {
+      padding: 20px 16px;
+      color: #ffffff;
+      background: linear-gradient(180deg, var(--green), #0F3426);
+    }
+
+    .sokumo-logo {
+      margin-bottom: 22px;
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+    }
+
+    .side-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 0;
+      font-size: 11px;
+      font-weight: 700;
+      opacity: 0.86;
+    }
+
+    .side-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 99px;
+      background: rgba(255,255,255,0.75);
+    }
+
+    .sokumo-main {
+      padding: 24px 24px 18px;
+      background: linear-gradient(180deg, #fff 0%, #F8FAF7 100%);
+    }
+
+    .ui-title {
+      margin: 0 0 18px;
+      font-size: 18px;
+      color: var(--green);
+      font-weight: 900;
+    }
+
+    .ui-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .field-list,
+    .check-list {
+      border: 1px solid rgba(31,77,58,0.12);
+      border-radius: 14px;
+      padding: 14px;
+      background: #fff;
+    }
+
+    .field-row,
+    .check-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 7px 0;
+      font-size: 12px;
+      border-bottom: 1px solid rgba(31,77,58,0.08);
+    }
+
+    .field-row:last-child,
+    .check-row:last-child {
+      border-bottom: 0;
+    }
+
+    .check-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-weight: 800;
+      color: var(--green);
+    }
+
+    .status-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #58A66C;
+    }
+
+    .status-dot.warn {
+      background: #E5B33B;
+    }
+
+    .photo-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .photo,
+    .add-photo {
+      height: 48px;
+      border-radius: 9px;
+      background: linear-gradient(135deg, #DDE6E2, #A9B9B1);
+      border: 1px solid rgba(31,77,58,0.12);
+    }
+
+    .add-photo {
+      display: grid;
+      place-items: center;
+      color: var(--green);
+      background: #fff;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .flow-5 {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+    }
+
+    .flow-card {
+      min-height: 146px;
+      padding: 22px 14px 18px;
+      position: relative;
+      text-align: center;
+    }
+
+    .flow-card .badge {
+      left: 14px;
+      top: -12px;
+      width: 30px;
+      height: 30px;
+      font-size: 13px;
+    }
+
+    .flow-card .icon {
+      width: 38px;
+      height: 38px;
+      margin: 0 auto 8px;
+    }
+
+    .flow-card .card-title {
+      font-size: 15px;
+    }
+
+    .flow-card .card-text {
+      font-size: 11px;
+      line-height: 1.75;
+    }
+
+    .industry-grid {
+      grid-template-columns: repeat(6, 1fr);
+    }
+
+    .industry-card {
+      min-height: 122px;
+      display: grid;
+      place-items: center;
+      padding: 18px 10px;
+      text-align: center;
+      font-weight: 900;
+      color: var(--green);
+    }
+
+    .industry-card .icon {
+      width: 42px;
+      height: 42px;
+      margin-bottom: 8px;
+    }
+
+    .cta {
+      position: relative;
+      padding: 46px 0;
+      color: #ffffff;
+      background:
+        radial-gradient(circle at 3% 50%, rgba(255,255,255,0.20), transparent 90px),
+        radial-gradient(circle at 92% 12%, rgba(214,227,0,0.18), transparent 210px),
+        linear-gradient(135deg, var(--green-dark), var(--green));
+      overflow: hidden;
+    }
+
+    .cta::before,
+    .cta::after {
+      content: "";
+      position: absolute;
+      border: 1px dotted rgba(255,255,255,0.28);
+      border-radius: 999px;
+    }
+
+    .cta::before {
+      width: 150px;
+      height: 150px;
+      left: -42px;
+      bottom: -48px;
+    }
+
+    .cta::after {
+      width: 220px;
+      height: 220px;
+      right: -84px;
+      top: -94px;
+    }
+
+    .cta-inner {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .cta h2 {
+      margin: 0;
+      font-size: 35px;
+      line-height: 1.45;
+      font-weight: 900;
+      letter-spacing: 0.09em;
+    }
+
+    .cta p {
+      margin: 8px 0 0;
+      color: rgba(255,255,255,0.84);
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.9;
+    }
+
+    .footer {
+      height: 72px;
+      background: #ffffff;
+      border-top: 1px solid rgba(31,77,58,0.1);
+    }
+
+    .footer-inner {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #425950;
+    }
+
+    .footer-brand {
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--green);
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 1060px) {
+      .hero-grid,
+      .structure-grid,
+      .tools-grid,
+      .sokumo-grid,
+      .section-head {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-visual {
+        min-height: 360px;
+      }
+
+      .cube-stage {
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+      }
+
+      .pillars,
+      .industry-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .flow-5 {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 760px) {
+      .container,
+      .header-inner {
+        width: min(calc(100% - 28px), var(--container));
+      }
+
+      .site-header {
+        height: 70px;
+      }
+
+      .brand {
+        font-size: 24px;
+      }
+
+      .nav {
+        display: none;
+      }
+
+      .hero {
+        padding: 38px 0 58px;
+      }
+
+      .hero-title {
+        font-size: 42px;
+      }
+
+      .hero-visual {
+        display: none;
+      }
+
+      .cards-2x2,
+      .diagram-compare,
+      .steps-3,
+      .feature-list,
+      .flow-5,
+      .industry-grid,
+      .tool-row,
+      .tool-row.bottom,
+      .pillars {
+        grid-template-columns: 1fr;
+      }
+
+      .diagram-compare {
+        gap: 18px;
+      }
+
+      .next-circle,
+      .flow-arrow {
+        transform: rotate(90deg);
+      }
+
+      .steps-3 {
+        gap: 18px;
+      }
+
+      .ecosystem {
+        padding: 0;
+        min-height: auto;
+      }
+
+      .ecosystem::before,
+      .ecosystem::after,
+      .hub {
+        display: none;
+      }
+
+      .tool-row.bottom {
+        margin-top: 16px;
+      }
+
+      .tablet-screen {
+        grid-template-columns: 1fr;
+      }
+
+      .sokumo-sidebar {
+        display: none;
+      }
+
+      .ui-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .footer-inner {
+        height: auto;
+        padding: 22px 0;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .footer {
+        height: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="index.html">know thyself</a>
+        <nav class="nav" aria-label="メインナビゲーション">
+          <a href="service.html">サービス</a>
+          <a href="blog.html">導入事例</a>
+          <a href="company.html">会社紹介</a>
+          <a href="recruit.html">採用情報</a>
+          <a href="contact.html">お問い合わせ</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-grid">
+          <div>
+            <div class="eyebrow">SERVICE DESIGN</div>
+            <h1 class="hero-title">現場の知恵を<br />資産に変える</h1>
+            <p class="hero-lead">業務の属人化を見直し、現場の知恵を再現可能な仕組みへ。DX・AI・既存ツール活用を通じて、企業の内部資産化を支援します。</p>
+            <div class="button-row">
+              <a class="btn btn-primary" href="contact.html">無料相談はこちら <span class="arrow"></span></a>
+              <a class="btn btn-secondary" href="#service">サービス資料を見る <span class="arrow"></span></a>
+            </div>
+          </div>
+
+          <div class="hero-visual" aria-hidden="true">
+            <div class="dot-grid"></div>
+            <div class="diagram-line line-1"></div>
+            <div class="diagram-line line-2"></div>
+            <div class="diagram-line line-3"></div>
+            <div class="cube-stage">
+              <div class="cube top"></div>
+              <div class="cube big"></div>
+              <div class="cube gold"></div>
+              <div class="cube green"></div>
+              <div class="mini-chart"><span></span><span></span><span></span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-soft">
+        <div class="container section-head">
+          <div>
+            <h2 class="section-title">こんなお悩みは<br />ありませんか？</h2>
+            <div class="title-line"></div>
+          </div>
+          <div class="cards-2x2">
+            <article class="problem-card">
+              <div class="icon">%%ICON_USERS%%</div>
+              <span>担当者ごとに<br />やり方が違う</span>
+            </article>
+            <article class="problem-card">
+              <div class="icon">%%ICON_DB%%</div>
+              <span>情報が点在し、<br />引き継ぎしにくい</span>
+            </article>
+            <article class="problem-card">
+              <div class="icon">%%ICON_TABLE%%</div>
+              <span>Excelや紙運用が増え、<br />全体が見えにくい</span>
+            </article>
+            <article class="problem-card">
+              <div class="icon">%%ICON_PUZZLE%%</div>
+              <span>ITツールを入れても<br />定着しない</span>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-beige">
+        <div class="container structure-grid">
+          <div>
+            <h2 class="section-title">本当の課題は、<br />仕組み化されていないこと</h2>
+            <div class="title-line"></div>
+            <p class="section-copy">ツール不足ではなく、業務の流れ・判断基準・情報のつながりが整理されていないことが、属人化や非効率の根本原因です。知恵を構造化し、誰でも再現できる仕組みへ変えることが解決の鍵です。</p>
+          </div>
+          <div class="diagram-compare">
+            <article class="diagram-card">
+              <h3 class="diagram-label">属人化した状態（バラバラ）</h3>
+              <div class="scatter" aria-hidden="true">
+                <span class="node n1"></span><span class="node n2"></span><span class="node n3"></span><span class="node n4"></span>
+                <span class="paper p1"></span><span class="paper p2"></span><span class="paper p3"></span>
+              </div>
+              <ul class="diagram-list">
+                <li>やり方が人それぞれ</li>
+                <li>情報が点在している</li>
+                <li>引き継ぎが難しい</li>
+              </ul>
+            </article>
+            <div class="next-circle" aria-hidden="true"></div>
+            <article class="diagram-card">
+              <h3 class="diagram-label">仕組み化された状態（資産化）</h3>
+              <div class="system-map" aria-hidden="true">
+                <div class="map-row">
+                  <div class="map-box">業務フロー</div>
+                  <div class="map-box">データ・情報</div>
+                  <div class="map-box">ナレッジ</div>
+                </div>
+                <div class="db"></div>
+              </div>
+              <ul class="diagram-list">
+                <li>共通ルールで迷わない</li>
+                <li>情報がつながり活用できる</li>
+                <li>誰でも再現・改善できる</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="service">
+        <div class="container section-head">
+          <div>
+            <h2 class="section-title">現場の知恵を<br />資産に変える3ステップ</h2>
+            <div class="title-line"></div>
+          </div>
+          <div class="steps-3">
+            <article class="step-card">
+              <span class="badge">1</span>
+              <div class="icon">%%ICON_SEARCH%%</div>
+              <h3 class="card-title">可視化</h3>
+              <p class="card-text">現場業務・情報・<br />判断基準を整理</p>
+            </article>
+            <span class="flow-arrow" aria-hidden="true"></span>
+            <article class="step-card">
+              <span class="badge">2</span>
+              <div class="icon">%%ICON_FLOW%%</div>
+              <h3 class="card-title">標準化</h3>
+              <p class="card-text">ルール・フロー・<br />データ構造を整備</p>
+            </article>
+            <span class="flow-arrow" aria-hidden="true"></span>
+            <article class="step-card">
+              <span class="badge">3</span>
+              <div class="icon">%%ICON_CHART%%</div>
+              <h3 class="card-title">運用化</h3>
+              <p class="card-text">ツール実装と定着支援で<br />継続可能に</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-soft">
+        <div class="container section-head">
+          <div>
+            <h2 class="section-title">4つの支援領域</h2>
+            <div class="title-line"></div>
+          </div>
+          <div class="pillars">
+            <article class="pillar-card">
+              <div class="icon">%%ICON_NETWORK%%</div>
+              <h3 class="card-title">業務整理・構造化</h3>
+              <p class="card-text">業務の流れや情報を整理し、再現可能な構造にします。</p>
+            </article>
+            <article class="pillar-card">
+              <div class="icon">%%ICON_TOOLS%%</div>
+              <h3 class="card-title">既存ツール活用支援</h3>
+              <p class="card-text">Microsoft365など既存ツールを最大限に活用できる仕組みを構築します。</p>
+            </article>
+            <article class="pillar-card">
+              <div class="icon">%%ICON_CHART%%</div>
+              <h3 class="card-title">DX・AI導入支援</h3>
+              <p class="card-text">業務課題に合わせたDX・AIの導入を企画から伴走支援します。</p>
+            </article>
+            <article class="pillar-card">
+              <div class="icon">%%ICON_GRAD%%</div>
+              <h3 class="card-title">社内定着・教育支援</h3>
+              <p class="card-text">使い続けられる仕組みと教育・サポートで定着まで支援します。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container tools-grid">
+          <div>
+            <h2 class="section-title">活用するツール群</h2>
+            <div class="title-line"></div>
+            <p class="section-copy">お客様の環境や目的に合わせて、最適なツールを組み合わせ、つながる仕組みを構築します。</p>
+          </div>
+          <div class="ecosystem">
+            <div class="tool-row">
+              <div class="tool-box">Microsoft365<small>Excel / Word / PowerPoint</small></div>
+              <div class="tool-box">Google Workspace<small>Docs / Sheets / Drive</small></div>
+              <div class="tool-box">Excel<small>業務データ活用</small></div>
+            </div>
+            <div class="hub" aria-hidden="true"></div>
+            <div class="tool-row bottom">
+              <div class="tool-box">Apps Script<small>自動化・拡張</small></div>
+              <div class="tool-box">SharePoint<small>情報共有・ドキュメント管理</small></div>
+              <div class="tool-box">Teams<small>コミュニケーション・連携</small></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-beige">
+        <div class="container sokumo-grid">
+          <div>
+            <h2 class="section-title">現場発のプロダクト<br />「SOKUMO」</h2>
+            <div class="title-line"></div>
+            <p class="section-copy">現場で使いやすい発想から生まれた実務プロダクト。現場理解をもとに、業務に根づく仕組みを形にします。</p>
+            <div class="feature-list">
+              <article class="feature-card">
+                <div class="icon">%%ICON_USER%%</div>
+                <h3 class="card-title">現場視点</h3>
+                <p class="card-text">現場の声を起点にした実務に寄り添う設計</p>
+              </article>
+              <article class="feature-card">
+                <div class="icon">%%ICON_TOUCH%%</div>
+                <h3 class="card-title">シンプル操作</h3>
+                <p class="card-text">誰でも直感的に使えるUI/UX</p>
+              </article>
+              <article class="feature-card">
+                <div class="icon">%%ICON_TARGET%%</div>
+                <h3 class="card-title">業務改善に直結</h3>
+                <p class="card-text">現場の課題を解決し、効果を実感</p>
+              </article>
+            </div>
+          </div>
+          <div class="tablet" aria-label="SOKUMO画面イメージ">
+            <div class="tablet-screen">
+              <aside class="sokumo-sidebar">
+                <div class="sokumo-logo">SOKUMO</div>
+                <div class="side-item"><span class="side-dot"></span>ホーム</div>
+                <div class="side-item"><span class="side-dot"></span>点検一覧</div>
+                <div class="side-item"><span class="side-dot"></span>記録</div>
+                <div class="side-item"><span class="side-dot"></span>集計・レポート</div>
+                <div class="side-item"><span class="side-dot"></span>設定</div>
+              </aside>
+              <div class="sokumo-main">
+                <h3 class="ui-title">点検記録</h3>
+                <div class="ui-grid">
+                  <div class="field-list">
+                    <div class="field-row"><span>日付</span><strong>2024/05/15</strong></div>
+                    <div class="field-row"><span>現場名</span><strong>A棟 建設現場</strong></div>
+                    <div class="field-row"><span>担当者</span><strong>山田 太郎</strong></div>
+                    <div class="field-row"><span>天候</span><strong>晴れ</strong></div>
+                  </div>
+                  <div class="check-list">
+                    <div class="check-row"><span>安全確認</span><span class="check-status"><i class="status-dot"></i>良好</span></div>
+                    <div class="check-row"><span>資材確認</span><span class="check-status"><i class="status-dot"></i>良好</span></div>
+                    <div class="check-row"><span>品質確認</span><span class="check-status"><i class="status-dot warn"></i>注意</span></div>
+                    <div class="check-row"><span>写真記録</span><span class="check-status"><i class="status-dot"></i>良好</span></div>
+                  </div>
+                </div>
+                <div class="photo-row">
+                  <div class="photo"></div>
+                  <div class="photo"></div>
+                  <div class="photo"></div>
+                  <div class="add-photo">追加</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="flow">
+        <div class="container section-head">
+          <div>
+            <h2 class="section-title">導入の流れ</h2>
+            <div class="title-line"></div>
+          </div>
+          <div class="flow-5">
+            <article class="flow-card">
+              <span class="badge">1</span>
+              <div class="icon">%%ICON_USERS%%</div>
+              <h3 class="card-title">ヒアリング</h3>
+              <p class="card-text">課題や要望を丁寧にお伺いします。</p>
+            </article>
+            <article class="flow-card">
+              <span class="badge">2</span>
+              <div class="icon">%%ICON_DOC%%</div>
+              <h3 class="card-title">現状整理</h3>
+              <p class="card-text">業務や情報の現状を可視化・整理します。</p>
+            </article>
+            <article class="flow-card">
+              <span class="badge">3</span>
+              <div class="icon">%%ICON_TOOLS%%</div>
+              <h3 class="card-title">設計</h3>
+              <p class="card-text">最適な仕組みと計画を設計します。</p>
+            </article>
+            <article class="flow-card">
+              <span class="badge">4</span>
+              <div class="icon">%%ICON_GEAR%%</div>
+              <h3 class="card-title">実装</h3>
+              <p class="card-text">ツール設定・開発を行い形にします。</p>
+            </article>
+            <article class="flow-card">
+              <span class="badge">5</span>
+              <div class="icon">%%ICON_CHECK%%</div>
+              <h3 class="card-title">定着支援</h3>
+              <p class="card-text">運用定着まで伴走し、継続活用を支援します。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-soft" id="industries">
+        <div class="container section-head">
+          <div>
+            <h2 class="section-title">対象業種</h2>
+            <div class="title-line"></div>
+            <p class="section-copy">現場業務が多く、知識の属人化が起きやすい業種に特に適しています。</p>
+          </div>
+          <div class="industry-grid">
+            <article class="industry-card"><div class="icon">%%ICON_FACTORY%%</div>製造業</article>
+            <article class="industry-card"><div class="icon">%%ICON_SCALE%%</div>士業</article>
+            <article class="industry-card"><div class="icon">%%ICON_CRANE%%</div>建設業</article>
+            <article class="industry-card"><div class="icon">%%ICON_GOV%%</div>行政・公共</article>
+            <article class="industry-card"><div class="icon">%%ICON_HEART%%</div>医療・介護</article>
+            <article class="industry-card"><div class="icon">%%ICON_BUILDING%%</div>中小企業全般</article>
+          </div>
+        </div>
+      </section>
+
+      <section class="cta" id="contact">
+        <div class="container cta-inner">
+          <div>
+            <h2>現場の知恵を、未来につながる資産へ。</h2>
+            <p>業務の見える化から、仕組み化、運用定着まで。<br />まずはお気軽にご相談ください。</p>
+          </div>
+          <a class="btn btn-yellow" href="contact.html">お問い合わせ <span class="arrow"></span></a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <div class="footer-brand">know thyself</div>
+        <div class="footer-links">
+          <a href="service.html">サービス</a>
+          <a href="blog.html">導入事例</a>
+          <a href="company.html">会社紹介</a>
+          <a href="recruit.html">採用情報</a>
+          <a href="contact.html">お問い合わせ</a>
+          <a href="#">プライバシーポリシー</a>
+        </div>
+        <div>© know thyself Inc.</div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const icons = {
+      USERS: '<svg viewBox="0 0 48 48"><circle cx="17" cy="17" r="6"/><circle cx="31" cy="17" r="6"/><path d="M6 39c1.8-8 7.2-12 11-12s9.2 4 11 12"/><path d="M21 39c1.5-6.8 6.2-10 10-10s8.5 3.2 10 10"/></svg>',
+      DB: '<svg viewBox="0 0 48 48"><ellipse cx="24" cy="12" rx="15" ry="6"/><path d="M9 12v24c0 3.3 6.7 6 15 6s15-2.7 15-6V12"/><path d="M9 24c0 3.3 6.7 6 15 6s15-2.7 15-6"/><path d="M9 36c0 3.3 6.7 6 15 6s15-2.7 15-6"/></svg>',
+      TABLE: '<svg viewBox="0 0 48 48"><rect x="8" y="8" width="32" height="32" rx="3"/><path d="M8 18h32M8 28h32M18 8v32M30 8v32"/></svg>',
+      PUZZLE: '<svg viewBox="0 0 48 48"><path d="M18 8h10v8c0 2.5 2 4.5 4.5 4.5S37 18.5 37 16v-1h3v11h-8c-2.5 0-4.5 2-4.5 4.5S29.5 35 32 35h8v5H26v-8c0-2.5-2-4.5-4.5-4.5S17 29.5 17 32v8H8V26h8c2.5 0 4.5-2 4.5-4.5S18.5 17 16 17H8V8h10z"/></svg>',
+      SEARCH: '<svg viewBox="0 0 48 48"><path d="M12 8h18l6 6v14"/><path d="M30 8v8h8"/><circle cx="22" cy="27" r="7"/><path d="M27 32l8 8"/></svg>',
+      FLOW: '<svg viewBox="0 0 48 48"><rect x="18" y="6" width="12" height="10" rx="2"/><rect x="6" y="32" width="12" height="10" rx="2"/><rect x="30" y="32" width="12" height="10" rx="2"/><path d="M24 16v8M12 32v-8h24v8"/></svg>',
+      CHART: '<svg viewBox="0 0 48 48"><path d="M8 40h32"/><path d="M12 34V22M24 34V14M36 34V8"/><path d="M10 18l10-8 8 7 10-12"/></svg>',
+      NETWORK: '<svg viewBox="0 0 48 48"><circle cx="24" cy="8" r="5"/><circle cx="10" cy="36" r="5"/><circle cx="38" cy="36" r="5"/><path d="M22 13L12 31M26 13l10 18M15 36h18"/></svg>',
+      TOOLS: '<svg viewBox="0 0 48 48"><path d="M18 28L8 38l2 2 10-10"/><path d="M30 6l12 12-8 8-12-12z"/><path d="M28 20L16 8M34 26l6 6"/></svg>',
+      GRAD: '<svg viewBox="0 0 48 48"><path d="M4 17l20-9 20 9-20 9z"/><path d="M12 23v9c3 4 21 4 24 0v-9"/><path d="M40 19v11"/></svg>',
+      USER: '<svg viewBox="0 0 48 48"><circle cx="24" cy="15" r="8"/><path d="M9 42c2-10 8-15 15-15s13 5 15 15"/></svg>',
+      TOUCH: '<svg viewBox="0 0 48 48"><path d="M19 22V9a4 4 0 0 1 8 0v15"/><path d="M27 23v-5a4 4 0 0 1 8 0v8"/><path d="M19 25l-3-3a4 4 0 0 0-6 5l12 13h15l4-12"/></svg>',
+      TARGET: '<svg viewBox="0 0 48 48"><circle cx="22" cy="26" r="14"/><circle cx="22" cy="26" r="7"/><path d="M31 17l9-9M34 8h6v6"/></svg>',
+      DOC: '<svg viewBox="0 0 48 48"><path d="M12 6h18l6 6v30H12z"/><path d="M30 6v8h8"/><path d="M18 23h14M18 31h14"/></svg>',
+      GEAR: '<svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="6"/><path d="M24 6v6M24 36v6M6 24h6M36 24h6M11 11l4 4M33 33l4 4M37 11l-4 4M15 33l-4 4"/></svg>',
+      CHECK: '<svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="17"/><path d="M16 24l6 6 11-13"/></svg>',
+      FACTORY: '<svg viewBox="0 0 48 48"><path d="M6 40V20l12 7V18l12 8V12h10v28z"/><path d="M12 34h6M24 34h6M36 34h4"/></svg>',
+      SCALE: '<svg viewBox="0 0 48 48"><path d="M24 8v32M12 14h24M16 14l-8 14h16zM32 14l-8 14h16z"/></svg>',
+      CRANE: '<svg viewBox="0 0 48 48"><path d="M10 40V10h8v30M18 14h22M34 14v10l4 4"/><path d="M6 40h18"/></svg>',
+      GOV: '<svg viewBox="0 0 48 48"><path d="M6 18h36L24 8z"/><path d="M10 20v18M18 20v18M30 20v18M38 20v18M6 40h36"/></svg>',
+      HEART: '<svg viewBox="0 0 48 48"><path d="M24 40S8 30 8 18a8 8 0 0 1 14-5 8 8 0 0 1 14 5c0 12-16 22-16 22z"/><path d="M18 25h5l2-5 3 10 2-5h5"/></svg>',
+      BUILDING: '<svg viewBox="0 0 48 48"><rect x="12" y="8" width="24" height="32" rx="2"/><path d="M18 16h3M27 16h3M18 24h3M27 24h3M18 32h3M27 32h3"/></svg>'
+    };
+
+    const replacements = {
+      '%%ICON_USERS%%': icons.USERS,
+      '%%ICON_DB%%': icons.DB,
+      '%%ICON_TABLE%%': icons.TABLE,
+      '%%ICON_PUZZLE%%': icons.PUZZLE,
+      '%%ICON_SEARCH%%': icons.SEARCH,
+      '%%ICON_FLOW%%': icons.FLOW,
+      '%%ICON_CHART%%': icons.CHART,
+      '%%ICON_NETWORK%%': icons.NETWORK,
+      '%%ICON_TOOLS%%': icons.TOOLS,
+      '%%ICON_GRAD%%': icons.GRAD,
+      '%%ICON_USER%%': icons.USER,
+      '%%ICON_TOUCH%%': icons.TOUCH,
+      '%%ICON_TARGET%%': icons.TARGET,
+      '%%ICON_DOC%%': icons.DOC,
+      '%%ICON_GEAR%%': icons.GEAR,
+      '%%ICON_CHECK%%': icons.CHECK,
+      '%%ICON_FACTORY%%': icons.FACTORY,
+      '%%ICON_SCALE%%': icons.SCALE,
+      '%%ICON_CRANE%%': icons.CRANE,
+      '%%ICON_GOV%%': icons.GOV,
+      '%%ICON_HEART%%': icons.HEART,
+      '%%ICON_BUILDING%%': icons.BUILDING
+    };
+
+    document.body.innerHTML = document.body.innerHTML.replace(/%%ICON_[A-Z]+%%/g, match => replacements[match] || '');
+  </script>
+</body>
+</html>

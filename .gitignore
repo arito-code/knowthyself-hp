@@ -1,0 +1,10 @@
+# Cursor / IDE
+.cursor/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# 一時ファイル
+*.tmp
+_*.ps1

@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>お問い合わせ | know thyself</title>
+  <meta name="description" content="know thyselfへのお問い合わせページ。DX相談、SOKUMOデモ、協業相談など、業務整理の相談から始めます。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green: #1F4D3A;
+      --green-dark: #123B2B;
+      --green-soft: #EAF1ED;
+      --beige: #F5F3E7;
+      --beige-2: #FBFAF3;
+      --gold: #C6A85C;
+      --yellow: #D6E300;
+      --navy: #243A5E;
+      --text: #1D2A27;
+      --muted: #61706B;
+      --white: #FFFFFF;
+      --line: rgba(31, 77, 58, 0.14);
+      --shadow: 0 18px 45px rgba(31, 77, 58, 0.09);
+      --shadow-soft: 0 10px 30px rgba(31, 77, 58, 0.08);
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --max: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      background: linear-gradient(180deg, #FFFDF6 0%, var(--beige-2) 38%, #FFFFFF 100%);
+      font-family: "Inter", "Zen Kaku Gothic New", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.75;
+      letter-spacing: 0.02em;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(31, 77, 58, 0.08);
+    }
+
+    .header-inner {
+      width: min(100%, 1280px);
+      height: 78px;
+      margin: 0 auto;
+      padding: 0 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+    }
+
+    .brand {
+      font-size: clamp(22px, 2.2vw, 30px);
+      font-weight: 800;
+      color: var(--green);
+      letter-spacing: -0.04em;
+      white-space: nowrap;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: clamp(18px, 3vw, 42px);
+      font-size: 14px;
+      font-weight: 700;
+      color: #141D1A;
+    }
+
+    .nav a {
+      position: relative;
+      padding: 28px 0 24px;
+    }
+
+    .nav a.is-active {
+      color: var(--green);
+    }
+
+    .nav a.is-active::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      width: 76px;
+      height: 4px;
+      border-radius: 99px;
+      background: var(--yellow);
+      transform: translateX(-50%);
+    }
+
+    .menu-button {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #fff;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .menu-button span,
+    .menu-button::before,
+    .menu-button::after {
+      content: "";
+      width: 18px;
+      height: 2px;
+      display: block;
+      background: var(--green);
+      border-radius: 999px;
+    }
+
+    .menu-button::before { transform: translateY(-6px); }
+    .menu-button::after { transform: translateY(6px); }
+    .menu-button span { position: absolute; }
+
+    .hero {
+      width: 100%;
+      min-height: 610px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.04fr) minmax(0, 0.96fr);
+      overflow: hidden;
+      background: var(--beige-2);
+      border-bottom: 1px solid rgba(31, 77, 58, 0.08);
+    }
+
+    .hero-photo {
+      position: relative;
+      min-height: 610px;
+      overflow: hidden;
+      border-bottom-right-radius: 56px;
+      background: linear-gradient(135deg, rgba(31, 77, 58, 0.08), rgba(198, 168, 92, 0.12)), url("assets/contact-hero.png") center/cover no-repeat;
+    }
+
+    .hero-photo::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(255,255,255,0) 68%, rgba(245,243,231,0.72) 100%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      min-height: 610px;
+      padding: clamp(56px, 7vw, 86px) clamp(32px, 6vw, 86px);
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-copy {
+      position: relative;
+      z-index: 2;
+      max-width: 560px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      flex-direction: column;
+      gap: 10px;
+      color: var(--gold);
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::after {
+      content: "";
+      width: 42px;
+      height: 2px;
+      background: var(--gold);
+    }
+
+    .page-title {
+      margin: 28px 0 14px;
+      font-size: 25px;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .hero h1 {
+      margin: 0;
+      color: var(--green);
+      font-family: "Zen Kaku Gothic New", "Inter", sans-serif;
+      font-size: clamp(42px, 5vw, 68px);
+      line-height: 1.22;
+      font-weight: 900;
+      letter-spacing: 0.01em;
+    }
+
+    .hero-lead {
+      margin: 28px 0 42px;
+      color: #273B35;
+      font-size: clamp(18px, 2vw, 24px);
+      line-height: 1.8;
+      font-weight: 800;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 22px;
+      align-items: center;
+    }
+
+    .btn {
+      min-height: 64px;
+      padding: 0 30px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      border-radius: 12px;
+      font-weight: 800;
+      transition: transform .22s ease, box-shadow .22s ease, background .22s ease;
+      border: 1px solid transparent;
+      white-space: nowrap;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .btn-primary {
+      color: #fff;
+      background: var(--green);
+      box-shadow: 0 14px 30px rgba(31, 77, 58, 0.20);
+    }
+
+    .btn-outline {
+      color: var(--green);
+      background: rgba(255,255,255,0.72);
+      border-color: rgba(31, 77, 58, 0.48);
+    }
+
+    .btn-yellow {
+      color: var(--green-dark);
+      background: var(--yellow);
+      box-shadow: 0 14px 30px rgba(214, 227, 0, 0.20);
+    }
+
+    .btn-ghost-dark {
+      color: #fff;
+      background: rgba(255,255,255,0.05);
+      border-color: rgba(214, 227, 0, 0.8);
+    }
+
+    .btn svg {
+      width: 20px;
+      height: 20px;
+      flex: 0 0 auto;
+    }
+
+    .decor-dots {
+      position: absolute;
+      top: 82px;
+      right: 48px;
+      display: grid;
+      grid-template-columns: repeat(3, 6px);
+      gap: 18px;
+      opacity: 0.95;
+    }
+
+    .decor-dots i {
+      width: 6px;
+      height: 6px;
+      border-radius: 2px;
+      background: var(--gold);
+    }
+
+    .decor-dots i:nth-child(3n) { background: var(--green); }
+    .decor-dots i:nth-child(2n) { opacity: .55; }
+
+    .hero-curve {
+      position: absolute;
+      right: -110px;
+      bottom: 86px;
+      width: 760px;
+      height: 240px;
+      border-top: 2px solid rgba(198,168,92,0.52);
+      border-radius: 50%;
+      transform: rotate(-8deg);
+      pointer-events: none;
+    }
+
+    .section {
+      padding: clamp(56px, 7vw, 88px) 32px 0;
+    }
+
+    .section-inner {
+      width: min(100%, var(--max));
+      margin: 0 auto;
+    }
+
+    .section-title {
+      margin: 0 0 42px;
+      text-align: center;
+      font-family: "Zen Kaku Gothic New", sans-serif;
+      font-size: clamp(28px, 3vw, 36px);
+      line-height: 1.3;
+      font-weight: 900;
+      color: var(--text);
+    }
+
+    .section-title::after {
+      content: "";
+      display: block;
+      width: 44px;
+      height: 3px;
+      margin: 14px auto 0;
+      border-radius: 999px;
+      background: var(--gold);
+    }
+
+    .consult-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      position: relative;
+      min-height: 216px;
+      padding: 36px 34px;
+      display: grid;
+      grid-template-columns: 92px 1fr;
+      align-items: center;
+      gap: 28px;
+      background: rgba(255,255,255,0.84);
+      border: 1px solid rgba(31,77,58,0.10);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+    }
+
+    .card::after {
+      content: "›";
+      position: absolute;
+      right: 26px;
+      bottom: 26px;
+      color: var(--green);
+      font-size: 28px;
+      line-height: 1;
+    }
+
+    .icon-circle {
+      width: 90px;
+      height: 90px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--green-soft);
+    }
+
+    .card:nth-child(2) .icon-circle {
+      background: rgba(198,168,92,0.16);
+    }
+
+    .card:nth-child(3) .icon-circle {
+      background: rgba(36,58,94,0.08);
+    }
+
+    .icon-circle svg {
+      width: 52px;
+      height: 52px;
+    }
+
+    .card h3,
+    .assurance-card h3,
+    .flow-step h3 {
+      margin: 0 0 10px;
+      color: var(--green);
+      font-family: "Zen Kaku Gothic New", sans-serif;
+      font-size: 26px;
+      line-height: 1.35;
+      font-weight: 900;
+    }
+
+    .card p,
+    .assurance-card p,
+    .flow-step p {
+      margin: 0;
+      color: #34443F;
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 1.8;
+    }
+
+    .flow-panel {
+      padding: 36px 40px;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr auto 1fr;
+      gap: 24px;
+      align-items: center;
+      background: rgba(255,255,255,0.9);
+      border: 1px solid rgba(31,77,58,0.12);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+    }
+
+    .flow-step {
+      position: relative;
+      display: grid;
+      grid-template-columns: 118px 1fr;
+      gap: 22px;
+      align-items: center;
+    }
+
+    .number {
+      position: absolute;
+      top: -10px;
+      left: -4px;
+      z-index: 2;
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: #fff;
+      background: var(--green);
+      font-weight: 800;
+      box-shadow: 0 10px 22px rgba(31,77,58,0.22);
+    }
+
+    .flow-icon {
+      width: 112px;
+      height: 112px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: #FAF8EF;
+      border: 1px solid rgba(31,77,58,0.08);
+    }
+
+    .flow-icon svg {
+      width: 68px;
+      height: 68px;
+    }
+
+    .flow-arrow {
+      width: 58px;
+      height: 1px;
+      border-top: 2px dotted rgba(31,77,58,0.45);
+      position: relative;
+    }
+
+    .flow-arrow::after {
+      content: "";
+      position: absolute;
+      right: -1px;
+      top: -5px;
+      width: 9px;
+      height: 9px;
+      border-right: 2px solid rgba(31,77,58,0.45);
+      border-top: 2px solid rgba(31,77,58,0.45);
+      transform: rotate(45deg);
+    }
+
+    .assurance-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .assurance-card {
+      min-height: 210px;
+      padding: 32px 32px;
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 24px;
+      align-items: center;
+      background: rgba(255,255,255,0.72);
+      border: 1px solid rgba(31,77,58,0.18);
+      border-radius: var(--radius-md);
+      box-shadow: 0 10px 28px rgba(31,77,58,0.05);
+    }
+
+    .assurance-card .icon-circle {
+      background: #FAF8EF;
+      border: 1px solid rgba(198,168,92,0.26);
+    }
+
+    .final-cta {
+      padding-bottom: 28px;
+    }
+
+    .cta-panel {
+      position: relative;
+      min-height: 300px;
+      padding: clamp(42px, 6vw, 62px) clamp(30px, 5vw, 58px);
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 38px;
+      align-items: end;
+      overflow: hidden;
+      border-radius: var(--radius-xl);
+      background:
+        radial-gradient(circle at 18% 20%, rgba(255,255,255,0.15), transparent 36%),
+        linear-gradient(135deg, #145238 0%, #0B3F2F 56%, #0A3428 100%);
+      box-shadow: 0 26px 55px rgba(31,77,58,0.22);
+    }
+
+    .cta-panel::after {
+      content: "";
+      position: absolute;
+      right: 42px;
+      top: 40px;
+      width: 420px;
+      height: 132px;
+      opacity: 0.24;
+      background:
+        linear-gradient(var(--gold), var(--gold)) 0 88px/100% 2px no-repeat,
+        linear-gradient(var(--gold), var(--gold)) 28px 52px/64px 2px no-repeat,
+        linear-gradient(var(--gold), var(--gold)) 128px 28px/88px 2px no-repeat,
+        linear-gradient(var(--gold), var(--gold)) 254px 64px/126px 2px no-repeat;
+      border-bottom: 2px solid rgba(198,168,92,0.65);
+      border-radius: 16px;
+    }
+
+    .cta-copy {
+      position: relative;
+      z-index: 2;
+    }
+
+    .cta-copy h2 {
+      margin: 0 0 24px;
+      color: #fff;
+      font-family: "Zen Kaku Gothic New", sans-serif;
+      font-size: clamp(30px, 4vw, 44px);
+      line-height: 1.45;
+      font-weight: 900;
+    }
+
+    .cta-copy h2::after {
+      content: "";
+      display: block;
+      width: 46px;
+      height: 3px;
+      margin-top: 18px;
+      background: var(--yellow);
+      border-radius: 999px;
+    }
+
+    .cta-copy p {
+      margin: 0;
+      color: rgba(255,255,255,0.92);
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 2;
+    }
+
+    .cta-actions {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .site-footer {
+      border-top: 1px solid rgba(31,77,58,0.10);
+      background: rgba(255,255,255,0.78);
+    }
+
+    .footer-inner {
+      width: min(100%, var(--max));
+      margin: 0 auto;
+      padding: 32px 32px 18px;
+      display: grid;
+      grid-template-columns: 260px 1px 1fr auto;
+      gap: 42px;
+      align-items: center;
+    }
+
+    .footer-brand .brand {
+      display: block;
+      margin-bottom: 12px;
+      font-size: 24px;
+    }
+
+    .footer-brand p {
+      margin: 0;
+      color: #4D5E58;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.8;
+    }
+
+    .footer-line {
+      width: 1px;
+      height: 76px;
+      background: rgba(31,77,58,0.16);
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px 38px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .footer-links small {
+      flex-basis: 100%;
+      color: #51605C;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .sns {
+      display: flex;
+      gap: 14px;
+    }
+
+    .sns a {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: #fff;
+      background: var(--green);
+      font-weight: 800;
+      box-shadow: 0 8px 20px rgba(31,77,58,0.18);
+    }
+
+    .copyright {
+      grid-column: 1 / -1;
+      margin: 18px 0 0;
+      padding-top: 16px;
+      border-top: 1px solid rgba(31,77,58,0.08);
+      text-align: center;
+      color: #64736E;
+      font-size: 12px;
+    }
+
+    @media (max-width: 1100px) {
+      .header-inner {
+        padding: 0 22px;
+      }
+
+      .nav {
+        display: none;
+      }
+
+      .menu-button {
+        display: flex;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-photo {
+        min-height: 420px;
+        border-bottom-right-radius: 42px;
+      }
+
+      .hero-content {
+        min-height: auto;
+      }
+
+      .consult-grid,
+      .assurance-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .card,
+      .assurance-card {
+        min-height: auto;
+      }
+
+      .flow-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .flow-step {
+        grid-template-columns: 104px 1fr;
+      }
+
+      .flow-arrow {
+        width: 1px;
+        height: 42px;
+        margin-left: 55px;
+        border-top: 0;
+        border-left: 2px dotted rgba(31,77,58,0.45);
+      }
+
+      .flow-arrow::after {
+        right: auto;
+        left: -6px;
+        top: auto;
+        bottom: -1px;
+        transform: rotate(135deg);
+      }
+
+      .cta-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-actions {
+        justify-content: flex-start;
+      }
+
+      .footer-inner {
+        grid-template-columns: 1fr;
+        gap: 22px;
+      }
+
+      .footer-line {
+        display: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .header-inner {
+        height: 68px;
+      }
+
+      .hero-photo {
+        min-height: 300px;
+        border-bottom-right-radius: 30px;
+      }
+
+      .hero-content {
+        padding: 44px 22px 54px;
+      }
+
+      .page-title {
+        font-size: 21px;
+      }
+
+      .button-row,
+      .cta-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .section {
+        padding: 54px 20px 0;
+      }
+
+      .card,
+      .assurance-card {
+        grid-template-columns: 78px 1fr;
+        gap: 18px;
+        padding: 26px 22px;
+      }
+
+      .icon-circle {
+        width: 72px;
+        height: 72px;
+      }
+
+      .icon-circle svg {
+        width: 42px;
+        height: 42px;
+      }
+
+      .flow-panel {
+        padding: 28px 20px;
+      }
+
+      .flow-step {
+        grid-template-columns: 82px 1fr;
+        gap: 18px;
+      }
+
+      .flow-icon {
+        width: 78px;
+        height: 78px;
+      }
+
+      .flow-icon svg {
+        width: 48px;
+        height: 48px;
+      }
+
+      .number {
+        width: 34px;
+        height: 34px;
+        font-size: 14px;
+      }
+
+      .flow-arrow {
+        margin-left: 39px;
+      }
+
+      .card h3,
+      .assurance-card h3,
+      .flow-step h3 {
+        font-size: 21px;
+      }
+
+      .card p,
+      .assurance-card p,
+      .flow-step p {
+        font-size: 13px;
+      }
+
+      .cta-panel {
+        border-radius: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html">know thyself</a>
+      <nav class="nav" aria-label="グローバルナビゲーション">
+        <a href="service.html">サービス</a>
+        <a href="blog.html">導入事例</a>
+        <a href="company.html">会社紹介</a>
+        <a href="recruit.html">採用情報</a>
+        <a href="contact.html" class="is-active">お問い合わせ</a>
+      </nav>
+      <button class="menu-button" aria-label="メニューを開く"><span></span></button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-photo" role="img" aria-label="小規模事業者とDXコンサルタントが打ち合わせをしている様子"></div>
+      <div class="hero-content">
+        <div class="decor-dots" aria-hidden="true">
+          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        </div>
+        <div class="hero-curve" aria-hidden="true"></div>
+        <div class="hero-copy">
+          <span class="eyebrow">CONTACT</span>
+          <p class="page-title">お問い合わせ</p>
+          <h1>まずは現場の話を聞かせてください</h1>
+          <p class="hero-lead">ツール導入ではなく<br>業務整理の相談から始めます</p>
+          <div class="button-row">
+            <a class="btn btn-primary" href="#contact-form">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6.5h16v11H4v-11Z" stroke="currentColor" stroke-width="2"/><path d="m4.5 7 7.5 6 7.5-6" stroke="currentColor" stroke-width="2"/></svg>
+              相談フォームへ
+              <span>›</span>
+            </a>
+            <a class="btn btn-outline" href="#demo">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 5h12a2 2 0 0 1 2 2v12H4V7a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="2"/><path d="M8 3v4M16 3v4M4 10h16" stroke="currentColor" stroke-width="2"/></svg>
+              デモを依頼する
+              <span>›</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="consult-title">
+      <div class="section-inner">
+        <h2 class="section-title" id="consult-title">ご相談内容</h2>
+        <div class="consult-grid">
+          <article class="card">
+            <div class="icon-circle" aria-hidden="true">
+              <svg viewBox="0 0 80 80" fill="none"><circle cx="28" cy="32" r="8" fill="#1F4D3A"/><circle cx="52" cy="32" r="8" fill="#1F4D3A"/><path d="M14 60c2-10 8-16 16-16s14 6 16 16" fill="#1F4D3A" opacity=".9"/><path d="M38 60c2-10 8-16 16-16s14 6 16 16" fill="#1F4D3A" opacity=".55"/><path d="M25 17h30c5 0 9 4 9 9s-4 9-9 9H40l-9 8v-8h-6c-5 0-9-4-9-9s4-9 9-9Z" stroke="#243A5E" stroke-width="3" fill="#fff"/><path d="M33 26h3M40 26h3M47 26h3" stroke="#243A5E" stroke-width="3" stroke-linecap="round"/></svg>
+            </div>
+            <div>
+              <h3>DX相談</h3>
+              <p>業務の流れや課題を整理し、改善の方向性を考えます</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="icon-circle" aria-hidden="true">
+              <svg viewBox="0 0 80 80" fill="none"><rect x="14" y="18" width="52" height="34" rx="4" fill="#fff" stroke="#1F4D3A" stroke-width="3"/><path d="M24 29h22M24 38h14M48 38h8" stroke="#C6A85C" stroke-width="3" stroke-linecap="round"/><path d="M34 52h12v7H34zM26 61h28" stroke="#1F4D3A" stroke-width="3" stroke-linecap="round"/></svg>
+            </div>
+            <div>
+              <h3>SOKUMOデモ</h3>
+              <p>現場で使う積算アプリの操作感や活用方法をご案内します</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="icon-circle" aria-hidden="true">
+              <svg viewBox="0 0 80 80" fill="none"><path d="M22 43 35 30l10 10-13 13c-3 3-8 3-10 0s-3-7 0-10Z" fill="#fff" stroke="#243A5E" stroke-width="3"/><path d="M58 43 45 30 35 40l13 13c3 3 8 3 10 0s3-7 0-10Z" fill="#fff" stroke="#243A5E" stroke-width="3"/><path d="M16 34 28 22l8 8-12 12-8-8ZM64 34 52 22l-8 8 12 12 8-8Z" fill="#D6E300" stroke="#1F4D3A" stroke-width="3"/></svg>
+            </div>
+            <div>
+              <h3>協業相談</h3>
+              <p>パートナー連携や共同提案のご相談に対応します</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="flow-title">
+      <div class="section-inner">
+        <h2 class="section-title" id="flow-title">ご相談の流れ</h2>
+        <div class="flow-panel">
+          <article class="flow-step">
+            <span class="number">1</span>
+            <div class="flow-icon" aria-hidden="true">
+              <svg viewBox="0 0 80 80" fill="none"><path d="M18 58V43c0-6 5-11 11-11s11 5 11 11v15" stroke="#1F4D3A" stroke-width="3"/><path d="M40 58V43c0-6 5-11 11-11s11 5 11 11v15" stroke="#1F4D3A" stroke-width="3" opacity=".72"/><circle cx="29" cy="24" r="7" stroke="#243A5E" stroke-width="3"/><circle cx="51" cy="24" r="7" stroke="#243A5E" stroke-width="3"/><path d="M27 47h26" stroke="#C6A85C" stroke-width="3" stroke-linecap="round"/></svg>
+            </div>
+            <div>
+              <h3>相談</h3>
+              <p>現場の状況や課題をヒアリングします</p>
+            </div>
+          </article>
+          <div class="flow-arrow" aria-hidden="true"></div>
+          <article class="flow-step">
+            <span class="number">2</span>
+            <div class="flow-icon" aria-hidden="true">
+              <svg viewBox="0 0 80 80" fill="none"><path d="M18 28h17l6 8h21v28H18V28Z" fill="#fff" stroke="#1F4D3A" stroke-width="3"/><path d="M34 18h22l7 8v26H34V18Z" fill="#fff" stroke="#243A5E" stroke-width="3"/><path d="M55 18v10h8" stroke="#243A5E" stroke-width="3"/><path d="M40 37h14M40 45h11" stroke="#C6A85C" stroke-width="3" stroke-linecap="round"/></svg>
+            </div>
+            <div>
+              <h3>整理</h3>
+              <p>業務の流れや課題を整理し、優先順位を明確にします</p>
+            </div>
+          </article>
+          <div class="flow-arrow" aria-hidden="true"></div>
+          <article class="flow-step">
+            <span class="number">3</span>
+            <div class="flow-icon" aria-hidden="true">
+              <svg viewBox="0 0 80 80" fill="none"><rect x="20" y="14" width="36" height="50" rx="3" fill="#fff" stroke="#243A5E" stroke-width="3"/><path d="M28 26h20M28 36h20M28 46h12" stroke="#1F4D3A" stroke-width="3" stroke-linecap="round"/><circle cx="58" cy="51" r="12" fill="#D6E300" stroke="#1F4D3A" stroke-width="3"/><path d="M58 44v8M54 55h8" stroke="#1F4D3A" stroke-width="3" stroke-linecap="round"/></svg>
+            </div>
+            <div>
+              <h3>提案</h3>
+              <p>改善の方向性や<br>活用方法を具体的に<br>ご提案します</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="safe-title">
+      <div class="section-inner">
+        <h2 class="section-title" id="safe-title">安心してご相談ください</h2>
+        <div class="assurance-grid">
+          <article class="assurance-card">
+            <div class="icon-circle" aria-hidden="true">
+              <svg viewBox="0 0 80 80" fill="none"><circle cx="40" cy="40" r="30" stroke="#1F4D3A" stroke-width="3"/><path d="M24 47 37 34l9 9-13 13c-3 3-7 3-9 0s-3-6 0-9Z" fill="#fff" stroke="#243A5E" stroke-width="3"/><path d="M56 47 43 34l-9 9 13 13c3 3 7 3 9 0s3-6 0-9Z" fill="#fff" stroke="#243A5E" stroke-width="3"/><path d="M21 21 59 59" stroke="#D6E300" stroke-width="5" stroke-linecap="round"/></svg>
+            </div>
+            <div>
+              <h3>無理な営業は行いません</h3>
+              <p>お客様のペースに合わせて、中立的な立場でご提案します。</p>
+            </div>
+          </article>
+          <article class="assurance-card">
+            <div class="icon-circle" aria-hidden="true">
+              <svg viewBox="0 0 80 80" fill="none"><path d="M40 64V42" stroke="#1F4D3A" stroke-width="3" stroke-linecap="round"/><path d="M39 43c-12-1-20-8-22-20 12 1 20 8 22 20ZM41 43c12-1 20-8 22-20-12 1-20 8-22 20Z" fill="#F5F3E7" stroke="#1F4D3A" stroke-width="3"/><path d="M23 66h34" stroke="#C6A85C" stroke-width="3" stroke-linecap="round"/></svg>
+            </div>
+            <div>
+              <h3>小さな案件も歓迎します</h3>
+              <p>部分的な改善や小規模なご相談も喜んでサポートします。</p>
+            </div>
+          </article>
+          <article class="assurance-card">
+            <div class="icon-circle" aria-hidden="true">
+              <svg viewBox="0 0 80 80" fill="none"><path d="M18 28h18v12h-7c-2 0-4 2-4 4s2 4 4 4h7v16H18V28Z" fill="#fff" stroke="#1F4D3A" stroke-width="3"/><path d="M36 16h16v13c0 3 2 5 5 5s5-2 5-5V16h0v24H50c-3 0-5 2-5 5s2 5 5 5h12v14H36V16Z" fill="#D6E300" stroke="#243A5E" stroke-width="3"/></svg>
+            </div>
+            <div>
+              <h3>既存ツールを活かしたご提案が可能です</h3>
+              <p>今お使いのツールや仕組みを尊重した改善をご提案します。</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section final-cta" aria-labelledby="cta-title">
+      <div class="section-inner">
+        <div class="cta-panel">
+          <div class="cta-copy">
+            <h2 id="cta-title">現場の課題、まずは一緒に整理しませんか？</h2>
+            <p>業務フローの見直し、既存ツールの活用、SOKUMOのデモなど、お気軽にご相談ください。</p>
+          </div>
+          <div class="cta-actions">
+            <a class="btn btn-yellow" id="contact-form" href="#">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6.5h16v11H4v-11Z" stroke="currentColor" stroke-width="2"/><path d="m4.5 7 7.5 6 7.5-6" stroke="currentColor" stroke-width="2"/></svg>
+              相談フォーム
+              <span>›</span>
+            </a>
+            <a class="btn btn-ghost-dark" id="demo" href="#">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 5h12a2 2 0 0 1 2 2v12H4V7a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="2"/><path d="M8 3v4M16 3v4M4 10h16" stroke="currentColor" stroke-width="2"/></svg>
+              デモ依頼
+              <span>›</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a class="brand" href="index.html">know thyself</a>
+        <p>現場の課題に寄り添う、業務改善のパートナー。</p>
+      </div>
+      <div class="footer-line" aria-hidden="true"></div>
+      <div class="footer-links">
+        <a href="index.html">TOP</a>
+        <a href="service.html">サービス</a>
+        <a href="blog.html">導入事例</a>
+        <a href="company.html">会社紹介</a>
+        <a href="recruit.html">採用情報</a>
+        <a href="contact.html">お問い合わせ</a>
+        <small><a href="#">プライバシーポリシー</a>　｜　<a href="#">特定商取引法に基づく表記</a></small>
+      </div>
+      <div class="sns" aria-label="SNSリンク">
+        <a href="#" aria-label="Facebook">f</a>
+        <a href="#" aria-label="LinkedIn">in</a>
+      </div>
+      <p class="copyright">© know thyself inc. All Rights Reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

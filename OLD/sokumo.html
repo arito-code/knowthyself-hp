@@ -1,0 +1,1443 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SOKUMO | 現場で完結する積算アプリ</title>
+  <meta name="description" content="SOKUMOは、PDF図面をiPadでなぞるだけで、面積計測から見積作成まで現場で完結できる建設現場向け積算アプリです。" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta property="og:title" content="SOKUMO | 現場で完結する積算アプリ" />
+  <meta property="og:description" content="なぞるだけで見積まで終わる。現場の移動時間と夜の見積作業をなくす積算アプリ。" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="./assets/ogp-sokumo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --green: #1F4D3A;
+      --green-2: #16382A;
+      --beige: #F5F3E7;
+      --beige-2: #FBFAF2;
+      --gold: #C6A85C;
+      --yellow: #D6E300;
+      --navy: #243A5E;
+      --ink: #15231D;
+      --muted: #5F6D66;
+      --line: rgba(31, 77, 58, 0.13);
+      --white: #FFFFFF;
+      --shadow-sm: 0 10px 30px rgba(31, 77, 58, 0.08);
+      --shadow-md: 0 22px 70px rgba(31, 77, 58, 0.14);
+      --radius-sm: 14px;
+      --radius-md: 20px;
+      --radius-lg: 28px;
+      --radius-xl: 36px;
+      --max: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Inter", "Zen Kaku Gothic New", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--ink);
+      background: var(--beige);
+      line-height: 1.75;
+      letter-spacing: 0.02em;
+      overflow-x: hidden;
+    }
+
+    body::selection {
+      background: rgba(214, 227, 0, 0.42);
+      color: var(--green);
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    textarea,
+    select {
+      font: inherit;
+    }
+
+    .site {
+      position: relative;
+      background:
+        radial-gradient(circle at 12% 3%, rgba(198, 168, 92, 0.22), transparent 28%),
+        radial-gradient(circle at 92% 10%, rgba(214, 227, 0, 0.22), transparent 24%),
+        linear-gradient(180deg, #FFFDF3 0%, var(--beige) 45%, #FFFFFF 100%);
+    }
+
+    .container {
+      width: min(calc(100% - 40px), var(--max));
+      margin: 0 auto;
+    }
+
+    .skip-link {
+      position: absolute;
+      top: -48px;
+      left: 16px;
+      z-index: 999;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: var(--green);
+      color: var(--white);
+      font-weight: 800;
+      transition: top 0.2s ease;
+    }
+
+    .skip-link:focus {
+      top: 16px;
+    }
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 253, 243, 0.86);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(31, 77, 58, 0.08);
+    }
+
+    .header-inner {
+      height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 16px;
+      color: var(--green);
+      white-space: nowrap;
+    }
+
+    .brand-company {
+      font-size: clamp(18px, 2.3vw, 25px);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+
+    .brand-product {
+      font-size: clamp(20px, 2.7vw, 30px);
+      font-weight: 900;
+      letter-spacing: 0.01em;
+      line-height: 1;
+    }
+
+    .nav {
+      display: none;
+      align-items: center;
+      gap: 22px;
+      margin-left: auto;
+      color: rgba(21, 35, 29, 0.76);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .nav a {
+      transition: color 0.2s ease;
+    }
+
+    .nav a:hover {
+      color: var(--green);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 48px;
+      padding: 0 22px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 800;
+      line-height: 1;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: var(--green);
+      color: var(--white);
+      box-shadow: 0 14px 32px rgba(31, 77, 58, 0.22);
+    }
+
+    .btn-primary:hover {
+      background: var(--green-2);
+      box-shadow: 0 18px 38px rgba(31, 77, 58, 0.28);
+    }
+
+    .btn-outline {
+      background: rgba(255, 255, 255, 0.70);
+      color: var(--green);
+      border-color: rgba(31, 77, 58, 0.24);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--green);
+      background: var(--white);
+    }
+
+    .btn-yellow {
+      background: var(--yellow);
+      color: var(--green);
+      box-shadow: 0 14px 32px rgba(214, 227, 0, 0.18);
+    }
+
+    .btn-small {
+      min-height: 42px;
+      padding-inline: 16px;
+      font-size: 13px;
+    }
+
+    .header .btn-outline {
+      display: none;
+    }
+
+    .hero {
+      padding: 0 0 64px;
+    }
+
+    .hero-shell {
+      display: grid;
+      grid-template-columns: 1fr;
+      min-height: 620px;
+      background: rgba(255, 253, 243, 0.60);
+      overflow: hidden;
+      border-bottom: 1px solid rgba(31, 77, 58, 0.08);
+    }
+
+    .hero-media {
+      min-height: 360px;
+      background:
+        linear-gradient(90deg, rgba(245, 243, 231, 0.04), rgba(245, 243, 231, 0.38)),
+        url("./assets/sokumo-hero.png") center / cover no-repeat;
+      position: relative;
+    }
+
+    .hero-media::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0 0;
+      height: 38%;
+      background: linear-gradient(0deg, rgba(245,243,231,0.72), rgba(245,243,231,0));
+    }
+
+    .hero-content {
+      position: relative;
+      display: flex;
+      align-items: center;
+      padding: 38px 20px 54px;
+    }
+
+    .hero-content-inner {
+      width: min(100%, 590px);
+      margin: 0 auto;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 15px;
+      border: 1px solid rgba(198, 168, 92, 0.46);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.72);
+      color: #9A772A;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.03em;
+    }
+
+    .badge::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--gold);
+      box-shadow: 0 0 0 4px rgba(198, 168, 92, 0.16);
+    }
+
+    .hero h1 {
+      margin: 22px 0 0;
+      color: var(--green);
+      font-family: "Zen Kaku Gothic New", sans-serif;
+      font-size: clamp(44px, 10vw, 92px);
+      font-weight: 900;
+      line-height: 1.08;
+      letter-spacing: -0.055em;
+    }
+
+    .hero h1 span {
+      display: inline-block;
+      position: relative;
+      z-index: 0;
+    }
+
+    .hero h1 span::after {
+      content: "";
+      position: absolute;
+      left: 0.05em;
+      right: -0.06em;
+      bottom: 0.05em;
+      height: 0.24em;
+      z-index: -1;
+      border-radius: 999px;
+      background: rgba(214, 227, 0, 0.62);
+    }
+
+    .hero-lead {
+      margin-top: 20px;
+      color: #46574F;
+      font-size: clamp(16px, 2.2vw, 21px);
+      font-weight: 600;
+      line-height: 1.8;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .hero-note {
+      margin-top: 22px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .note-card {
+      padding: 12px 10px;
+      border: 1px solid rgba(31, 77, 58, 0.12);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.62);
+      color: var(--green);
+      text-align: center;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .section {
+      padding: 58px 0;
+    }
+
+    .section-head {
+      margin-bottom: 28px;
+    }
+
+    .section-kicker {
+      margin-bottom: 12px;
+      color: var(--gold);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      margin: 0;
+      color: var(--green);
+      font-family: "Zen Kaku Gothic New", sans-serif;
+      font-size: clamp(28px, 6vw, 48px);
+      font-weight: 900;
+      line-height: 1.25;
+      letter-spacing: -0.04em;
+    }
+
+    .section-desc {
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: 15px;
+      max-width: 760px;
+    }
+
+    .problem-grid {
+      display: grid;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .problem-copy {
+      padding: 30px;
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.58);
+      border: 1px solid rgba(31, 77, 58, 0.08);
+    }
+
+    .problem-copy h2 {
+      margin: 0;
+      color: var(--green);
+      font-family: "Zen Kaku Gothic New", sans-serif;
+      font-size: clamp(28px, 5.8vw, 44px);
+      line-height: 1.34;
+      letter-spacing: -0.04em;
+    }
+
+    .problem-copy p {
+      margin: 20px 0 0;
+      color: #52635B;
+      font-weight: 500;
+    }
+
+    .before-after {
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+      background: var(--white);
+      border: 1px solid rgba(31, 77, 58, 0.12);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .ba-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+
+    .ba-card {
+      position: relative;
+      min-height: 260px;
+      display: flex;
+      align-items: flex-end;
+      background-size: cover;
+      background-position: center;
+      isolation: isolate;
+    }
+
+    .ba-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(0deg, rgba(0, 0, 0, 0.60), rgba(0, 0, 0, 0.06));
+    }
+
+    .ba-before {
+      background-image: url("./assets/sokumo-before.png");
+    }
+
+    .ba-after {
+      background-image: url("./assets/sokumo-after.png");
+    }
+
+    .ba-label {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      color: var(--white);
+      background: var(--navy);
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .ba-after .ba-label {
+      background: var(--gold);
+    }
+
+    .ba-caption {
+      width: 100%;
+      padding: 22px;
+      color: var(--white);
+    }
+
+    .ba-caption strong {
+      display: block;
+      font-size: 22px;
+      line-height: 1.3;
+    }
+
+    .ba-caption span {
+      display: block;
+      margin-top: 4px;
+      color: rgba(255,255,255,0.82);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .concept-box {
+      position: relative;
+      overflow: hidden;
+      padding: 42px 24px;
+      border-radius: var(--radius-xl);
+      background:
+        radial-gradient(circle at 50% 0%, rgba(214, 227, 0, 0.18), transparent 42%),
+        rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(31, 77, 58, 0.10);
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .concept-box h2 {
+      margin: 0;
+      color: var(--green);
+      font-family: "Zen Kaku Gothic New", sans-serif;
+      font-size: clamp(34px, 7vw, 64px);
+      font-weight: 900;
+      line-height: 1.18;
+      letter-spacing: -0.05em;
+    }
+
+    .concept-box p {
+      width: min(100%, 780px);
+      margin: 20px auto 0;
+      color: #4D5E55;
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .steps-card {
+      padding: 18px;
+      border-radius: var(--radius-lg);
+      background: var(--white);
+      border: 1px solid rgba(31, 77, 58, 0.12);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .steps {
+      display: grid;
+      gap: 14px;
+    }
+
+    .step {
+      position: relative;
+      padding: 24px;
+      border-radius: var(--radius-md);
+      background: linear-gradient(180deg, #FFFFFF, #FCFBF2);
+      border: 1px solid rgba(31, 77, 58, 0.10);
+      text-align: center;
+    }
+
+    .step-number {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      width: 30px;
+      height: 30px;
+      display: grid;
+      place-items: center;
+      border-radius: 9px;
+      background: var(--green);
+      color: var(--yellow);
+      font-weight: 900;
+      font-size: 13px;
+    }
+
+    .icon {
+      width: 84px;
+      height: 84px;
+      margin: 8px auto 18px;
+      color: var(--green);
+    }
+
+    .icon svg {
+      width: 100%;
+      height: 100%;
+      stroke: currentColor;
+      stroke-width: 1.6;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .step h3 {
+      margin: 0;
+      color: var(--green);
+      font-size: 22px;
+      font-weight: 900;
+      line-height: 1.25;
+    }
+
+    .step p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .impact-grid {
+      display: grid;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .impact-card {
+      position: relative;
+      overflow: hidden;
+      padding: 34px 26px;
+      border-radius: var(--radius-lg);
+      background:
+        radial-gradient(circle at 86% 20%, rgba(214, 227, 0, 0.20), transparent 32%),
+        linear-gradient(135deg, var(--navy), #16283E);
+      color: var(--white);
+      box-shadow: var(--shadow-md);
+    }
+
+    .impact-card h2 {
+      margin: 0;
+      font-family: "Zen Kaku Gothic New", sans-serif;
+      font-size: clamp(24px, 5vw, 36px);
+      line-height: 1.35;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+    }
+
+    .impact-formula {
+      margin-top: 24px;
+      font-size: clamp(30px, 8vw, 58px);
+      line-height: 1.25;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+    }
+
+    .impact-formula span {
+      color: var(--yellow);
+    }
+
+    .impact-icons {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .impact-icon {
+      padding: 12px 8px;
+      border-top: 1px solid rgba(255,255,255,0.18);
+      color: rgba(255,255,255,0.86);
+      font-size: 12px;
+      text-align: center;
+      font-weight: 800;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .feature {
+      padding: 24px;
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.80);
+      border: 1px solid rgba(31, 77, 58, 0.10);
+      box-shadow: 0 12px 28px rgba(31, 77, 58, 0.05);
+    }
+
+    .feature .icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 0 16px;
+    }
+
+    .feature h3 {
+      margin: 0;
+      color: var(--green);
+      font-size: 17px;
+      line-height: 1.25;
+      font-weight: 900;
+    }
+
+    .feature p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .usage {
+      display: grid;
+      gap: 24px;
+      align-items: center;
+      padding: 18px;
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.66);
+      border: 1px solid rgba(31, 77, 58, 0.09);
+    }
+
+    .usage-image {
+      min-height: 300px;
+      border-radius: 22px;
+      background: url("./assets/sokumo-ui-closeup.png") center / cover no-repeat;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .usage-text {
+      padding: 12px 6px 18px;
+    }
+
+    .usage-text h2 {
+      margin: 0;
+      color: var(--green);
+      font-family: "Zen Kaku Gothic New", sans-serif;
+      font-size: clamp(28px, 5.8vw, 44px);
+      line-height: 1.32;
+      letter-spacing: -0.04em;
+      font-weight: 900;
+    }
+
+    .usage-text p {
+      margin: 16px 0 0;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .voice-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .voice-card {
+      padding: 24px;
+      border-radius: var(--radius-md);
+      background: var(--white);
+      border: 1px solid rgba(31, 77, 58, 0.10);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .voice-card h3 {
+      margin: 0;
+      color: var(--green);
+      font-size: 20px;
+      font-weight: 900;
+    }
+
+    .voice-card p {
+      margin: 12px 0 0;
+      color: #53635B;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .voice-author {
+      margin-top: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .voice-author::before {
+      content: "";
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      background:
+        radial-gradient(circle at 50% 38%, transparent 0 5px, var(--green) 5px 6px, transparent 6px),
+        radial-gradient(circle at 50% 74%, transparent 0 9px, var(--green) 9px 10px, transparent 10px),
+        rgba(31, 77, 58, 0.08);
+      border: 1px solid rgba(31, 77, 58, 0.18);
+    }
+
+    .targets {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .target {
+      min-height: 128px;
+      padding: 20px 14px;
+      border-radius: var(--radius-md);
+      background: var(--white);
+      border: 1px solid rgba(31, 77, 58, 0.10);
+      display: grid;
+      place-items: center;
+      text-align: center;
+      color: var(--green);
+      font-weight: 900;
+      box-shadow: 0 10px 24px rgba(31, 77, 58, 0.04);
+    }
+
+    .target-icon {
+      width: 42px;
+      height: 42px;
+      margin-bottom: 10px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: rgba(31, 77, 58, 0.08);
+      color: var(--green);
+    }
+
+    .philosophy-eco {
+      display: grid;
+      gap: 18px;
+    }
+
+    .philosophy,
+    .ecosystem {
+      padding: 28px;
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.76);
+      border: 1px solid rgba(31, 77, 58, 0.10);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .philosophy h2,
+    .ecosystem h2 {
+      margin: 0;
+      color: var(--green);
+      font-family: "Zen Kaku Gothic New", sans-serif;
+      font-size: clamp(24px, 5vw, 34px);
+      line-height: 1.35;
+      letter-spacing: -0.04em;
+      font-weight: 900;
+    }
+
+    .philosophy p,
+    .ecosystem p {
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .ecosystem-line {
+      margin-top: 24px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .eco-box {
+      position: relative;
+      padding: 16px 18px;
+      border-radius: 16px;
+      background: #FFFFFF;
+      border: 1px solid rgba(31, 77, 58, 0.18);
+      color: var(--green);
+      text-align: center;
+      font-weight: 900;
+    }
+
+    .eco-box.primary {
+      background: var(--green);
+      color: var(--white);
+    }
+
+    .cta {
+      padding: 58px 0 34px;
+    }
+
+    .cta-box {
+      padding: 34px 24px;
+      border-radius: var(--radius-xl);
+      background:
+        radial-gradient(circle at 82% 28%, rgba(214, 227, 0, 0.26), transparent 32%),
+        linear-gradient(135deg, var(--green), var(--green-2));
+      color: var(--white);
+      box-shadow: var(--shadow-md);
+    }
+
+    .cta-grid {
+      display: grid;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .cta h2 {
+      margin: 0;
+      font-family: "Zen Kaku Gothic New", sans-serif;
+      font-size: clamp(28px, 6vw, 44px);
+      line-height: 1.26;
+      letter-spacing: -0.04em;
+      font-weight: 900;
+    }
+
+    .cta p {
+      margin: 12px 0 0;
+      color: rgba(255,255,255,0.80);
+      font-weight: 600;
+    }
+
+    .cta-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .cta .btn-outline {
+      color: var(--white);
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255,255,255,0.28);
+    }
+
+    .footer {
+      padding: 26px 0 36px;
+      border-top: 1px solid rgba(31, 77, 58, 0.08);
+      color: rgba(21, 35, 29, 0.58);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .footer-inner {
+      display: grid;
+      gap: 14px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 18px;
+    }
+
+    .footer-brand {
+      display: flex;
+      gap: 14px;
+      color: var(--green);
+      font-size: 16px;
+      font-weight: 900;
+    }
+
+    @media (min-width: 600px) {
+      .hero-actions,
+      .cta-actions {
+        flex-direction: row;
+      }
+
+      .features {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .ba-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .targets {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (min-width: 900px) {
+      .container {
+        width: min(calc(100% - 56px), var(--max));
+      }
+
+      .nav {
+        display: flex;
+      }
+
+      .header .btn-outline {
+        display: inline-flex;
+      }
+
+      .hero-shell {
+        grid-template-columns: minmax(0, 1.08fr) minmax(420px, 0.92fr);
+        min-height: 620px;
+      }
+
+      .hero-media {
+        min-height: 620px;
+        background-position: center left;
+      }
+
+      .hero-media::after {
+        inset: 0 0 0 auto;
+        width: 38%;
+        height: 100%;
+        background: linear-gradient(90deg, rgba(245,243,231,0), rgba(245,243,231,0.92));
+      }
+
+      .hero-content {
+        padding: 64px 56px 64px 20px;
+      }
+
+      .hero-content-inner {
+        margin-left: 0;
+      }
+
+      .section {
+        padding: 78px 0;
+      }
+
+      .section-head {
+        display: grid;
+        grid-template-columns: 0.9fr 1.1fr;
+        gap: 34px;
+        align-items: end;
+        margin-bottom: 34px;
+      }
+
+      .section-desc {
+        margin-top: 0;
+      }
+
+      .problem-grid {
+        grid-template-columns: 0.74fr 1.26fr;
+        gap: 34px;
+      }
+
+      .ba-card {
+        min-height: 330px;
+      }
+
+      .concept-box {
+        padding: 64px 42px;
+      }
+
+      .steps {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .steps-card {
+        padding: 22px;
+      }
+
+      .impact-grid {
+        grid-template-columns: 0.95fr 1.65fr;
+      }
+
+      .features {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .usage {
+        grid-template-columns: 1.16fr 0.84fr;
+        padding: 0;
+        overflow: hidden;
+      }
+
+      .usage-image {
+        min-height: 390px;
+        border-radius: 0;
+        box-shadow: none;
+      }
+
+      .usage-text {
+        padding: 42px 42px 42px 20px;
+      }
+
+      .voice-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .targets {
+        grid-template-columns: repeat(5, 1fr);
+      }
+
+      .philosophy-eco {
+        grid-template-columns: 0.92fr 1.08fr;
+      }
+
+      .ecosystem-line {
+        grid-template-columns: repeat(4, 1fr);
+        align-items: center;
+      }
+
+      .eco-box:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        right: -15px;
+        top: 50%;
+        width: 20px;
+        height: 1px;
+        background: rgba(31, 77, 58, 0.40);
+      }
+
+      .cta-grid {
+        grid-template-columns: 1fr auto;
+      }
+
+      .footer-inner {
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+      }
+
+      .footer-links {
+        justify-content: center;
+      }
+    }
+
+    @media (min-width: 1180px) {
+      .hero h1 {
+        font-size: 86px;
+      }
+    }
+
+    @media (max-width: 460px) {
+      .container {
+        width: min(calc(100% - 28px), var(--max));
+      }
+
+      .header-inner {
+        height: 66px;
+      }
+
+      .brand {
+        gap: 9px;
+      }
+
+      .brand-company {
+        font-size: 16px;
+      }
+
+      .brand-product {
+        font-size: 18px;
+      }
+
+      .header .btn-primary {
+        min-height: 38px;
+        padding-inline: 13px;
+        font-size: 12px;
+      }
+
+      .hero-note {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 50px 0;
+      }
+
+      .problem-copy,
+      .philosophy,
+      .ecosystem {
+        padding: 22px;
+      }
+
+      .impact-icons {
+        grid-template-columns: 1fr;
+      }
+
+      .target {
+        min-height: 110px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">本文へ移動</a>
+
+  <div class="site">
+    <header class="header">
+      <div class="container header-inner">
+        <a class="brand" href="#top" aria-label="know thyself SOKUMO トップへ">
+          <span class="brand-company">know thyself.</span>
+          <span class="brand-product">SOKUMO</span>
+        </a>
+
+        <nav class="nav" aria-label="グローバルナビゲーション">
+          <a href="#features">機能</a>
+          <a href="#voice">導入事例</a>
+          <a href="#impact">料金</a>
+          <a href="#faq">よくある質問</a>
+          <a href="#contact">お役立ち資料</a>
+        </nav>
+
+        <div class="header-actions">
+          <a class="btn btn-primary btn-small" href="#contact">無料デモ予約</a>
+          <a class="btn btn-outline btn-small" href="#contact">お問い合わせ</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section id="top" class="hero" aria-labelledby="hero-title">
+        <div class="hero-shell">
+          <div class="hero-media" role="img" aria-label="建設現場で作業員がiPadを使いPDF図面をなぞっている様子"></div>
+          <div class="hero-content">
+            <div class="hero-content-inner">
+              <div class="badge">現場で完結する積算アプリ</div>
+              <h1 id="hero-title">なぞるだけで<br><span>見積まで終わる</span></h1>
+              <p class="hero-lead">現場の移動時間と夜の見積作業をなくす積算アプリ</p>
+              <div class="hero-actions">
+                <a class="btn btn-primary" href="#contact">無料デモ予約 <span aria-hidden="true">›</span></a>
+                <a class="btn btn-outline" href="#contact">お問い合わせ</a>
+              </div>
+              <div class="hero-note" aria-label="SOKUMOの特徴">
+                <div class="note-card">PDF図面対応</div>
+                <div class="note-card">iPadで直感操作</div>
+                <div class="note-card">見積まで作成</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="problem-title">
+        <div class="container problem-grid">
+          <div class="problem-copy">
+            <div class="section-kicker">Problem story</div>
+            <h2 id="problem-title">現場が終わっても、<br>見積はまだ終わらない。</h2>
+            <p>図面を持ち帰り、夜遅くまで紙と電卓で拾い出し。集中力も時間も奪われ、家族との時間や休む時間が削られていく。それが、これまでの当たり前でした。</p>
+          </div>
+
+          <div class="before-after" aria-label="従来の見積とSOKUMO導入後の比較">
+            <div class="ba-grid">
+              <article class="ba-card ba-before">
+                <span class="ba-label">Before</span>
+                <div class="ba-caption">
+                  <strong>従来の見積</strong>
+                  <span>紙図面とエクセルで夜間作業</span>
+                </div>
+              </article>
+              <article class="ba-card ba-after">
+                <span class="ba-label">After</span>
+                <div class="ba-caption">
+                  <strong>SOKUMO導入後</strong>
+                  <span>現場で完結、すぐに見積提出</span>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="concept" aria-labelledby="concept-title">
+        <div class="container">
+          <div class="concept-box">
+            <div class="section-kicker">Core concept</div>
+            <h2 id="concept-title">現場で完結する積算</h2>
+            <p>SOKUMOは、図面を開いてなぞるだけ。数量を自動計算し、その場で見積書を作成できます。移動も夜間作業もゼロへ。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="steps-title">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <div class="section-kicker">Simple operation</div>
+              <h2 id="steps-title" class="section-title">PDFを開く → なぞる → 見積完成</h2>
+            </div>
+            <p class="section-desc">現場で使う道具だから、複雑さはいらない。PDF図面を開き、必要な範囲をなぞり、見積までスムーズにつなげます。</p>
+          </div>
+
+          <div class="steps-card">
+            <div class="steps">
+              <article class="step">
+                <span class="step-number">1</span>
+                <div class="icon" aria-hidden="true">
+                  <svg viewBox="0 0 80 80"><path d="M24 10h22l14 14v46H24z"/><path d="M46 10v16h14"/><path d="M31 40h18M31 51h18"/><path d="M20 58h28v12H20z"/><path d="M26 64h16"/></svg>
+                </div>
+                <h3>PDFを開く</h3>
+                <p>PDF図面をアップロードして、すぐに表示。</p>
+              </article>
+
+              <article class="step">
+                <span class="step-number">2</span>
+                <div class="icon" aria-hidden="true">
+                  <svg viewBox="0 0 80 80"><path d="M12 18h42v36H12z"/><path d="M20 26h10v10H20zM38 26h8M20 44h26"/><path d="M52 58l16-16 8 8-16 16-12 4z"/><path d="M64 46l8 8"/></svg>
+                </div>
+                <h3>なぞる</h3>
+                <p>長さ・面積を直感操作で自動計測。</p>
+              </article>
+
+              <article class="step">
+                <span class="step-number">3</span>
+                <div class="icon" aria-hidden="true">
+                  <svg viewBox="0 0 80 80"><path d="M22 10h30l10 10v50H22z"/><path d="M52 10v12h10"/><path d="M31 31h22M31 42h22"/><circle cx="43" cy="57" r="11"/><path d="M39 51l4 6 4-6M37 58h12"/></svg>
+                </div>
+                <h3>見積完成</h3>
+                <p>数量から見積書を自動作成し、その場で共有。</p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="impact" class="section" aria-labelledby="impact-title">
+        <div class="container impact-grid">
+          <div class="impact-card">
+            <h2 id="impact-title">時間の余裕が、成果をつくる。</h2>
+            <div class="impact-formula">月15件 × 2時間削減<br><span>= 月30時間の余裕</span></div>
+            <div class="impact-icons">
+              <div class="impact-icon">残業削減</div>
+              <div class="impact-icon">受注チャンス拡大</div>
+              <div class="impact-icon">働き方を改善</div>
+            </div>
+          </div>
+
+          <div id="features" class="features" aria-label="SOKUMOの機能一覧">
+            <article class="feature">
+              <div class="icon" aria-hidden="true"><svg viewBox="0 0 80 80"><path d="M14 18h52v42H14z"/><path d="M22 28h18v10H22zM46 28h10M22 46h34"/><path d="M18 66h44"/></svg></div>
+              <h3>PDF measurement</h3>
+              <p>図面上で線・面をなぞって計測。</p>
+            </article>
+            <article class="feature">
+              <div class="icon" aria-hidden="true"><svg viewBox="0 0 80 80"><path d="M24 14h32v52H24z"/><path d="M32 24h16M32 34h16M32 44h16"/><path d="M56 30h8v20h-8"/></svg></div>
+              <h3>scale adjustment</h3>
+              <p>縮尺の校正で正確な計測を実現。</p>
+            </article>
+            <article class="feature">
+              <div class="icon" aria-hidden="true"><svg viewBox="0 0 80 80"><path d="M20 26l20-10 20 10-20 10z"/><path d="M20 26v24l20 12 20-12V26"/><path d="M40 36v26"/></svg></div>
+              <h3>length area calculation</h3>
+              <p>長さ・面積を自動で計算。</p>
+            </article>
+            <article class="feature">
+              <div class="icon" aria-hidden="true"><svg viewBox="0 0 80 80"><path d="M22 10h30l10 10v50H22z"/><path d="M52 10v12h10"/><path d="M31 34h22M31 45h16"/><circle cx="51" cy="56" r="10"/><path d="M47 51l4 5 4-5"/></svg></div>
+              <h3>estimate generation</h3>
+              <p>数量から見積書を自動で作成。</p>
+            </article>
+            <article class="feature">
+              <div class="icon" aria-hidden="true"><svg viewBox="0 0 80 80"><path d="M24 55h34a13 13 0 0 0 0-26 18 18 0 0 0-34-4 15 15 0 0 0 0 30z"/><path d="M40 54V34M31 43l9-9 9 9"/></svg></div>
+              <h3>save</h3>
+              <p>クラウド保存で安全にデータ管理。</p>
+            </article>
+            <article class="feature">
+              <div class="icon" aria-hidden="true"><svg viewBox="0 0 80 80"><path d="M14 24h52v36H14z"/><path d="M14 26l26 20 26-20"/></svg></div>
+              <h3>mail sending</h3>
+              <p>見積書をワンタップでメール送信。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="usage-title">
+        <div class="container">
+          <div class="usage">
+            <div class="usage-image" role="img" aria-label="iPad画面上のPDF図面を指でなぞり面積計測している様子"></div>
+            <div class="usage-text">
+              <div class="section-kicker">Real usage scene</div>
+              <h2 id="usage-title">図面の上をなぞるだけで、<br>数量を自動計算</h2>
+              <p>直感的な操作で、誰でもすぐに使いこなせます。計測ミスや転記ミスを減らし、見積の精度とスピードを両立します。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="voice" class="section" aria-labelledby="voice-title">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <div class="section-kicker">Customer voice</div>
+              <h2 id="voice-title" class="section-title">見積が早い会社は、次の相談も早く来る。</h2>
+            </div>
+            <p class="section-desc">導入後の価値は、単なる時短だけではありません。元請けからの評価、案件機会、働き方の余裕まで広がります。</p>
+          </div>
+
+          <div class="voice-grid">
+            <article class="voice-card">
+              <h3>元請け評価向上</h3>
+              <p>提出が早く、精度も高いため、元請けからの信頼が高まりました。リピートも増えています。</p>
+              <div class="voice-author">内装工事会社 / 代表取締役</div>
+            </article>
+            <article class="voice-card">
+              <h3>案件増加</h3>
+              <p>見積スピードが上がり、提案できる案件数が増えました。受注額もアップしています。</p>
+              <div class="voice-author">設備工事会社 / 営業担当</div>
+            </article>
+            <article class="voice-card">
+              <h3>旅行先でも見積</h3>
+              <p>出張や旅行先でもタブレットで見積作成が可能。時間の使い方が変わりました。</p>
+              <div class="voice-author">リフォーム会社 / 現場監督</div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="target-title">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <div class="section-kicker">Target users</div>
+              <h2 id="target-title" class="section-title">こんな方におすすめ</h2>
+            </div>
+            <p class="section-desc">床・壁・天井など、図面から数量を拾い、見積につなげる現場に向いています。</p>
+          </div>
+
+          <div class="targets">
+            <div class="target"><div><div class="target-icon">▥</div>建設会社<br><small>construction companies</small></div></div>
+            <div class="target"><div><div class="target-icon">▤</div>内装工事業者<br><small>interior contractors</small></div></div>
+            <div class="target"><div><div class="target-icon">⚙</div>設備工事業者<br><small>equipment installers</small></div></div>
+            <div class="target"><div><div class="target-icon">⛑</div>現場監督<br><small>site managers</small></div></div>
+            <div class="target"><div><div class="target-icon">▦</div>積算担当者<br><small>estimators</small></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="philosophy-title">
+        <div class="container philosophy-eco">
+          <article class="philosophy">
+            <div class="section-kicker">know thyself philosophy</div>
+            <h2 id="philosophy-title">時間とこころの余裕を生むプロダクト</h2>
+            <p>know thyselfは、「自分を知ることが、よりよい未来をつくる」と信じています。SOKUMOは、日々の積算業務をシンプルにし、あなた自身や大切な人との時間を取り戻すためのプロダクトです。</p>
+          </article>
+
+          <article class="ecosystem">
+            <div class="section-kicker">Tool ecosystem</div>
+            <h2>つながる、広がる。SOKUMOのエコシステム</h2>
+            <div class="ecosystem-line" aria-label="SOKUMOと連携するツール">
+              <div class="eco-box primary">SOKUMO</div>
+              <div class="eco-box">CAD</div>
+              <div class="eco-box">Microsoft365</div>
+              <div class="eco-box">Google Workspace</div>
+            </div>
+            <p>主要ツールと連携し、業務の効率化をさらに加速します。</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="contact" class="cta" aria-labelledby="cta-title">
+        <div class="container">
+          <div class="cta-box">
+            <div class="cta-grid">
+              <div>
+                <h2 id="cta-title">まずは無料デモで、SOKUMOを体感してください。</h2>
+                <p>実際の操作画面をご覧いただけます。お気軽にご相談ください。</p>
+              </div>
+              <div class="cta-actions">
+                <a class="btn btn-yellow" href="mailto:info@example.com?subject=SOKUMO無料デモ予約">無料デモ予約 <span aria-hidden="true">›</span></a>
+                <a class="btn btn-outline" href="mailto:info@example.com?subject=SOKUMOお問い合わせ">お問い合わせ <span aria-hidden="true">›</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <div class="footer-brand"><span>know thyself.</span><span>SOKUMO</span></div>
+        <nav class="footer-links" aria-label="フッターナビゲーション">
+          <a href="#top">トップ</a>
+          <a href="#features">機能</a>
+          <a href="#voice">導入事例</a>
+          <a href="#impact">料金</a>
+          <a href="#faq">よくある質問</a>
+          <a href="#contact">お役立ち資料</a>
+          <a href="#contact">会社情報</a>
+          <a href="#contact">プライバシーポリシー</a>
+        </nav>
+        <div>© know thyself, Inc.</div>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
