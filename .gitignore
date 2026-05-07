@@ -8,3 +8,4 @@ Thumbs.db
 # 一時ファイル
 *.tmp
 _*.ps1
+.vercel
