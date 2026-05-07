@@ -29,7 +29,7 @@
     /* Hero */
     .page-head{padding:64px 0 48px;background:linear-gradient(90deg,#fff 0%,#fff 62%,#fbfaf4 100%);border-bottom:1px solid var(--line)}
     .eyebrow{font-size:12px;letter-spacing:.28em;color:var(--gold);font-weight:800;text-transform:uppercase;margin-bottom:16px}
-    .page-head h1{margin:0 0 16px;font-size:42px;font-family:"Zen Kaku Gothic New",sans-serif;color:var(--green);line-height:1.3}
+    .page-head h1{margin:0 0 16px;font-size:clamp(28px,4.4vw,42px);font-family:"Zen Kaku Gothic New",sans-serif;color:var(--green);line-height:1.3}
     .page-head p{margin:0;max-width:680px;line-height:2;color:#5D6A66;font-weight:600;font-size:15px}
 
     /* Coming Soon */
@@ -61,17 +61,22 @@
     .footer-inner{height:88px;display:flex;align-items:center;justify-content:space-between;gap:20px}
     .footer-nav{display:flex;gap:22px;font-size:12px;font-weight:800;color:#51605B;white-space:nowrap}
 
-    @media(max-width:1080px){
+    @media(max-width:1024px){
       .container{width:min(var(--max),calc(100% - 40px))}
       .nav{display:none}
+      .values-grid{grid-template-columns:repeat(2,1fr)}
       .cta-inner{flex-direction:column;align-items:flex-start;padding:28px 0}
     }
-    @media(max-width:680px){
-      .page-head h1{font-size:30px}
+    @media(max-width:768px){
+      .header .btn-green{display:none}
       .values-grid{grid-template-columns:1fr}
       .btn{width:100%}
     }
+    @media(max-width:480px){
+      .page-head h1{font-size:28px}
+    }
   </style>
+  <link rel="stylesheet" href="responsive.css" />
 </head>
 <body>
   <header class="header">
@@ -85,7 +90,9 @@
         <a href="blog.html">導入事例</a>
         <a href="company.html">会社紹介</a>
         <a class="active" href="recruit.html">採用情報</a>
+        <a href="contact.html">お問い合わせ</a>
       </nav>
+      <button class="menu-button" type="button" aria-label="メニューを開く"><span></span></button>
       <a class="btn btn-green" href="contact.html">お問い合わせ</a>
     </div>
   </header>
@@ -164,5 +171,6 @@
       <div>© know thyself Inc.</div>
     </div>
   </footer>
+  <script src="nav.js"></script>
 </body>
 </html>

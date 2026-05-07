@@ -96,7 +96,7 @@
     .headline{
       margin:0;
       font-family:"Zen Kaku Gothic New",sans-serif;
-      font-size:64px;
+      font-size:clamp(36px,5.6vw,64px);
       line-height:1.31;
       letter-spacing:.02em;
       font-weight:900;
@@ -106,7 +106,7 @@
     .subheadline{
       margin:30px 0 0;
       font-family:"Zen Kaku Gothic New",sans-serif;
-      font-size:29px;
+      font-size:clamp(20px,2.4vw,29px);
       line-height:1.72;
       font-weight:900;
       color:#213A35;
@@ -122,7 +122,7 @@
       font-weight:600;
     }
     .hero-actions{display:flex;align-items:center;gap:22px;margin-top:42px}
-    .hero-art{position:absolute;right:-92px;top:8px;width:704px;height:600px;z-index:1;opacity:.98}
+    .hero-art{position:absolute;right:0;top:8px;width:min(704px,52vw);height:auto;z-index:1;opacity:.95}
     .art-fade{position:absolute;inset:auto -160px -20px auto;width:640px;height:240px;background:linear-gradient(180deg,rgba(255,255,255,0),rgba(255,255,255,.86));z-index:0}
 
     /* Problem */
@@ -158,8 +158,8 @@
     /* Concept */
     .concept{position:relative;padding:74px 0 86px;background:linear-gradient(90deg,#fff 0%,#fff 50%,#fbfaf4 100%);overflow:hidden}
     .concept::before,.concept::after{content:"";position:absolute;border:1px solid rgba(198,168,92,.22);border-radius:50%;pointer-events:none}
-    .concept::before{width:1080px;height:140px;left:50%;top:74px;transform:translateX(-50%) rotate(-3deg)}
-    .concept::after{width:980px;height:96px;left:50%;top:92px;transform:translateX(-50%) rotate(4deg)}
+    .concept::before{width:min(1080px,calc(100% - 32px));height:140px;left:50%;top:74px;transform:translateX(-50%) rotate(-3deg)}
+    .concept::after{width:min(980px,calc(100% - 48px));height:96px;left:50%;top:92px;transform:translateX(-50%) rotate(4deg)}
     .eyebrow{font-size:13px;font-weight:800;color:var(--gold);letter-spacing:.28em;text-transform:uppercase;text-align:center;margin-bottom:20px}
     .concept h2{margin:0;text-align:center;font-family:"Zen Kaku Gothic New",sans-serif;font-size:34px;line-height:1.42;font-weight:900;color:var(--green)}
     .concept p{margin:24px auto 0;width:650px;max-width:100%;text-align:center;font-size:15px;line-height:2.2;color:#5B6864;font-weight:600}
@@ -236,25 +236,46 @@
     .line-art .dot-y{fill:#C6A85C}
     .line-art .dot-w{fill:#fff;stroke:#1F4D3A;stroke-width:1.2}
 
-    @media (max-width:1080px){
+    @media (max-width:1024px){
       .container{width:min(var(--max),calc(100% - 40px))}
       .nav{display:none}
       .hero .container{grid-template-columns:1fr;min-height:760px;align-items:start;padding-top:86px}
-      .hero-art{right:-200px;top:330px;width:620px;opacity:.55}
-      .problem-grid,.tool-grid{grid-template-columns:repeat(2,1fr)}
+      .hero-art{right:-6%;top:320px;width:min(620px,74vw);opacity:.58}
+      .problem-grid{grid-template-columns:repeat(3,1fr)}
+      .tool-grid{grid-template-columns:repeat(2,1fr)}
       .step-flow{grid-template-columns:1fr;gap:20px}.chev{transform:rotate(90deg);font-size:38px}
       .trust-inner,.vision-inner,.cta-inner{grid-template-columns:1fr}
       .trust-logos{grid-template-columns:1fr;padding-right:0}.cta-actions{flex-wrap:wrap}
       .footer{height:auto}.footer-inner{height:auto;padding:26px 0;align-items:flex-start;flex-direction:column}.footer-nav{flex-wrap:wrap;gap:18px 26px}
     }
+    @media (max-width:768px){
+      .header-actions .btn-green{display:none}
+      .hero .container{min-height:700px;padding-top:72px}
+      .hero-art{right:-12%;top:356px;width:min(520px,95vw);opacity:.35}
+      .hero-actions{gap:14px}
+      .problem-grid{grid-template-columns:repeat(2,1fr)}
+      .trust::after{display:none}
+    }
     @media (max-width:680px){
       .header-actions .btn-gold{display:none}.header{height:70px}.header-inner{height:70px}.brand-main{font-size:24px}.brand-sub{font-size:10px}
-      .headline{font-size:43px}.subheadline{font-size:21px}.hero-actions{flex-direction:column;align-items:stretch}.btn{width:100%}
+      .hero .container{min-height:650px;padding-top:56px}
+      .headline{font-size:39px}.subheadline{font-size:20px}.hero-actions{flex-direction:column;align-items:stretch}.btn{width:100%}
       .problem-grid,.tool-grid,.vision-cards{grid-template-columns:1fr}.problem-card{min-height:150px}
       .concept h2,.steps h2,.trust h2,.cta h2{font-size:25px}
       .step-item{grid-template-columns:72px 1fr}.step-icon{width:72px;height:72px}.step-icon svg{width:34px;height:34px}
     }
+    @media (max-width:430px){
+      .container{width:min(var(--max),calc(100% - 24px))}
+      .brand-main{font-size:22px}
+      .hero .container{min-height:610px;padding-top:48px}
+      .headline{font-size:35px;line-height:1.26}
+      .subheadline{margin-top:22px;font-size:18px;line-height:1.6}
+      .hero-text{margin-top:20px;font-size:13px;line-height:1.9}
+      .hero-art{top:332px;right:-16%;width:min(440px,118vw);opacity:.28}
+      .hero-actions{margin-top:28px}
+    }
   </style>
+  <link rel="stylesheet" href="responsive.css" />
 </head>
 <body>
   <div class="page">
@@ -269,7 +290,9 @@
           <a href="blog.html">導入事例</a>
           <a href="company.html">会社紹介</a>
           <a href="recruit.html">採用情報</a>
+          <a href="contact.html">お問い合わせ</a>
         </nav>
+        <button class="menu-button" type="button" aria-label="メニューを開く"><span></span></button>
         <div class="header-actions">
           <a class="btn btn-green" href="#download">資料ダウンロード ↓</a>
           <a class="btn btn-gold" href="contact.html">お問い合わせ ✉</a>
@@ -499,5 +522,6 @@
       </div>
     </footer>
   </div>
+  <script src="nav.js"></script>
 </body>
 </html>

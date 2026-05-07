@@ -33,7 +33,7 @@
     .blog-wrap{padding:44px 0 70px;background:#fff}
     .layout{display:grid;grid-template-columns:minmax(0,2fr) 320px;gap:34px}
     .feature{position:relative;border-radius:12px;overflow:hidden;box-shadow:var(--shadow);margin-bottom:22px}
-    .feature img{width:100%;height:360px;object-fit:cover}
+    .feature img{width:100%;aspect-ratio:16/9;height:auto;object-fit:cover}
     .feature-body{position:absolute;left:0;right:0;bottom:0;padding:24px;background:linear-gradient(180deg,rgba(0,0,0,.06),rgba(0,0,0,.62));color:#fff}
     .ribbon{display:inline-block;padding:6px 10px;font-size:11px;font-weight:800;letter-spacing:.08em;background:var(--gold);border-radius:999px}
     .feature h2{margin:10px 0 8px;font-size:28px;line-height:1.45;font-family:"Zen Kaku Gothic New",sans-serif}
@@ -73,7 +73,7 @@
     .footer-inner{height:88px;display:flex;align-items:center;justify-content:space-between;gap:20px}
     .footer-nav{display:flex;gap:22px;font-size:12px;font-weight:800;color:#51605B;white-space:nowrap}
 
-    @media (max-width:1080px){
+    @media (max-width:1024px){
       .container{width:min(var(--max),calc(100% - 40px))}
       .nav{display:none}
       .layout{grid-template-columns:1fr}
@@ -81,21 +81,25 @@
       .sidebar .box{margin-bottom:0}
       .cta-inner,.footer-inner{height:auto;padding:26px 0;flex-direction:column;align-items:flex-start}
     }
-    @media (max-width:680px){
-      .grid,.sidebar{grid-template-columns:1fr}
-      .feature img{height:240px}
+    @media (max-width:768px){
+      .sidebar{grid-template-columns:1fr}
       .feature h2,.page-head h1{font-size:30px}
       .cta h2{font-size:24px}
       .btn{width:100%}
       .cta-actions{flex-direction:column;width:100%}
     }
+    @media (max-width:480px){
+      .grid{grid-template-columns:1fr}
+    }
   </style>
+  <link rel="stylesheet" href="responsive.css" />
 </head>
 <body>
   <header class="header">
     <div class="container header-inner">
       <a href="index.html"><div class="brand-main">know thyself</div><div class="brand-sub">構造から、未来をデザインする。</div></a>
-      <nav class="nav"><a href="service.html">サービス</a><a href="blog.html">導入事例</a><a href="company.html">会社紹介</a><a href="recruit.html">採用情報</a></nav>
+      <nav class="nav"><a href="service.html">サービス</a><a href="blog.html">導入事例</a><a href="company.html">会社紹介</a><a href="recruit.html">採用情報</a><a href="contact.html">お問い合わせ</a></nav>
+      <button class="menu-button" type="button" aria-label="メニューを開く"><span></span></button>
       <a class="btn btn-green" href="contact.html">お問い合わせ</a>
     </div>
   </header>
@@ -150,5 +154,6 @@
     <section class="cta"><div class="container cta-inner"><div><h2>構造からはじめる、未来への一歩を。</h2><p>まずはお気軽にご相談ください。貴社の課題に合わせて、最適なアプローチをご提案します。</p></div><div class="cta-actions"><a class="btn btn-green" href="contact.html">無料で相談してみる</a><a class="btn btn-outline" href="index.html#download">資料をダウンロードする</a></div></div></section>
   </main>
   <footer class="footer"><div class="container footer-inner"><a href="index.html"><div class="brand-main">know thyself</div><div class="brand-sub">構造から、未来をデザインする。</div></a><nav class="footer-nav"><a href="service.html">サービス</a><a href="blog.html">導入事例</a><a href="company.html">会社紹介</a><a href="recruit.html">採用情報</a><a href="contact.html">お問い合わせ</a></nav><div>© know thyself Inc.</div></div></footer>
+  <script src="nav.js"></script>
 </body>
 </html>
