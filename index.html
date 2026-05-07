@@ -240,7 +240,7 @@
       .container{width:min(var(--max),calc(100% - 40px))}
       .nav{display:none}
       .hero .container{grid-template-columns:1fr;min-height:760px;align-items:start;padding-top:86px}
-      .hero-art{right:-6%;top:320px;width:min(620px,74vw);opacity:.58}
+      .hero-art{right:-8%;top:96px;width:min(620px,78vw);opacity:.28}
       .problem-grid{grid-template-columns:repeat(3,1fr)}
       .tool-grid{grid-template-columns:repeat(2,1fr)}
       .step-flow{grid-template-columns:1fr;gap:20px}.chev{transform:rotate(90deg);font-size:38px}
@@ -251,8 +251,8 @@
     @media (max-width:768px){
       .header-actions .btn-green{display:none}
       .hero .container{min-height:700px;padding-top:72px}
-      .hero-art{right:-12%;top:356px;width:min(520px,95vw);opacity:.35}
-      .hero-actions{gap:14px}
+      .hero-art{right:-10%;top:90px;width:min(520px,96vw);opacity:.24}
+      .hero-actions{gap:20px}
       .problem-grid{grid-template-columns:repeat(2,1fr)}
       .trust::after{display:none}
     }
@@ -271,8 +271,13 @@
       .headline{font-size:35px;line-height:1.26}
       .subheadline{margin-top:22px;font-size:18px;line-height:1.6}
       .hero-text{margin-top:20px;font-size:13px;line-height:1.9}
-      .hero-art{top:332px;right:-16%;width:min(440px,118vw);opacity:.28}
-      .hero-actions{margin-top:28px}
+      .hero-art{top:76px;right:-10%;width:min(430px,112vw);opacity:.22}
+      .hero-actions{margin-top:28px;gap:22px}
+      .hero-actions .btn{font-size:13px;padding:0 18px}
+      .problem .section-title{white-space:nowrap;font-size:22px;letter-spacing:.03em}
+    }
+    @media (max-width:390px){
+      .problem .section-title{font-size:20px}
     }
   </style>
   <link rel="stylesheet" href="responsive.css" />
