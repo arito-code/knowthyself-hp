@@ -36,7 +36,7 @@
     }
     a{color:inherit;text-decoration:none}
     img,svg{display:block;max-width:100%}
-    .page{overflow:hidden;background:linear-gradient(90deg,#fff 0%,#fff 55%,#fbfaf4 100%)}
+    .page{overflow-x:clip;overflow-y:visible;background:linear-gradient(90deg,#fff 0%,#fff 55%,#fbfaf4 100%)}
     .container{width:min(var(--max),calc(100% - 64px));margin:0 auto}
 
     /* Header */
@@ -122,7 +122,7 @@
       font-weight:600;
     }
     .hero-actions{display:flex;align-items:center;gap:22px;margin-top:42px}
-    .hero-art{position:absolute;right:0;top:8px;width:min(704px,52vw);height:auto;z-index:1;opacity:.95}
+    .hero-art{display:block;width:80%;height:auto;object-fit:contain;align-self:center;justify-self:center;opacity:.95}
     .art-fade{position:absolute;inset:auto -160px -20px auto;width:640px;height:240px;background:linear-gradient(180deg,rgba(255,255,255,0),rgba(255,255,255,.86));z-index:0}
 
     /* Problem */
@@ -240,8 +240,14 @@
     @media (max-width:1024px){
       .container{width:min(var(--max),calc(100% - 40px))}
       .nav{display:none}
-      .hero .container{grid-template-columns:1fr;min-height:760px;align-items:start;padding-top:86px}
-      .hero-art{right:-8%;top:96px;width:min(620px,78vw);opacity:.28}
+      .hero{padding-bottom:15px}
+      .hero .container{grid-template-columns:1fr;min-height:auto;align-items:start;padding-top:86px;padding-bottom:0}
+      .hero-actions{flex-direction:column;align-items:stretch;gap:16px}
+      .hero-actions .btn{width:100%;white-space:normal;line-height:1.45;text-align:center;overflow-wrap:anywhere}
+      picture{display:block}
+      .hero-art{position:static;inset:auto;width:70%;height:auto;max-width:none;aspect-ratio:16 / 9;object-fit:cover;object-position:center top;opacity:1;margin:15px auto 0;display:block;z-index:auto;pointer-events:auto}
+      .art-fade{display:none}
+      .problem{padding-top:15px}
       .problem-grid{grid-template-columns:repeat(3,1fr)}
       .tool-grid{grid-template-columns:repeat(2,1fr)}
       .step-flow{grid-template-columns:1fr;gap:20px}.chev{transform:rotate(90deg);font-size:38px}
@@ -251,16 +257,15 @@
     }
     @media (max-width:768px){
       .header-actions .btn-green{display:none}
-      .hero .container{min-height:700px;padding-top:72px}
-      .hero-art{right:-10%;top:90px;width:min(520px,96vw);opacity:.24}
-      .hero-actions{gap:20px}
+      .hero .container{min-height:auto;padding-top:72px}
+      .hero-art{margin-top:15px}
       .hero-actions .btn{min-height:52px;padding:0 14px;gap:6px}
       .problem-grid{grid-template-columns:repeat(2,1fr)}
       .trust-logos{grid-template-columns:1fr 1fr;gap:18px 22px;padding-right:0}
       .trust-logos .gov-logo:nth-child(1){grid-column:1;grid-row:1}
       .trust-logos .gov-logo:nth-child(2){grid-column:1;grid-row:2}
       .trust-logos .gov-logo:nth-child(3){grid-column:2;grid-row:1 / span 2;align-self:center}
-      .vision .btn{width:auto;max-width:100%;white-space:normal;padding:0 18px;font-size:13px;line-height:1.45;gap:8px;overflow-wrap:anywhere}
+      .vision .btn{width:100%;max-width:100%;white-space:normal;padding:0 18px;font-size:13px;line-height:1.45;gap:8px;overflow-wrap:anywhere}
       .cta-inner{min-height:auto;padding:36px 0 44px}
       .cta-actions .btn{width:100%}
       .sp-only{display:inline}
@@ -268,8 +273,8 @@
     }
     @media (max-width:680px){
       .header-actions .btn-gold{display:none}.header{height:70px}.header-inner{height:70px}.brand-main{font-size:24px}.brand-sub{font-size:10px}
-      .hero .container{min-height:650px;padding-top:56px}
-      .headline{font-size:39px}.subheadline{font-size:20px}.hero-actions{flex-direction:column;align-items:stretch}.btn{width:100%}
+      .hero .container{min-height:auto;padding-top:56px}
+      .headline{font-size:39px}.subheadline{font-size:20px}
       .problem-grid,.tool-grid,.vision-cards{grid-template-columns:1fr}.problem-card{min-height:150px}
       .concept h2,.steps h2,.trust h2,.cta h2{font-size:25px}
       .step-item{grid-template-columns:72px 1fr}.step-icon{width:72px;height:72px}.step-icon svg{width:34px;height:34px}
@@ -277,12 +282,12 @@
     @media (max-width:430px){
       .container{width:min(var(--max),calc(100% - 24px))}
       .brand-main{font-size:22px}
-      .hero .container{min-height:610px;padding-top:48px}
+      .hero .container{min-height:auto;padding-top:48px}
       .headline{font-size:35px;line-height:1.26}
       .subheadline{margin-top:22px;font-size:18px;line-height:1.6}
       .hero-text{margin-top:20px;font-size:13px;line-height:1.9}
-      .hero-art{top:76px;right:-10%;width:min(430px,112vw);opacity:.22}
-      .hero-actions{margin-top:28px;gap:22px}
+      .hero-art{margin-top:15px}
+      .hero-actions{margin-top:28px}
       .hero-actions .btn{min-height:48px;font-size:12px;padding:0 12px}
       .problem .section-title{white-space:nowrap;font-size:22px;letter-spacing:.03em}
     }
@@ -324,71 +329,16 @@
           <div class="hero-copy">
             <h1 class="headline">現場の知恵を、<br><span>会社の資産</span>に</h1>
             <p class="subheadline">現場から始めるDXで<br>業務を再現可能な仕組みに変える</p>
-            <p class="hero-text">know thyselfは、現場に眠る知識や経験を「構造知」へ変換し、再現性と学習性のある組織へと導くDXコンサルティングファームです。</p>
+            <p class="hero-text">know thyselfは、現場に眠る知識や経験を<br>「構造知」へ変換し、再現性と学習性のある<br>組織へと導くDXコンサルティングファームです。</p>
             <div class="hero-actions">
               <a class="btn btn-green" href="#download">資料をダウンロードする <span class="arrow">→</span></a>
               <a class="btn btn-white" href="contact.html">まずは相談してみる <span class="arrow">→</span></a>
             </div>
           </div>
-          <svg class="hero-art line-art" viewBox="0 0 760 650" aria-hidden="true">
-            <defs>
-              <radialGradient id="glow" cx="44%" cy="44%" r="56%"><stop offset="0" stop-color="#F5F3E7" stop-opacity=".7"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>
-            </defs>
-            <rect width="760" height="650" fill="url(#glow)"/>
-            <g transform="translate(60 0)">
-              <circle class="faint" cx="310" cy="250" r="145"/>
-              <circle class="faint" cx="310" cy="250" r="205"/>
-              <ellipse class="faint" cx="310" cy="250" rx="250" ry="74" transform="rotate(-24 310 250)"/>
-              <ellipse class="faint" cx="310" cy="250" rx="300" ry="90" transform="rotate(15 310 250)"/>
-              <path class="faint" d="M105 412 C130 300,205 320,222 230 S260 85,348 108"/>
-              <path class="faint" d="M88 196 C170 155,206 86,308 112 S482 100,564 36"/>
-              <path class="faint" d="M80 515 C190 448,195 352,310 250 S515 150,665 118"/>
-              <path class="gold" d="M310 250 L690 50"/>
-              <path class="gold" d="M310 250 L710 172"/>
-              <path class="gold" d="M310 250 L708 268"/>
-              <path class="gold" d="M310 250 L676 368"/>
-              <path class="gold" d="M310 250 L515 560"/>
-              <path class="thin" d="M310 250 L650 13"/>
-              <path class="thin" d="M310 250 L680 118"/>
-              <path class="thin" d="M310 250 L715 222"/>
-              <path class="thin" d="M310 250 L740 318"/>
-              <path class="thin" d="M310 250 L610 510"/>
-              <path class="thin" d="M310 250 L190 25"/>
-              <path class="gold" d="M310 250 L168 80"/>
-              <path class="thin" d="M310 250 L102 136"/>
-              <path class="thin" d="M310 250 L44 238"/>
-              <path class="gold" d="M310 250 L36 372"/>
-              <path class="thin" d="M310 250 L132 548"/>
-              <path class="thin" d="M310 250 L310 0"/>
-              <path class="gold" d="M360 16 L360 610"/>
-              <path class="thin" d="M412 0 L412 610" opacity=".45"/>
-              <g>
-                <circle class="dot-g" cx="310" cy="250" r="5"/>
-                <circle class="dot-y" cx="186" cy="82" r="6"/>
-                <circle class="dot-g" cx="106" cy="136" r="9"/>
-                <circle class="dot-w" cx="44" cy="238" r="6"/>
-                <circle class="dot-y" cx="36" cy="372" r="4"/>
-                <circle class="dot-y" cx="360" cy="74" r="5"/>
-                <circle class="dot-g" cx="650" cy="13" r="8"/>
-                <circle class="dot-y" cx="690" cy="50" r="4"/>
-                <circle class="dot-w" cx="680" cy="118" r="7"/>
-                <circle class="dot-g" cx="715" cy="222" r="10"/>
-                <circle class="dot-y" cx="676" cy="368" r="9"/>
-                <circle class="dot-w" cx="610" cy="510" r="7"/>
-                <circle class="dot-y" cx="264" cy="368" r="10"/>
-                <circle class="dot-w" cx="135" cy="548" r="7"/>
-              </g>
-              <g transform="translate(270 318) rotate(-16)">
-                <path d="M88 0 C60 58 44 115 44 170 L132 170 C132 115 116 58 88 0Z" fill="#FFFDF5" stroke="#1F4D3A" stroke-width="3"/>
-                <path d="M88 0 L88 128" stroke="#1F4D3A" stroke-width="3" fill="none"/>
-                <circle cx="88" cy="114" r="14" fill="#C6A85C" stroke="#1F4D3A" stroke-width="2"/>
-                <path d="M44 170 L132 170 L152 246 L24 246Z" fill="#FFFDF5" stroke="#1F4D3A" stroke-width="3"/>
-                <path d="M33 206 H143" stroke="#C6A85C" stroke-width="1.5"/>
-                <path d="M18 246 H158 V310 H18Z" fill="#FFFDF5" stroke="#1F4D3A" stroke-width="3"/>
-                <path d="M35 260 H141" stroke="#C6A85C" stroke-width="1.5"/>
-              </g>
-            </g>
-          </svg>
+          <picture>
+            <source media="(max-width:1024px)" srcset="assets/index_top_res.png">
+            <img class="hero-art" src="assets/index_top.png" alt="" aria-hidden="true">
+          </picture>
           <div class="art-fade"></div>
         </div>
       </section>
@@ -507,7 +457,7 @@
           <div>
             <div class="eyebrow">VISION</div>
             <h2>未来の組織をつくるのは、<br>学び続ける人です。</h2>
-            <p>構造思考や組織設計の学びを通じて、次世代のリーダーと組織の成長を支援します。</p>
+            <p>構造思考や組織設計の学びを通じて、<br class="sp-only">次世代のリーダーと組織の成長を支援します。</p>
             <a class="btn btn-white" href="recruit.html">教育・研修プログラムを見る <span class="arrow">→</span></a>
           </div>
           <div class="vision-cards">
@@ -521,7 +471,7 @@
       <section class="cta" id="contact">
         <div class="container cta-inner">
           <div>
-            <h2>構造からはじめる、未来への一歩を。</h2>
+            <h2>構造からはじめる、<br>未来への一歩を。</h2>
             <p>まずはお気軽にご相談ください。貴社の課題に合わせて、最適なアプローチをご提案します。</p>
           </div>
           <div class="cta-actions">
@@ -535,7 +485,7 @@
     <footer class="footer">
       <div class="container footer-inner">
         <a class="brand" href="#top"><div class="brand-main">know thyself</div><div class="brand-sub">構造から、未来をデザインする。</div></a>
-        <nav class="footer-nav"><a href="service.html">サービス</a><a href="blog.html">導入事例</a><a href="company.html">会社紹介</a><a href="recruit.html">採用情報</a><a href="contact.html">お問い合わせ</a><a href="#">プライバシーポリシー</a></nav>
+        <nav class="footer-nav"><a href="service.html">サービス</a><a href="blog.html">導入事例</a><a href="company.html">会社紹介</a><a href="recruit.html">採用情報</a><a href="contact.html">お問い合わせ</a><a href="rpgnumerology.html">診断</a><a href="#">プライバシーポリシー</a></nav>
         <div class="copyright">© know thyself Inc.</div>
       </div>
     </footer>
