@@ -442,6 +442,23 @@ img {
   border-radius: 10px;
 }
 
+/* 年一覧を縦スクロール可能にする */
+.air-datepicker-body--years .air-datepicker-body--cells {
+  max-height: 220px;
+  overflow-y: auto;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  scrollbar-width: thin;
+  scrollbar-color: var(--purple) transparent;
+}
+.air-datepicker-body--years .air-datepicker-body--cells::-webkit-scrollbar {
+  width: 4px;
+}
+.air-datepicker-body--years .air-datepicker-body--cells::-webkit-scrollbar-thumb {
+  background: var(--purple);
+  border-radius: 4px;
+}
+
 .-selected- .air-datepicker-cell.-year-,
 .-selected- .air-datepicker-cell.-month- {
   background: linear-gradient(180deg, #7a33a9, #431162) !important;
@@ -923,6 +940,192 @@ img {
   }
 }
 
+/* ═══════════════════════════════════════════
+   ADDED ANIMATIONS
+═══════════════════════════════════════════ */
+
+/* E: ポーション揺れ */
+@keyframes potionWiggle {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  18%       { transform: rotate(-9deg) scale(1.06); }
+  36%       { transform: rotate(7deg) scale(1.09); }
+  54%       { transform: rotate(-5deg) scale(1.04); }
+  72%       { transform: rotate(3deg) scale(1.02); }
+}
+.potion { animation: potionWiggle 3.2s ease-in-out infinite; }
+
+/* F: 診断ボタン pulse ring */
+@keyframes btnPulseRing {
+  0%   { box-shadow: 0 0 0 0 rgba(239,23,23,.55), 0 10px 24px rgba(0,0,0,.24), inset 0 1px 0 rgba(255,255,255,.18); }
+  70%  { box-shadow: 0 0 0 14px rgba(239,23,23,0), 0 10px 24px rgba(0,0,0,.24), inset 0 1px 0 rgba(255,255,255,.18); }
+  100% { box-shadow: 0 0 0 0 rgba(239,23,23,0), 0 10px 24px rgba(0,0,0,.24), inset 0 1px 0 rgba(255,255,255,.18); }
+}
+.submit-btn { animation: btnPulseRing 2.4s ease-out infinite; }
+
+/* C: 流れ星 */
+@keyframes shootingStarMove {
+  0%   { opacity: 1; transform: translateX(0) translateY(0); }
+  100% { opacity: 0; transform: translateX(-340px) translateY(200px); }
+}
+.shooting-star {
+  position: absolute;
+  width: 130px;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.88) 60%, rgba(255,211,106,.55));
+  pointer-events: none;
+  z-index: 2;
+  animation: shootingStarMove .75s ease-out forwards;
+}
+
+/* H: チャージオーバーレイ */
+#charge-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(10, 3, 18, .88);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s ease;
+}
+#charge-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+.charge-ring {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 211, 106, .3);
+  border-top-color: var(--gold);
+  animation: spinAnim 1s linear infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.charge-rune {
+  font-size: 2.2rem;
+  color: var(--gold);
+  animation: spinAnim 1.4s linear infinite reverse;
+  display: inline-block;
+  line-height: 1;
+}
+@keyframes spinAnim {
+  to { transform: rotate(360deg); }
+}
+.charge-text {
+  margin-top: 20px;
+  color: var(--gold-2);
+  font-weight: 900;
+  font-size: 1rem;
+  letter-spacing: .12em;
+  animation: blinkAnim .7s ease-in-out infinite;
+}
+@keyframes blinkAnim {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: .3; }
+}
+
+/* J: 結果カード召喚 */
+@keyframes cardSummon {
+  0%   { opacity: 0; transform: scale(.86) translateY(18px); }
+  65%  { transform: scale(1.02) translateY(-3px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+.result-card.summoning {
+  animation: cardSummon .55s cubic-bezier(.34, 1.56, .64, 1) both;
+}
+
+/* K: ドラムロール */
+@keyframes titleFlash {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: .4; }
+}
+#resultTitle.rolling {
+  animation: titleFlash .11s linear infinite;
+}
+
+/* M: キャラ踏み込み */
+@keyframes charPop {
+  0%   { transform: scale(1.18) translateY(-10px); opacity: .5; }
+  65%  { transform: scale(.97) translateY(2px); opacity: 1; }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+.result-image img.pop {
+  animation: charPop .55s cubic-bezier(.34, 1.56, .64, 1) both;
+}
+
+/* L: 紙吹雪 */
+@keyframes confettiFall {
+  0%   { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(280px) rotate(900deg); opacity: 0; }
+}
+.result-section {
+  position: relative;
+  overflow: hidden;
+}
+
+/* N: スクロールリビール */
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity .55s ease, transform .55s ease;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.type-card.reveal    { transition-delay: calc(var(--delay, 0) * 0.05s); }
+.article-card.reveal { transition-delay: calc(var(--delay, 0) * 0.08s); }
+
+/* P: ★ RARE バッジ */
+@keyframes rarePulse {
+  0%, 100% { filter: brightness(1); }
+  50%       { filter: brightness(1.35) drop-shadow(0 0 5px rgba(200, 140, 255, .85)); }
+}
+.type-card.rare::after {
+  content: "✦ RARE";
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 4px 9px;
+  font-size: .59rem;
+  font-weight: 900;
+  letter-spacing: .07em;
+  color: #fff;
+  background: linear-gradient(135deg, #a040e0, #5a1290);
+  border-radius: 0 14px 0 12px;
+  z-index: 3;
+  animation: rarePulse 2s ease-in-out infinite;
+}
+
+/* W: ボトムCTA 星空 */
+@keyframes starDrift {
+  from { background-position: 0 0, 30px 30px, 15px 15px, 50px 50px; }
+  to   { background-position: -240px 240px, -210px 270px, -180px 180px, -300px 300px; }
+}
+.bottom-cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,.6) 1px, transparent 1px),
+    radial-gradient(circle, rgba(255,211,106,.45) 1px, transparent 1px),
+    radial-gradient(circle, rgba(200,160,255,.4) 1px, transparent 1px),
+    radial-gradient(circle, rgba(255,255,255,.25) 1px, transparent 1px);
+  background-size: 72px 72px, 110px 110px, 55px 55px, 90px 90px;
+  animation: starDrift 24s linear infinite;
+}
+.bottom-cta .container { z-index: 1; }
+
 @media (max-width: 980px) {
   .diagnosis-layout,
   .result-card,
@@ -1040,5 +1243,16 @@ img {
     position: static;
     width: 92px;
     margin: 14px auto 0;
+  }
+}
+
+/* アクセシビリティ: モーション軽減 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
   }
 }

@@ -92,7 +92,7 @@
     /* Hero */
     .hero{position:relative;min-height:626px;background:linear-gradient(105deg,#fff 0%,#fff 53%,#faf8ee 100%)}
     .hero .container{position:relative;display:grid;grid-template-columns:48% 52%;min-height:626px;align-items:center}
-    .hero-copy{padding-top:10px;position:relative;z-index:2}
+    .hero-copy{padding-top:10px;position:relative;z-index:2;min-width:0}
     .headline{
       margin:0;
       font-family:"Zen Kaku Gothic New",sans-serif;
@@ -114,8 +114,7 @@
     }
     .hero-text{
       margin:33px 0 0;
-      width:560px;
-      max-width:100%;
+      max-width:560px;
       font-size:15px;
       line-height:2.15;
       color:#53635E;
@@ -203,10 +202,11 @@
 
     /* Vision */
     .vision{padding:58px 0 66px;background:linear-gradient(90deg,#fff 0%,#fff 52%,#fbfaf4 100%)}
-    .vision-inner{display:grid;grid-template-columns:47% 53%;gap:40px;align-items:center}
+    .vision-inner{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:center}
     .vision .eyebrow{text-align:left;margin-bottom:15px}
     .vision h2{margin:0;font-family:"Zen Kaku Gothic New",sans-serif;font-size:28px;line-height:1.62;font-weight:900;color:#203D38}
-    .vision p{margin:18px 0 28px;font-size:14px;line-height:2;color:#65716D;font-weight:600;width:470px;max-width:100%}
+    .vision p{margin:18px 0 28px;font-size:14px;line-height:2;color:#65716D;font-weight:600;max-width:470px}
+    .vision-inner > *{min-width:0}
     .vision-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
     .vision-card{height:166px;background:#fff;border:1px solid #E3E3DC;border-radius:5px;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 12px 28px rgba(20,48,42,.05);position:relative;overflow:hidden}
     .vision-card::before{content:"✦";position:absolute;left:20px;top:18px;color:#D9D5C5;font-size:16px}
@@ -245,7 +245,7 @@
       .hero-actions{flex-direction:column;align-items:stretch;gap:16px}
       .hero-actions .btn{width:100%;white-space:normal;line-height:1.45;text-align:center;overflow-wrap:anywhere}
       picture{display:block}
-      .hero-art{position:static;inset:auto;width:70%;height:auto;max-width:none;aspect-ratio:16 / 9;object-fit:cover;object-position:center top;opacity:1;margin:15px auto 0;display:block;z-index:auto;pointer-events:auto}
+      .hero-art{position:static;inset:auto;width:70%;height:auto;max-width:100%;aspect-ratio:16 / 9;object-fit:cover;object-position:center top;opacity:1;margin:15px auto 0;display:block;z-index:auto;pointer-events:auto}
       .art-fade{display:none}
       .problem{padding-top:15px}
       .problem-grid{grid-template-columns:repeat(3,1fr)}
@@ -445,9 +445,9 @@
             <a class="btn btn-darkline" href="blog.html">支援実績を見る <span class="arrow">→</span></a>
           </div>
           <div class="trust-logos">
-            <article class="gov-logo"><div class="gov-mark"><svg viewBox="0 0 64 64" fill="currentColor"><path d="M8 19 32 6l24 13-24 13L8 19Zm0 13 24 13 24-13v13L32 58 8 45V32Z"/></svg>鳥取県</div><p>中小企業の構造転換<br>支援事業に採択</p></article>
-            <article class="gov-logo"><div class="gov-mark"><svg viewBox="0 0 64 64" fill="currentColor"><path d="M7 43c18-1 29-16 50-30-9 18-20 36-50 30Zm2 7c22 2 38-8 48-28-4 24-20 35-48 28Z"/></svg>商工会</div><p>地方創生のデジタル基盤<br>構築に関与</p></article>
-            <article class="gov-logo"><div class="gov-mark">雲南市</div><p>業務プロセス標準化の<br>モデル事業に参画</p></article>
+            <article class="gov-logo"><div class="gov-mark"><svg viewBox="0 0 64 64" fill="currentColor"><path d="M8 19 32 6l24 13-24 13L8 19Zm0 13 24 13 24-13v13L32 58 8 45V32Z"/></svg>鳥取県</div><p>関係人口創出のための<br>イベントを共同開催</p></article>
+            <article class="gov-logo"><div class="gov-mark"><svg viewBox="0 0 64 64" fill="currentColor"><path d="M7 43c18-1 29-16 50-30-9 18-20 36-50 30Zm2 7c22 2 38-8 48-28-4 24-20 35-48 28Z"/></svg>商工会</div><p>デジタル研修や<br>AI等のサポート</p></article>
+            <article class="gov-logo"><div class="gov-mark">雲南市</div><p>市と協定を結び<br>市役所の窓口DX</p></article>
           </div>
         </div>
       </section>

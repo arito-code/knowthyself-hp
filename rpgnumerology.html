@@ -13,6 +13,14 @@
 </head>
 
 <body>
+  <!-- H: チャージオーバーレイ -->
+  <div id="charge-overlay" aria-hidden="true">
+    <div class="charge-ring">
+      <span class="charge-rune">✦</span>
+    </div>
+    <p class="charge-text">占術発動中…</p>
+  </div>
+
   <header class="hero" id="top">
     <div class="hero-bg"></div>
     <a href="#top" class="hero-logo">
@@ -37,8 +45,8 @@
 
       <div class="hero-stage">
         <picture>
-          <source media="(max-width: 640px)" srcset="../numero/assets/13.png" />
-          <img src="../numero/assets/13.png" alt="RPG数秘のキャラクターイメージ" />
+          <source media="(max-width: 640px)" srcset="assets/13.png" />
+          <img src="assets/13.png" alt="RPG数秘のキャラクターイメージ" />
         </picture>
       </div>
     </div>
@@ -47,7 +55,7 @@
   <main>
     <section class="diagnosis-section" id="diagnosis">
       <div class="container diagnosis-layout">
-        <div class="panel diagnosis-card">
+        <div class="panel diagnosis-card reveal">
           <h2>生年月日を入力して診断！</h2>
           <p>名前やメールアドレスは不要。<br>30秒であなたの基本タイプが分かります。</p>
 
@@ -68,7 +76,7 @@
           <small>※診断結果はエンタメ・自己理解コンテンツとしてお楽しみください。</small>
         </div>
 
-        <div class="panel calc-card">
+        <div class="panel calc-card reveal" style="transition-delay:.12s">
           <h2>ライフパスとは？</h2>
           <p>
             生年月日の数字をすべて足して、一桁になるまで足し続けた数がライフパスナンバーです。
@@ -112,68 +120,68 @@
       <div class="container">
         <div class="types-frame">
           <div class="ribbon-title">12の冒険タイプ</div>
-          <div class="section-head">
+          <div class="section-head reveal">
             <p class="eyebrow">CHARACTER TYPES</p>
             <p>あなたの数字には、それぞれ違う役割と物語があります。</p>
           </div>
 
           <div class="type-grid">
-            <a href="1.html" class="type-card">
+            <a href="1.html" class="type-card reveal">
               <img src="assets/1.png" alt="No.1 勇者" />
               <h3><span>1</span> 勇者</h3>
               <p>先陣を駆け抜ける開拓者</p>
             </a>
-            <a href="2.html" class="type-card">
+            <a href="2.html" class="type-card reveal">
               <img src="assets/2.png" alt="No.2 魔法使い" />
               <h3><span>2</span> 魔法使い</h3>
               <p>直感と癒しをそなうサポーター</p>
             </a>
-            <a href="3.html" class="type-card">
+            <a href="3.html" class="type-card reveal">
               <img src="assets/3.png" alt="No.3 道化師" />
               <h3><span>3</span> 道化師</h3>
               <p>喜びと笑顔を届けるムードメーカー</p>
             </a>
-            <a href="4.html" class="type-card">
+            <a href="4.html" class="type-card reveal">
               <img src="assets/4.png" alt="No.4 建築家" />
               <h3><span>4</span> 建築家</h3>
               <p>安定と基盤をつくる計画者</p>
             </a>
-            <a href="5.html" class="type-card">
+            <a href="5.html" class="type-card reveal">
               <img src="assets/5.png" alt="No.5 冒険者" />
               <h3><span>5</span> 冒険者</h3>
               <p>自由と変化を楽しむチャレンジャー</p>
             </a>
-            <a href="6.html" class="type-card">
+            <a href="6.html" class="type-card reveal">
               <img src="assets/6.png" alt="No.6 僧侶" />
               <h3><span>6</span> 僧侶</h3>
               <p>愛と調和を育む癒し手</p>
             </a>
-            <a href="7.html" class="type-card">
+            <a href="7.html" class="type-card reveal">
               <img src="assets/7.png" alt="No.7 賢者" />
               <h3><span>7</span> 賢者</h3>
               <p>探究心と智慧を持つ研究者</p>
             </a>
-            <a href="8.html" class="type-card">
+            <a href="8.html" class="type-card reveal">
               <img src="assets/8.png" alt="No.8 将軍" />
               <h3><span>8</span> 将軍</h3>
               <p>強さと統率力を持つリーダー</p>
             </a>
-            <a href="9.html" class="type-card">
+            <a href="9.html" class="type-card reveal">
               <img src="assets/9.png" alt="No.9 旅人" />
               <h3><span>9</span> 旅人</h3>
               <p>共感と奉仕を大切にする博愛主義者</p>
             </a>
-            <a href="11.html" class="type-card rare">
+            <a href="11.html" class="type-card rare reveal">
               <img src="assets/10.png" alt="No.11 巫女" />
               <h3><span>11</span> 巫女</h3>
               <p>直感とインスピレーションの伝達者</p>
             </a>
-            <a href="22.html" class="type-card rare">
+            <a href="22.html" class="type-card rare reveal">
               <img src="assets/11.png" alt="No.22 王" />
               <h3><span>22</span> 王</h3>
               <p>大きなビジョンで人を導く存在</p>
             </a>
-            <a href="33.html" class="type-card rare">
+            <a href="33.html" class="type-card rare reveal">
               <img src="assets/12.png" alt="No.33 召喚士" />
               <h3><span>33</span> 召喚士</h3>
               <p>無条件の愛で世界を包み込む癒し手</p>
@@ -188,7 +196,7 @@
     </section>
 
     <section class="report-section" id="report">
-      <div class="container report-card">
+      <div class="container report-card reveal">
         <div class="report-copy">
           <p class="eyebrow dark">PREMIUM REPORT</p>
           <h2><span aria-hidden="true">👑</span> もっと深く<br>　　知りたいあなたへ</h2>
@@ -213,14 +221,14 @@
 
     <section class="articles-section">
       <div class="container">
-        <div class="articles-head">
+        <div class="articles-head reveal">
           <p class="eyebrow dark">COLUMN</p>
           <h2>RPG数秘コラム</h2>
           <p>数秘術とキャラクターにまつわる読み物を更新中。</p>
         </div>
 
         <div class="article-grid">
-          <a href="#" class="article-card">
+          <a href="#" class="article-card reveal">
             <div class="article-thumb article-thumb--placeholder"></div>
             <div class="article-body">
               <span class="article-tag">数秘術入門</span>
@@ -229,7 +237,7 @@
             </div>
           </a>
 
-          <a href="#" class="article-card">
+          <a href="#" class="article-card reveal">
             <div class="article-thumb article-thumb--placeholder"></div>
             <div class="article-body">
               <span class="article-tag">キャラクター解説</span>
@@ -238,7 +246,7 @@
             </div>
           </a>
 
-          <a href="#" class="article-card">
+          <a href="#" class="article-card reveal">
             <div class="article-thumb article-thumb--placeholder"></div>
             <div class="article-body">
               <span class="article-tag">相性</span>
@@ -251,7 +259,7 @@
     </section>
 
     <section class="recommend-section">
-      <div class="container">
+      <div class="container reveal">
         <p class="recommend-lead">こんな人におすすめ！</p>
         <h2>生年月日だけで、あなたの個性をRPGタイプで直感的に理解。</h2>
         <p>まずは無料診断で、自分の物語の「役割」を見つけましょう。</p>
@@ -259,7 +267,7 @@
     </section>
 
     <section class="bottom-cta">
-      <div class="container">
+      <div class="container reveal">
         <h2>あなたの冒険はここから始まる！</h2>
         <p>生年月日だけでカンタン診断。</p>
         <a href="#diagnosis" class="btn btn-red">無料で診断する</a>
@@ -276,37 +284,39 @@
 
   <script src="https://cdn.jsdelivr.net/npm/air-datepicker@3.6.0/air-datepicker.js"></script>
   <script>
-    const typeData = {
-      1: { title: "No.1 勇者", img: "assets/1.png", catch: "先陣を駆け抜ける開拓者", desc: "決断力と行動力で道を切り開くタイプです。", link: "1.html" },
-      2: { title: "No.2 魔法使い", img: "assets/2.png", catch: "直感と癒しをそなうサポーター", desc: "人の気持ちを感じ取り、そっと支える力を持つタイプです。", link: "2.html" },
-      3: { title: "No.3 道化師", img: "assets/3.png", catch: "喜びと笑顔を届けるムードメーカー", desc: "表現力と明るさで場を楽しくするタイプです。", link: "3.html" },
-      4: { title: "No.4 建築家", img: "assets/4.png", catch: "安定と基盤をつくる計画者", desc: "物事を整え、着実に形にしていくタイプです。", link: "4.html" },
-      5: { title: "No.5 冒険者", img: "assets/5.png", catch: "自由と変化を楽しむチャレンジャー", desc: "新しい世界へ軽やかに飛び込むタイプです。", link: "5.html" },
-      6: { title: "No.6 僧侶", img: "assets/6.png", catch: "愛と調和を育む癒し手", desc: "人を支え、安心できる関係を育てるタイプです。", link: "6.html" },
-      7: { title: "No.7 賢者", img: "assets/7.png", catch: "探究心と智慧を持つ研究者", desc: "深く考え、本質を見つめるタイプです。", link: "7.html" },
-      8: { title: "No.8 将軍", img: "assets/8.png", catch: "強さと統率力を持つリーダー", desc: "現実を動かし、結果をつくる力を持つタイプです。", link: "8.html" },
-      9: { title: "No.9 旅人", img: "assets/9.png", catch: "共感と奉仕を大切にする博愛主義者", desc: "広い視点で人や世界を見つめるタイプです。", link: "9.html" },
-      11: { title: "No.11 巫女", img: "assets/10.png", catch: "直感とインスピレーションの伝達者", desc: "感性とひらめきを通して人に影響を与えるタイプです。", link: "11.html" },
-      22: { title: "No.22 王", img: "assets/11.png", catch: "大きなビジョンで人を導く存在", desc: "理想を現実に落とし込み、大きな形にするタイプです。", link: "22.html" },
-      33: { title: "No.33 召喚士", img: "assets/12.png", catch: "無条件の愛で世界を包み込む癒し手", desc: "大きな愛と表現力で人を癒すタイプです。", link: "33.html" }
+    /* ── DATA ──────────────────────────────────────────── */
+    var typeData = {
+      1:  { title: "No.1 勇者",    img: "assets/1.png",  catch: "先陣を駆け抜ける開拓者",           desc: "決断力と行動力で道を切り開くタイプです。",             link: "1.html"  },
+      2:  { title: "No.2 魔法使い", img: "assets/2.png",  catch: "直感と癒しをそなうサポーター",      desc: "人の気持ちを感じ取り、そっと支える力を持つタイプです。", link: "2.html"  },
+      3:  { title: "No.3 道化師",  img: "assets/3.png",  catch: "喜びと笑顔を届けるムードメーカー",  desc: "表現力と明るさで場を楽しくするタイプです。",           link: "3.html"  },
+      4:  { title: "No.4 建築家",  img: "assets/4.png",  catch: "安定と基盤をつくる計画者",          desc: "物事を整え、着実に形にしていくタイプです。",           link: "4.html"  },
+      5:  { title: "No.5 冒険者",  img: "assets/5.png",  catch: "自由と変化を楽しむチャレンジャー",  desc: "新しい世界へ軽やかに飛び込むタイプです。",             link: "5.html"  },
+      6:  { title: "No.6 僧侶",    img: "assets/6.png",  catch: "愛と調和を育む癒し手",             desc: "人を支え、安心できる関係を育てるタイプです。",         link: "6.html"  },
+      7:  { title: "No.7 賢者",    img: "assets/7.png",  catch: "探究心と智慧を持つ研究者",          desc: "深く考え、本質を見つめるタイプです。",                 link: "7.html"  },
+      8:  { title: "No.8 将軍",    img: "assets/8.png",  catch: "強さと統率力を持つリーダー",        desc: "現実を動かし、結果をつくる力を持つタイプです。",       link: "8.html"  },
+      9:  { title: "No.9 旅人",    img: "assets/9.png",  catch: "共感と奉仕を大切にする博愛主義者",  desc: "広い視点で人や世界を見つめるタイプです。",             link: "9.html"  },
+      11: { title: "No.11 巫女",   img: "assets/10.png", catch: "直感とインスピレーションの伝達者",  desc: "感性とひらめきを通して人に影響を与えるタイプです。",   link: "11.html" },
+      22: { title: "No.22 王",     img: "assets/11.png", catch: "大きなビジョンで人を導く存在",      desc: "理想を現実に落とし込み、大きな形にするタイプです。",   link: "22.html" },
+      33: { title: "No.33 召喚士", img: "assets/12.png", catch: "無条件の愛で世界を包み込む癒し手", desc: "大きな愛と表現力で人を癒すタイプです。",               link: "33.html" }
     };
 
     function digitSum(num) {
-      return String(num).split("").reduce((sum, n) => sum + Number(n), 0);
+      return String(num).split("").reduce(function (s, n) { return s + Number(n); }, 0);
     }
 
     function calcLifePath(year, month, day) {
-      const raw = String(year) + String(month) + String(day);
-      let total = raw.split("").reduce((sum, n) => sum + Number(n), 0);
-      while (![11, 22, 33].includes(total) && total > 9) {
+      var raw = String(year) + String(month) + String(day);
+      var total = raw.split("").reduce(function (s, n) { return s + Number(n); }, 0);
+      while ([11, 22, 33].indexOf(total) === -1 && total > 9) {
         total = digitSum(total);
       }
       return total;
     }
 
-    let selectedDate = null;
+    /* ── DATEPICKER ─────────────────────────────────────── */
+    var selectedDate = null;
 
-    const localeJa = {
+    var localeJa = {
       days: ['日曜日','月曜日','火曜日','水曜日','木曜日','金曜日','土曜日'],
       daysShort: ['日','月','火','水','木','金','土'],
       daysMin: ['日','月','火','水','木','金','土'],
@@ -325,33 +335,173 @@
       maxDate: new Date(),
       minDate: new Date(1920, 0, 1),
       autoClose: true,
-      onSelect: function({ date }) {
-        selectedDate = date || null;
-      }
+      isMobile: true,
+      onSelect: function (d) { selectedDate = d.date || null; }
     });
 
-    document.getElementById("lifePathForm").addEventListener("submit", function(e) {
-      e.preventDefault();
+    /* ── A: パララックス ─────────────────────────────────── */
+    (function () {
+      var hero  = document.querySelector('.hero');
+      var stage = document.querySelector('.hero-stage');
+      var copy  = document.querySelector('.hero-copy');
+      if (!hero || !stage) return;
 
+      var tx = 0, ty = 0, cx = 0, cy = 0, raf = null;
+
+      function tick() {
+        cx += (tx - cx) * 0.08;
+        cy += (ty - cy) * 0.08;
+        stage.style.transform = 'translate(' + (cx * 14) + 'px,' + (cy * 10) + 'px)';
+        if (copy) copy.style.transform = 'translate(' + (cx * -6) + 'px,' + (cy * -4) + 'px)';
+        raf = (Math.abs(tx - cx) > 5e-4 || Math.abs(ty - cy) > 5e-4)
+          ? requestAnimationFrame(tick) : null;
+      }
+
+      document.addEventListener('mousemove', function (e) {
+        if (window.innerWidth < 900) return;
+        var r = hero.getBoundingClientRect();
+        if (e.clientY < r.top || e.clientY > r.bottom) return;
+        tx = (e.clientX / window.innerWidth - 0.5);
+        ty = ((e.clientY - r.top) / r.height - 0.5);
+        if (!raf) raf = requestAnimationFrame(tick);
+      });
+    }());
+
+    /* ── C: 流れ星 ──────────────────────────────────────── */
+    (function () {
+      var hero = document.querySelector('.hero');
+      if (!hero) return;
+
+      function spawnStar() {
+        var s = document.createElement('div');
+        s.className = 'shooting-star';
+        s.style.left = (15 + Math.random() * 65) + '%';
+        s.style.top  = (8  + Math.random() * 42) + '%';
+        hero.appendChild(s);
+        setTimeout(function () { if (s.parentNode) s.parentNode.removeChild(s); }, 900);
+      }
+
+      setTimeout(spawnStar, 1400);
+      function schedule() {
+        setTimeout(function () { spawnStar(); schedule(); }, 3500 + Math.random() * 2500);
+      }
+      schedule();
+    }());
+
+    /* ── L: 紙吹雪（レアタイプ用）──────────────────────── */
+    function launchConfetti() {
+      var section = document.querySelector('.result-section');
+      if (!section) return;
+      var colors = ['#ffd36a', '#c37fff', '#ff80d4', '#7affb4', '#ffffff', '#ffb347'];
+      for (var i = 0; i < 65; i++) {
+        (function (idx) {
+          setTimeout(function () {
+            var p    = document.createElement('div');
+            var size = 4 + Math.random() * 7;
+            p.style.cssText =
+              'position:absolute;width:' + size + 'px;height:' + size + 'px;' +
+              'background:' + colors[Math.floor(Math.random() * colors.length)] + ';' +
+              'border-radius:' + (Math.random() > 0.5 ? '50%' : '2px') + ';' +
+              'left:' + (Math.random() * 100) + '%;top:0;' +
+              'pointer-events:none;z-index:10;' +
+              'animation:confettiFall ' + (1 + Math.random() * 1.4) + 's ease-out ' +
+              (Math.random() * 0.3) + 's both';
+            section.appendChild(p);
+            setTimeout(function () { if (p.parentNode) p.parentNode.removeChild(p); }, 2500);
+          }, idx * 25);
+        }(i));
+      }
+    }
+
+    /* ── N: スクロールリビール ──────────────────────────── */
+    (function () {
+      var obs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            e.target.classList.add('is-visible');
+            obs.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.12 });
+
+      document.querySelectorAll('.reveal').forEach(function (el) { obs.observe(el); });
+
+      document.querySelectorAll('.type-card').forEach(function (c, i) {
+        c.style.setProperty('--delay', i);
+      });
+      document.querySelectorAll('.article-card').forEach(function (c, i) {
+        c.style.setProperty('--delay', i);
+      });
+    }());
+
+    /* ── フォーム送信（H / J / K / L / M）─────────────── */
+    document.getElementById("lifePathForm").addEventListener("submit", function (e) {
+      e.preventDefault();
       if (!selectedDate) return;
 
-      const year = selectedDate.getFullYear();
-      const month = selectedDate.getMonth() + 1;
-      const day = selectedDate.getDate();
+      var year     = selectedDate.getFullYear();
+      var month    = selectedDate.getMonth() + 1;
+      var day      = selectedDate.getDate();
+      var lifePath = calcLifePath(year, month, day);
+      var data     = typeData[lifePath];
 
-      const lifePath = calcLifePath(year, month, day);
-      const data = typeData[lifePath];
+      /* H: チャージオーバーレイ */
+      var overlay = document.getElementById('charge-overlay');
+      overlay.classList.add('active');
 
-      document.getElementById("resultImage").src = data.img;
-      document.getElementById("resultImage").alt = data.title;
-      document.getElementById("resultTitle").textContent = data.title;
-      document.getElementById("resultCatch").textContent = data.catch;
-      document.getElementById("resultDesc").textContent = data.desc;
-      document.getElementById("detailLink").href = data.link;
+      setTimeout(function () {
+        overlay.classList.remove('active');
 
-      const result = document.getElementById("result");
-      result.hidden = false;
-      result.scrollIntoView({ behavior: "smooth", block: "start" });
+        document.getElementById("resultCatch").textContent = data.catch;
+        document.getElementById("resultDesc").textContent  = data.desc;
+        document.getElementById("detailLink").href         = data.link;
+
+        /* M: キャラ踏み込み */
+        var imgEl = document.getElementById("resultImage");
+        imgEl.src = data.img;
+        imgEl.alt = data.title;
+        imgEl.classList.remove('pop');
+        void imgEl.offsetWidth;
+        imgEl.classList.add('pop');
+        imgEl.addEventListener('animationend', function () {
+          imgEl.classList.remove('pop');
+        }, { once: true });
+
+        /* 結果セクション表示 */
+        var result = document.getElementById("result");
+        result.hidden = false;
+
+        /* J: カード召喚 */
+        var card = result.querySelector('.result-card');
+        card.classList.remove('summoning');
+        void card.offsetWidth;
+        card.classList.add('summoning');
+        card.addEventListener('animationend', function () {
+          card.classList.remove('summoning');
+        }, { once: true });
+
+        result.scrollIntoView({ behavior: "smooth", block: "start" });
+
+        /* K: タイトルドラムロール */
+        var titleEl = document.getElementById("resultTitle");
+        var keys    = Object.keys(typeData);
+        titleEl.classList.add('rolling');
+        var count = 0;
+        var roll  = setInterval(function () {
+          titleEl.textContent = typeData[keys[Math.floor(Math.random() * keys.length)]].title;
+          if (++count >= 14) {
+            clearInterval(roll);
+            titleEl.textContent = data.title;
+            titleEl.classList.remove('rolling');
+          }
+        }, 55);
+
+        /* L: レアタイプ紙吹雪 */
+        if ([11, 22, 33].indexOf(lifePath) !== -1) {
+          setTimeout(launchConfetti, 500);
+        }
+
+      }, 800);
     });
   </script>
 </body>
