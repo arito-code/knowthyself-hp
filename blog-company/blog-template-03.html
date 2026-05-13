@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>【ガイドタイトル】 | know thyself</title>
+  <meta name="description" content="ハウツー・ガイド記事の概要をここに記述します。ステップごとの手順や実践ポイントを分かりやすく解説します。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --green: #1F4D3A;
+      --gold: #C6A85C;
+      --text: #21342F;
+      --muted: #6B7A75;
+      --line: #E4E2D8;
+      --beige: #F5F3E7;
+      --max: 860px;
+      --shadow: 0 14px 36px rgba(24,45,40,.08);
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin: 0; font-family: "Inter","Zen Kaku Gothic New",system-ui,sans-serif; color: var(--text); letter-spacing: .02em; background: #fff; }
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
+    .wide { width: min(1180px, calc(100% - 64px)); margin: 0 auto; }
+    .container { width: min(var(--max), calc(100% - 64px)); margin: 0 auto; }
+
+    /* ── Header ── */
+    .site-header { height: 78px; background: rgba(255,255,255,.95); border-bottom: 1px solid rgba(228,226,216,.8); position: sticky; top: 0; z-index: 100; }
+    .header-inner { height: 78px; display: flex; align-items: center; gap: 32px; }
+    .brand-main { font-size: 28px; font-weight: 800; letter-spacing: -.04em; color: #213837; }
+    .brand-sub { font-size: 10px; font-weight: 700; color: #56645f; letter-spacing: .08em; }
+    .nav { display: flex; gap: 34px; margin-left: auto; font-size: 13px; font-weight: 800; white-space: nowrap; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 20px; border-radius: 4px; font-weight: 800; border: 1px solid transparent; font-size: 13px; }
+    .btn-green { background: var(--green); color: #fff; }
+
+    /* ── Guide Hero ── */
+    .guide-hero { padding: 52px 0 44px; background: var(--beige); border-bottom: 1px solid var(--line); }
+    .breadcrumb { font-size: 12px; color: var(--muted); font-weight: 600; margin-bottom: 20px; display: flex; gap: 6px; }
+    .eyebrow { font-size: 11px; letter-spacing: .26em; color: var(--gold); font-weight: 800; margin-bottom: 14px; }
+    .guide-hero h1 { margin: 0 0 16px; font-size: 34px; line-height: 1.45; font-family: "Zen Kaku Gothic New", sans-serif; color: var(--green); }
+    .guide-hero .lead { margin: 0 0 24px; font-size: 16px; color: #4a5e59; line-height: 1.9; }
+    .hero-meta { display: flex; gap: 20px; font-size: 13px; color: var(--muted); font-weight: 600; align-items: center; flex-wrap: wrap; }
+    .hero-meta .tag { font-size: 11px; padding: 4px 12px; }
+    .tag { display: inline-block; padding: 4px 12px; font-size: 11px; font-weight: 800; letter-spacing: .06em; border-radius: 999px; background: var(--gold); color: #fff; }
+    .tag.sub { background: var(--beige); color: var(--green); border: 1px solid var(--line); }
+
+    /* ── Summary Box ── */
+    .summary-box { background: #fff; border: 2px solid var(--green); border-radius: 12px; padding: 28px 32px; margin: 36px 0; }
+    .summary-box h3 { margin: 0 0 14px; font-size: 14px; color: var(--green); font-weight: 800; letter-spacing: .06em; display: flex; align-items: center; gap: 8px; }
+    .summary-box h3::before { content: ""; display: inline-block; width: 16px; height: 16px; background: var(--gold); border-radius: 3px; }
+    .summary-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
+    .summary-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; line-height: 1.65; }
+    .summary-list li::before { content: "✓"; color: var(--green); font-weight: 800; flex-shrink: 0; margin-top: 1px; }
+
+    /* ── Article Body ── */
+    .article-wrap { padding: 48px 0 80px; }
+    .article-body { font-size: 16px; line-height: 2; color: #2D3E39; }
+    .article-body h2 { font-size: 24px; font-family: "Zen Kaku Gothic New", sans-serif; color: var(--green); margin: 56px 0 18px; }
+    .article-body h3 { font-size: 18px; color: var(--text); margin: 36px 0 12px; }
+    .article-body p { margin: 0 0 20px; }
+    .article-body ul, .article-body ol { padding-left: 22px; margin: 0 0 20px; }
+    .article-body li { margin-bottom: 8px; }
+
+    /* ── Step Cards ── */
+    .steps { display: flex; flex-direction: column; gap: 2px; margin: 32px 0; }
+    .step { display: grid; grid-template-columns: 80px 1fr; border-radius: 0; overflow: hidden; }
+    .step:first-child { border-radius: 12px 12px 0 0; }
+    .step:last-child { border-radius: 0 0 12px 12px; }
+    .step-num { background: var(--green); color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px 12px; text-align: center; flex-shrink: 0; }
+    .step-num .label { font-size: 10px; letter-spacing: .1em; opacity: .7; font-weight: 700; }
+    .step-num .num { font-size: 28px; font-weight: 800; line-height: 1; }
+    .step-body { background: var(--beige); padding: 22px 26px; border-bottom: 2px solid #fff; }
+    .step:last-child .step-body { border-bottom: none; }
+    .step-body h4 { margin: 0 0 8px; font-size: 17px; color: var(--green); font-weight: 800; }
+    .step-body p { margin: 0 0 12px; font-size: 14px; color: #4a5e59; line-height: 1.75; }
+    .step-body p:last-child { margin-bottom: 0; }
+    .step-tag { display: inline-block; font-size: 11px; font-weight: 700; padding: 3px 10px; background: rgba(31,77,58,.1); color: var(--green); border-radius: 999px; margin-bottom: 10px; }
+
+    /* ── Tip Box ── */
+    .tip { background: #f0f8f4; border: 1px solid rgba(31,77,58,.18); border-radius: 8px; padding: 18px 22px; margin: 24px 0; display: flex; gap: 14px; align-items: flex-start; }
+    .tip-icon { width: 32px; height: 32px; background: var(--green); border-radius: 50%; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 800; flex-shrink: 0; margin-top: 2px; }
+    .tip-body { font-size: 14px; line-height: 1.8; }
+    .tip-body strong { color: var(--green); display: block; margin-bottom: 4px; }
+
+    /* ── Warning Box ── */
+    .warn { background: #fff8e8; border: 1px solid rgba(198,168,92,.4); border-radius: 8px; padding: 18px 22px; margin: 24px 0; display: flex; gap: 14px; align-items: flex-start; }
+    .warn-icon { width: 32px; height: 32px; background: var(--gold); border-radius: 50%; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 800; flex-shrink: 0; margin-top: 2px; }
+    .warn-body { font-size: 14px; line-height: 1.8; }
+    .warn-body strong { color: #8a6a1f; display: block; margin-bottom: 4px; }
+
+    /* ── Checklist ── */
+    .checklist { border: 1px solid var(--line); border-radius: 12px; padding: 24px 28px; margin: 32px 0; background: #fff; }
+    .checklist h4 { margin: 0 0 16px; font-size: 15px; color: var(--green); font-weight: 800; }
+    .checklist ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+    .checklist li { display: flex; align-items: flex-start; gap: 12px; font-size: 14px; line-height: 1.6; }
+    .check-box { width: 20px; height: 20px; border: 2px solid var(--line); border-radius: 4px; flex-shrink: 0; margin-top: 1px; background: #fff; }
+
+    /* ── Table ── */
+    .styled-table { width: 100%; border-collapse: collapse; margin: 28px 0; font-size: 14px; border-radius: 8px; overflow: hidden; box-shadow: 0 0 0 1px var(--line); }
+    .styled-table th { background: var(--green); color: #fff; padding: 12px 16px; text-align: left; font-size: 12px; font-weight: 700; letter-spacing: .04em; }
+    .styled-table td { padding: 12px 16px; border-bottom: 1px solid var(--line); vertical-align: top; line-height: 1.65; }
+    .styled-table tr:last-child td { border-bottom: none; }
+    .styled-table tr:nth-child(even) td { background: var(--beige); }
+
+    /* ── Inline Figure ── */
+    .article-body figure { margin: 32px 0; }
+    .article-body figure img { border-radius: 8px; width: 100%; border: 1px solid var(--line); }
+    .article-body figcaption { margin-top: 8px; font-size: 12px; color: var(--muted); text-align: center; }
+
+    /* ── Progress Bar ── */
+    .progress-strip { background: var(--beige); border: 1px solid var(--line); border-radius: 10px; padding: 20px 24px; margin: 32px 0; }
+    .progress-strip h4 { margin: 0 0 14px; font-size: 13px; font-weight: 800; color: var(--green); }
+    .prog-item { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; font-size: 13px; }
+    .prog-item:last-child { margin-bottom: 0; }
+    .prog-label { width: 100px; flex-shrink: 0; font-weight: 600; color: var(--muted); }
+    .prog-bar { flex: 1; height: 8px; background: var(--line); border-radius: 999px; overflow: hidden; }
+    .prog-fill { height: 100%; background: linear-gradient(90deg, var(--green), #2a8a62); border-radius: 999px; }
+    .prog-val { width: 36px; text-align: right; font-weight: 700; color: var(--green); flex-shrink: 0; }
+
+    /* ── Share & Author ── */
+    .share-row { margin-top: 48px; padding-top: 28px; border-top: 1px solid var(--line); display: flex; align-items: center; gap: 14px; }
+    .share-row span { font-size: 13px; font-weight: 700; color: var(--muted); }
+    .share-btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 4px; font-size: 13px; font-weight: 700; border: 1px solid var(--line); background: #fff; cursor: pointer; }
+    .author-box { margin-top: 36px; padding: 24px; border: 1px solid var(--line); border-radius: 12px; display: flex; gap: 20px; align-items: flex-start; background: var(--beige); }
+    .author-icon { width: 52px; height: 52px; border-radius: 50%; background: linear-gradient(135deg, var(--green), #0e674d); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 800; flex-shrink: 0; }
+    .author-box-info h4 { margin: 0 0 6px; font-size: 15px; color: var(--green); }
+    .author-box-info p { margin: 0; font-size: 13px; color: var(--muted); line-height: 1.8; }
+
+    /* ── Related ── */
+    .related { margin-top: 60px; padding-top: 36px; border-top: 1px solid var(--line); }
+    .related h3 { font-size: 18px; font-family: "Zen Kaku Gothic New", sans-serif; color: var(--green); margin: 0 0 20px; }
+    .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .related-card { border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: #fff; transition: box-shadow .2s; }
+    .related-card:hover { box-shadow: var(--shadow); }
+    .related-card img { height: 130px; width: 100%; object-fit: cover; }
+    .related-card-body { padding: 14px; }
+    .related-card-body h4 { margin: 8px 0 4px; font-size: 13px; line-height: 1.5; color: var(--text); }
+    .related-card-body span { font-size: 11px; color: var(--muted); }
+
+    /* ── CTA ── */
+    .cta-section { background: linear-gradient(105deg, var(--green) 0%, #0F3D2F 100%); color: #fff; margin-top: 80px; }
+    .cta-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 48px 0; }
+    .cta-inner h2 { margin: 0 0 8px; font-size: 26px; font-family: "Zen Kaku Gothic New", sans-serif; }
+    .cta-inner p { margin: 0; font-size: 14px; color: rgba(255,255,255,.8); }
+    .cta-actions { display: flex; gap: 12px; flex-shrink: 0; }
+    .btn-white { background: #fff; color: var(--green); }
+    .btn-outline { border-color: rgba(255,255,255,.5); color: #fff; }
+
+    /* ── Footer ── */
+    .footer { height: 80px; border-top: 1px solid var(--line); background: #fff; }
+    .footer-inner { height: 80px; display: flex; align-items: center; justify-content: space-between; gap: 20px; font-size: 12px; color: var(--muted); font-weight: 600; }
+    .footer-nav { display: flex; gap: 22px; font-size: 12px; font-weight: 800; color: #51605B; white-space: nowrap; }
+
+    @media (max-width: 1024px) {
+      .nav { display: none; }
+      .related-grid { grid-template-columns: 1fr 1fr; }
+      .cta-inner { flex-direction: column; align-items: flex-start; }
+    }
+    @media (max-width: 768px) {
+      .container, .wide { width: min(var(--max), calc(100% - 40px)); }
+      .guide-hero h1 { font-size: 26px; }
+      .step { grid-template-columns: 60px 1fr; }
+      .related-grid { grid-template-columns: 1fr; }
+      .footer-inner { flex-direction: column; height: auto; padding: 20px 0; }
+      .footer-nav { flex-wrap: wrap; gap: 12px; }
+      .cta-actions { flex-direction: column; width: 100%; }
+      .cta-actions .btn { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══ Header ══ -->
+  <header class="site-header">
+    <div class="wide header-inner">
+      <a href="../index.html">
+        <div class="brand-main">know thyself</div>
+        <div class="brand-sub">構造から、未来をデザインする。</div>
+      </a>
+      <nav class="nav">
+        <a href="../service.html">サービス</a>
+        <a href="../blog.html">導入事例</a>
+        <a href="../company.html">会社紹介</a>
+        <a href="../recruit.html">採用情報</a>
+        <a href="../contact.html">お問い合わせ</a>
+      </nav>
+      <a class="btn btn-green" href="../contact.html">お問い合わせ</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ── Guide Hero ── -->
+    <section class="guide-hero">
+      <div class="container">
+        <nav class="breadcrumb">
+          <a href="../index.html">HOME</a>
+          <span>/</span>
+          <a href="../blog.html">ブログ</a>
+          <span>/</span>
+          <span>ガイドタイトル</span>
+        </nav>
+        <div class="eyebrow">HOW TO GUIDE</div>
+        <h1>業務棚卸しを失敗させない<br>5ステップ完全ガイド</h1>
+        <p class="lead">「やったことがあるけど途中で止まった」「どこから手をつければいいか分からない」——そんな業務棚卸しの壁を、実践的な5つのステップで突破する方法を解説します。</p>
+        <div class="hero-meta">
+          <span class="tag">ナレッジ</span>
+          <span class="tag sub">業務標準化</span>
+          <span>2026年5月13日</span>
+          <span>読了目安：約10分</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Article Body ── -->
+    <section class="article-wrap">
+      <div class="container">
+        <div class="article-body">
+
+          <!-- この記事でわかること -->
+          <div class="summary-box">
+            <h3>この記事でわかること</h3>
+            <ul class="summary-list">
+              <li>業務棚卸しが失敗する3つの典型的な原因</li>
+              <li>短期間で成果を出す5ステップのフレームワーク</li>
+              <li>各ステップで使える具体的なツールと問いかけ</li>
+              <li>棚卸し後に「絵に描いた餅」にしないための定着策</li>
+            </ul>
+          </div>
+
+          <h2>なぜ業務棚卸しは失敗するのか</h2>
+          <p>
+            多くの組織が業務棚卸しを試みて、途中で止まってしまいます。その理由は主に3つです。
+          </p>
+          <p>
+            1つ目は「目的が曖昧なまま始める」こと。2つ目は「完璧を求めすぎてリストが終わらない」こと。3つ目は「棚卸しした後のアクションが決まっていない」ことです。
+          </p>
+          <div class="warn">
+            <div class="warn-icon">!</div>
+            <div class="warn-body">
+              <strong>よくある失敗パターン</strong>
+              全員参加の大規模ワークショップから始めると、収拾がつかなくなりがちです。まずは1部門・1業務からスモールスタートが鉄則です。
+            </div>
+          </div>
+
+          <!-- 進捗イメージ -->
+          <div class="progress-strip">
+            <h4>業務棚卸しの典型的な進捗（失敗パターン）</h4>
+            <div class="prog-item">
+              <div class="prog-label">計画策定</div>
+              <div class="prog-bar"><div class="prog-fill" style="width:95%"></div></div>
+              <div class="prog-val">95%</div>
+            </div>
+            <div class="prog-item">
+              <div class="prog-label">現状把握</div>
+              <div class="prog-bar"><div class="prog-fill" style="width:70%"></div></div>
+              <div class="prog-val">70%</div>
+            </div>
+            <div class="prog-item">
+              <div class="prog-label">整理・構造化</div>
+              <div class="prog-bar"><div class="prog-fill" style="width:40%"></div></div>
+              <div class="prog-val">40%</div>
+            </div>
+            <div class="prog-item">
+              <div class="prog-label">改善・実装</div>
+              <div class="prog-bar"><div class="prog-fill" style="width:15%"></div></div>
+              <div class="prog-val">15%</div>
+            </div>
+          </div>
+
+          <h2>5ステップで完走する業務棚卸しの進め方</h2>
+          <p>
+            以下の5ステップは、know thyselfが複数の現場支援で検証してきたフレームワークです。
+          </p>
+
+          <!-- Steps -->
+          <div class="steps">
+            <div class="step">
+              <div class="step-num"><div class="label">STEP</div><div class="num">1</div></div>
+              <div class="step-body">
+                <div class="step-tag">所要時間：1〜2日</div>
+                <h4>スコープを決める──どの業務から棚卸しするか</h4>
+                <p>最初に「どの部門の、どの業務を対象にするか」を明確に決めます。いきなり全社を対象にするのではなく、最も変化の影響が大きい部門から始めましょう。</p>
+                <p>選定基準：①担当者の退職リスクが高い　②引継ぎに時間がかかっている　③ミスが繰り返されている</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num"><div class="label">STEP</div><div class="num">2</div></div>
+              <div class="step-body">
+                <div class="step-tag">所要時間：3〜5日</div>
+                <h4>業務を書き出す──"やっていること"を全て言語化する</h4>
+                <p>担当者に「1週間でやること」を時系列で書き出してもらいます。「当たり前すぎて書くほどでもない」ことが最重要情報です。</p>
+                <p>付箋やスプレッドシートで業務を1件1タスクで記録。完璧より「漏れなく」を優先します。</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num"><div class="label">STEP</div><div class="num">3</div></div>
+              <div class="step-body">
+                <div class="step-tag">所要時間：2〜3日</div>
+                <h4>分類・整理する──業務を構造化してグルーピング</h4>
+                <p>書き出した業務を「定型/非定型」「頻度」「担当者」「所要時間」でラベリングし、関連する業務をグループにまとめます。</p>
+                <p>この段階で「実は誰がやっているか分からない業務」が浮かび上がるのが棚卸しの醍醐味です。</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num"><div class="label">STEP</div><div class="num">4</div></div>
+              <div class="step-body">
+                <div class="step-tag">所要時間：1〜2週間</div>
+                <h4>優先度をつける──改善インパクトの大きい業務から着手</h4>
+                <p>「改善したときの効果」と「改善の難易度」の2軸でマトリクスを作り、投資対効果が高い業務から着手順序を決めます。</p>
+                <p>全部同時に進めようとすると必ず失速します。最大3件に絞って集中することが成功の鍵です。</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num"><div class="label">STEP</div><div class="num">5</div></div>
+              <div class="step-body">
+                <div class="step-tag">継続的に実施</div>
+                <h4>マニュアル化と定期レビュー──生きた仕組みをつくる</h4>
+                <p>棚卸し結果をマニュアルに落とし込み、「誰がいつ更新するか」のルールを決めます。更新されないマニュアルは存在しないのと同じです。</p>
+                <p>月1回の「マニュアルデー」を設けて、全員でアップデートする文化をつくると定着します。</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="tip">
+            <div class="tip-icon">★</div>
+            <div class="tip-body">
+              <strong>成功のコツ</strong>
+              ステップ2の「書き出し」を個人作業ではなくペアで行うと、抜け漏れが大幅に減ります。「私はこうやってるけど、あなたは？」という会話から暗黙知が引き出されます。
+            </div>
+          </div>
+
+          <h2>各ステップで使えるツール・フレームワーク</h2>
+
+          <table class="styled-table">
+            <thead>
+              <tr>
+                <th>ステップ</th>
+                <th>推奨ツール</th>
+                <th>ポイント</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1. スコープ決定</td>
+                <td>優先度マトリクス</td>
+                <td>部門ごとのリスク・インパクトを可視化</td>
+              </tr>
+              <tr>
+                <td>2. 業務の書き出し</td>
+                <td>業務棚卸しシート（スプレッドシート）</td>
+                <td>1業務1行。細かすぎるより大きめの粒度で</td>
+              </tr>
+              <tr>
+                <td>3. 分類・整理</td>
+                <td>KJ法、アフィニティマップ</td>
+                <td>関連する業務を付箋でグループ化</td>
+              </tr>
+              <tr>
+                <td>4. 優先度付け</td>
+                <td>インパクト×難易度マトリクス</td>
+                <td>数値で評価せず直感で3段階でOK</td>
+              </tr>
+              <tr>
+                <td>5. マニュアル化</td>
+                <td>Notion、Google Docs</td>
+                <td>更新しやすいツール選びが最優先</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h2>棚卸し後に「やりっぱなし」にしないために</h2>
+          <p>
+            業務棚卸しは「完成」がゴールではありません。仕組みとして継続することが真の目的です。以下のチェックリストで定着度を確認しましょう。
+          </p>
+
+          <figure>
+            <img src="blog-company-assets/company-education-vision-diagram.png" alt="業務改善サイクル図" />
+            <figcaption>業務棚卸しから改善・定着までのサイクルイメージ</figcaption>
+          </figure>
+
+          <div class="checklist">
+            <h4>定着化チェックリスト</h4>
+            <ul>
+              <li><div class="check-box"></div>業務マニュアルの「オーナー」が決まっている</li>
+              <li><div class="check-box"></div>更新ルール（誰が・いつ・どうやって）が明文化されている</li>
+              <li><div class="check-box"></div>新入社員がマニュアルだけで業務を開始できるか検証済み</li>
+              <li><div class="check-box"></div>月次で棚卸しの内容をレビューする場が設けられている</li>
+              <li><div class="check-box"></div>改善提案を誰でも出せる仕組みがある</li>
+            </ul>
+          </div>
+
+          <h2>まとめ</h2>
+          <p>
+            業務棚卸しの成否は、「完璧を求めない」「スモールスタート」「定期更新の仕組み」の3点に尽きます。最初の1業務をきちんと棚卸しするだけで、組織の情報の流れが変わり始めます。
+          </p>
+          <p>
+            know thyselfでは、この棚卸しプロセスを伴走型でご支援しています。「どこから始めればいいか分からない」という段階からご相談いただけます。
+          </p>
+
+          <!-- シェア -->
+          <div class="share-row">
+            <span>この記事をシェア</span>
+            <button class="share-btn">𝕏 Xでシェア</button>
+            <button class="share-btn">in LinkedInでシェア</button>
+          </div>
+
+          <!-- 著者 -->
+          <div class="author-box">
+            <div class="author-icon">KT</div>
+            <div class="author-box-info">
+              <h4>know thyself 編集部</h4>
+              <p>現場起点のDX支援・組織開発・業務標準化をテーマに、実践から得た知見を発信しています。取材・寄稿のご相談はお問い合わせフォームよりどうぞ。</p>
+            </div>
+          </div>
+
+          <!-- 関連記事 -->
+          <div class="related">
+            <h3>関連記事</h3>
+            <div class="related-grid">
+              <a class="related-card" href="#">
+                <img src="blog-company-assets/company-dx-initiatives-collage.png" alt="" />
+                <div class="related-card-body">
+                  <span class="tag" style="font-size:10px;padding:3px 8px;">DX</span>
+                  <h4>現場起点のDXを3ヶ月で定着させる実践ロードマップ</h4>
+                  <span>2026.05.01</span>
+                </div>
+              </a>
+              <a class="related-card" href="#">
+                <img src="blog-company-assets/company-philosophy-diagram.png" alt="" />
+                <div class="related-card-body">
+                  <span class="tag" style="font-size:10px;padding:3px 8px;">ナレッジ</span>
+                  <h4>暗黙知を構造知に変える第一歩</h4>
+                  <span>2026.04.12</span>
+                </div>
+              </a>
+              <a class="related-card" href="#">
+                <img src="blog-company-assets/company-education-vision-diagram.png" alt="" />
+                <div class="related-card-body">
+                  <span class="tag" style="font-size:10px;padding:3px 8px;">組織</span>
+                  <h4>学び続ける組織の仕組みづくり</h4>
+                  <span>2026.02.15</span>
+                </div>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CTA ── -->
+    <section class="cta-section">
+      <div class="wide cta-inner">
+        <div>
+          <h2>業務棚卸し、一緒にやってみませんか。</h2>
+          <p>「どこから始めればいいか分からない」状態からご支援します。まずは無料相談でお気軽にご連絡ください。</p>
+        </div>
+        <div class="cta-actions">
+          <a class="btn btn-white" href="../contact.html">無料で相談してみる</a>
+          <a class="btn btn-outline" href="../blog.html">ブログ一覧を見る</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── Footer ── -->
+  <footer class="footer">
+    <div class="wide footer-inner">
+      <a href="../index.html">
+        <div class="brand-main" style="font-size:22px;">know thyself</div>
+      </a>
+      <nav class="footer-nav">
+        <a href="../service.html">サービス</a>
+        <a href="../blog.html">導入事例</a>
+        <a href="../company.html">会社紹介</a>
+        <a href="../recruit.html">採用情報</a>
+        <a href="../contact.html">お問い合わせ</a>
+      </nav>
+      <div>© know thyself Inc.</div>
+    </div>
+  </footer>
+
+  <script src="../nav.js"></script>
+</body>
+</html>

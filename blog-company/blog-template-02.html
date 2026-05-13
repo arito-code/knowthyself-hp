@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>【事例タイトル】 | know thyself 導入事例</title>
+  <meta name="description" content="導入事例の概要をここに記述します。Before/Afterの変化と数値成果を中心にまとめてください。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --green: #1F4D3A;
+      --gold: #C6A85C;
+      --text: #21342F;
+      --muted: #6B7A75;
+      --line: #E4E2D8;
+      --beige: #F5F3E7;
+      --max: 1000px;
+      --shadow: 0 14px 36px rgba(24,45,40,.08);
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin: 0; font-family: "Inter","Zen Kaku Gothic New",system-ui,sans-serif; color: var(--text); letter-spacing: .02em; background: #fff; }
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
+    .container { width: min(var(--max), calc(100% - 64px)); margin: 0 auto; }
+
+    /* ── Header ── */
+    .site-header { height: 78px; background: rgba(255,255,255,.95); border-bottom: 1px solid rgba(228,226,216,.8); position: sticky; top: 0; z-index: 100; }
+    .header-inner { height: 78px; display: flex; align-items: center; gap: 32px; width: min(1180px, calc(100% - 64px)); margin: 0 auto; }
+    .brand-main { font-size: 28px; font-weight: 800; letter-spacing: -.04em; color: #213837; }
+    .brand-sub { font-size: 10px; font-weight: 700; color: #56645f; letter-spacing: .08em; }
+    .nav { display: flex; gap: 34px; margin-left: auto; font-size: 13px; font-weight: 800; white-space: nowrap; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 20px; border-radius: 4px; font-weight: 800; border: 1px solid transparent; font-size: 13px; }
+    .btn-green { background: var(--green); color: #fff; }
+
+    /* ── Case Hero ── */
+    .case-hero { background: linear-gradient(135deg, var(--green) 0%, #0c4a36 100%); color: #fff; padding: 64px 0 56px; }
+    .breadcrumb { font-size: 12px; color: rgba(255,255,255,.65); font-weight: 600; margin-bottom: 24px; display: flex; gap: 6px; }
+    .breadcrumb a { color: rgba(255,255,255,.65); }
+    .case-hero .eyebrow { font-size: 12px; letter-spacing: .28em; color: var(--gold); font-weight: 800; margin-bottom: 16px; }
+    .case-hero h1 { margin: 0 0 20px; font-size: 36px; line-height: 1.45; font-family: "Zen Kaku Gothic New", sans-serif; }
+    .case-hero .lead { margin: 0 0 32px; font-size: 16px; color: rgba(255,255,255,.85); line-height: 1.9; max-width: 720px; }
+    .case-meta { display: flex; gap: 32px; flex-wrap: wrap; }
+    .case-meta-item { font-size: 13px; }
+    .case-meta-item dt { color: rgba(255,255,255,.55); font-weight: 600; margin-bottom: 4px; font-size: 11px; letter-spacing: .06em; }
+    .case-meta-item dd { margin: 0; font-weight: 700; }
+    .tag { display: inline-block; padding: 4px 12px; font-size: 11px; font-weight: 800; letter-spacing: .06em; border-radius: 999px; background: var(--gold); color: #fff; }
+
+    /* ── KPI Strip ── */
+    .kpi-strip { background: var(--beige); border-bottom: 1px solid var(--line); }
+    .kpi-inner { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
+    .kpi-item { padding: 28px 24px; text-align: center; border-right: 1px solid var(--line); }
+    .kpi-item:last-child { border-right: none; }
+    .kpi-num { font-size: 42px; font-weight: 800; color: var(--green); letter-spacing: -.03em; line-height: 1; }
+    .kpi-num span { font-size: 22px; }
+    .kpi-label { margin-top: 6px; font-size: 12px; color: var(--muted); font-weight: 600; }
+
+    /* ── Article Body ── */
+    .article-wrap { padding: 56px 0 80px; }
+    .article-body { font-size: 16px; line-height: 2; color: #2D3E39; }
+    .article-body h2 { font-size: 26px; font-family: "Zen Kaku Gothic New", sans-serif; color: var(--green); margin: 52px 0 18px; padding-bottom: 12px; border-bottom: 2px solid var(--line); }
+    .article-body h2::before { content: ""; display: inline-block; width: 4px; height: 22px; background: var(--gold); border-radius: 2px; margin-right: 12px; vertical-align: middle; }
+    .article-body h3 { font-size: 19px; color: var(--text); margin: 36px 0 12px; }
+    .article-body p { margin: 0 0 20px; }
+
+    /* ── Client Profile ── */
+    .client-profile { background: var(--beige); border: 1px solid var(--line); border-radius: 12px; padding: 28px 32px; margin: 40px 0; display: grid; grid-template-columns: 120px 1fr; gap: 28px; align-items: center; }
+    .client-logo { width: 120px; height: 80px; background: #fff; border-radius: 8px; border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; font-size: 12px; color: var(--muted); font-weight: 700; }
+    .client-info table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    .client-info td { padding: 6px 12px 6px 0; vertical-align: top; }
+    .client-info td:first-child { color: var(--muted); font-weight: 700; white-space: nowrap; width: 90px; }
+
+    /* ── Before / After ── */
+    .before-after { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; border-radius: 12px; overflow: hidden; margin: 36px 0; box-shadow: var(--shadow); }
+    .ba-col { padding: 28px; }
+    .ba-col.before { background: #f7f5ef; }
+    .ba-col.after { background: linear-gradient(135deg, var(--green), #0e674d); color: #fff; }
+    .ba-label { font-size: 11px; font-weight: 800; letter-spacing: .12em; margin-bottom: 16px; opacity: .7; }
+    .ba-col.after .ba-label { opacity: .8; }
+    .ba-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+    .ba-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; line-height: 1.6; }
+    .ba-list li::before { content: "✕"; color: #c0392b; font-size: 12px; flex-shrink: 0; margin-top: 2px; }
+    .ba-col.after .ba-list li::before { content: "✓"; color: var(--gold); }
+    .ba-col.after .ba-list li { color: rgba(255,255,255,.92); }
+
+    /* ── Process Timeline ── */
+    .timeline { margin: 36px 0; display: flex; flex-direction: column; gap: 0; }
+    .tl-item { display: grid; grid-template-columns: 80px 1fr; gap: 0; }
+    .tl-month { padding: 20px 16px 20px 0; text-align: right; font-size: 12px; font-weight: 800; color: var(--gold); border-right: 2px solid var(--line); position: relative; }
+    .tl-month::after { content: ""; position: absolute; right: -6px; top: 50%; transform: translateY(-50%); width: 10px; height: 10px; background: var(--gold); border-radius: 50%; }
+    .tl-body { padding: 16px 0 16px 24px; }
+    .tl-body h4 { margin: 0 0 6px; font-size: 15px; color: var(--green); font-weight: 800; }
+    .tl-body p { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.7; }
+
+    /* ── Voice ── */
+    .voice-box { background: var(--beige); border-radius: 12px; padding: 30px 32px; margin: 36px 0; position: relative; }
+    .voice-box::before { content: "\201C"; position: absolute; top: -8px; left: 24px; font-size: 72px; color: var(--gold); opacity: .4; line-height: 1; font-family: Georgia, serif; }
+    .voice-text { font-size: 16px; line-height: 1.9; color: #344540; margin: 0 0 20px; position: relative; }
+    .voice-author { display: flex; align-items: center; gap: 12px; font-size: 13px; color: var(--muted); font-weight: 700; }
+    .voice-icon { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--green), #0e674d); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 800; flex-shrink: 0; }
+
+    /* ── Image Compare ── */
+    .image-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 32px 0; }
+    .image-compare figure { margin: 0; }
+    .image-compare img { width: 100%; border-radius: 8px; border: 1px solid var(--line); aspect-ratio: 16/10; object-fit: cover; }
+    .image-compare figcaption { margin-top: 8px; font-size: 12px; color: var(--muted); text-align: center; font-weight: 600; }
+
+    /* ── Share ── */
+    .share-row { margin-top: 48px; padding-top: 28px; border-top: 1px solid var(--line); display: flex; align-items: center; gap: 14px; }
+    .share-row span { font-size: 13px; font-weight: 700; color: var(--muted); }
+    .share-btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 4px; font-size: 13px; font-weight: 700; border: 1px solid var(--line); background: #fff; cursor: pointer; }
+
+    /* ── Related Cases ── */
+    .related { margin-top: 64px; padding-top: 40px; border-top: 1px solid var(--line); }
+    .related h3 { font-size: 20px; font-family: "Zen Kaku Gothic New", sans-serif; color: var(--green); margin: 0 0 24px; }
+    .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .related-card { border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: #fff; transition: box-shadow .2s; }
+    .related-card:hover { box-shadow: var(--shadow); }
+    .related-card img { height: 140px; width: 100%; object-fit: cover; }
+    .related-card-body { padding: 16px; }
+    .related-card-body .tag { font-size: 10px; padding: 3px 8px; }
+    .related-card-body h4 { margin: 8px 0 6px; font-size: 14px; line-height: 1.5; color: var(--text); }
+    .related-card-body span { font-size: 12px; color: var(--muted); }
+
+    /* ── CTA ── */
+    .cta-section { background: linear-gradient(105deg, var(--green) 0%, #0F3D2F 100%); color: #fff; margin-top: 80px; }
+    .cta-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 48px 0; }
+    .cta-inner h2 { margin: 0 0 8px; font-size: 26px; font-family: "Zen Kaku Gothic New", sans-serif; }
+    .cta-inner p { margin: 0; font-size: 14px; color: rgba(255,255,255,.8); }
+    .cta-actions { display: flex; gap: 12px; flex-shrink: 0; }
+    .btn-white { background: #fff; color: var(--green); }
+    .btn-outline { border-color: rgba(255,255,255,.5); color: #fff; }
+
+    /* ── Footer ── */
+    .footer { height: 80px; border-top: 1px solid var(--line); background: #fff; }
+    .footer-inner { height: 80px; display: flex; align-items: center; justify-content: space-between; gap: 20px; font-size: 12px; color: var(--muted); font-weight: 600; width: min(1180px, calc(100% - 64px)); margin: 0 auto; }
+    .footer-nav { display: flex; gap: 22px; font-size: 12px; font-weight: 800; color: #51605B; white-space: nowrap; }
+
+    @media (max-width: 1024px) {
+      .nav { display: none; }
+      .kpi-inner { grid-template-columns: repeat(2, 1fr); }
+      .kpi-item:nth-child(2) { border-right: none; }
+      .related-grid { grid-template-columns: 1fr 1fr; }
+      .cta-inner { flex-direction: column; align-items: flex-start; }
+    }
+    @media (max-width: 768px) {
+      .container { width: min(var(--max), calc(100% - 40px)); }
+      .case-hero h1 { font-size: 26px; }
+      .before-after { grid-template-columns: 1fr; }
+      .image-compare { grid-template-columns: 1fr; }
+      .client-profile { grid-template-columns: 1fr; }
+      .related-grid { grid-template-columns: 1fr; }
+      .kpi-inner { grid-template-columns: repeat(2, 1fr); }
+      .footer-inner { flex-direction: column; height: auto; padding: 20px 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══ Header ══ -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="../index.html">
+        <div class="brand-main">know thyself</div>
+        <div class="brand-sub">構造から、未来をデザインする。</div>
+      </a>
+      <nav class="nav">
+        <a href="../service.html">サービス</a>
+        <a href="../blog.html">導入事例</a>
+        <a href="../company.html">会社紹介</a>
+        <a href="../recruit.html">採用情報</a>
+        <a href="../contact.html">お問い合わせ</a>
+      </nav>
+      <a class="btn btn-green" href="../contact.html">お問い合わせ</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ── Case Hero ── -->
+    <section class="case-hero">
+      <div class="container">
+        <nav class="breadcrumb">
+          <a href="../index.html">HOME</a>
+          <span>/</span>
+          <a href="../blog.html">導入事例</a>
+          <span>/</span>
+          <span>事例タイトル</span>
+        </nav>
+        <div class="eyebrow">CASE STUDY</div>
+        <h1>属人化した業務をデータで標準化し、<br>引継ぎコストを67%削減した3ヶ月</h1>
+        <p class="lead">食品卸業・株式会社〇〇様での導入事例。現場担当者への丁寧なヒアリングと構造化支援により、業務マニュアルの整備から定着まで一気通貫で支援しました。</p>
+        <div class="case-meta">
+          <dl class="case-meta-item"><dt>業種</dt><dd>食品卸売業</dd></dl>
+          <dl class="case-meta-item"><dt>従業員規模</dt><dd>80名</dd></dl>
+          <dl class="case-meta-item"><dt>支援期間</dt><dd>2025年9月〜2025年11月（3ヶ月）</dd></dl>
+          <dl class="case-meta-item"><dt>カテゴリ</dt><dd><span class="tag">事例</span></dd></dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── KPI Strip ── -->
+    <div class="kpi-strip">
+      <div class="kpi-inner" style="width: min(1180px, calc(100% - 64px)); margin: 0 auto;">
+        <div class="kpi-item">
+          <div class="kpi-num">67<span>%</span></div>
+          <div class="kpi-label">引継ぎコスト削減</div>
+        </div>
+        <div class="kpi-item">
+          <div class="kpi-num">3<span>ヶ月</span></div>
+          <div class="kpi-label">導入〜定着までの期間</div>
+        </div>
+        <div class="kpi-item">
+          <div class="kpi-num">12<span>本</span></div>
+          <div class="kpi-label">整備した業務マニュアル</div>
+        </div>
+        <div class="kpi-item">
+          <div class="kpi-num">4.8<span>/5</span></div>
+          <div class="kpi-label">現場満足度スコア</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 記事本文 ── -->
+    <section class="article-wrap">
+      <div class="container">
+        <div class="article-body">
+
+          <!-- 顧客プロフィール -->
+          <div class="client-profile">
+            <div class="client-logo">LOGO</div>
+            <div class="client-info">
+              <table>
+                <tr><td>会社名</td><td>株式会社〇〇（仮名）</td></tr>
+                <tr><td>業種</td><td>食品卸売業</td></tr>
+                <tr><td>従業員数</td><td>80名（正社員50名・パート30名）</td></tr>
+                <tr><td>課題</td><td>担当者退職時の引継ぎ負担・業務のブラックボックス化</td></tr>
+              </table>
+            </div>
+          </div>
+
+          <h2>課題：退職のたびに繰り返される「ゼロからの引継ぎ」</h2>
+          <p>
+            営業担当が退職するたびに、後任者は顧客情報・取引条件・業務フローを1から学び直す状況が続いていました。引継ぎ期間は平均2ヶ月以上かかり、顧客からのクレームも発生していました。
+          </p>
+          <p>
+            「誰かの頭の中にある」状態の業務知識を、組織の資産に変えることが急務でした。
+          </p>
+
+          <!-- Before / After -->
+          <div class="before-after">
+            <div class="ba-col before">
+              <div class="ba-label">BEFORE ── 課題</div>
+              <ul class="ba-list">
+                <li>業務フローが個人のノートに散在</li>
+                <li>引継ぎに2ヶ月以上かかる</li>
+                <li>担当者不在時に業務が止まる</li>
+                <li>暗黙のルールが多く新人が困惑</li>
+                <li>マニュアルが古く誰も参照しない</li>
+              </ul>
+            </div>
+            <div class="ba-col after">
+              <div class="ba-label">AFTER ── 改善後</div>
+              <ul class="ba-list">
+                <li>業務フローを12本のマニュアルに整備</li>
+                <li>引継ぎ期間を平均3週間に短縮</li>
+                <li>誰でも対応できる標準手順を確立</li>
+                <li>判断基準まで言語化・共有済み</li>
+                <li>月次で更新される生きたマニュアルに</li>
+              </ul>
+            </div>
+          </div>
+
+          <h2>取り組み：3ヶ月の伴走プロセス</h2>
+          <p>
+            know thyselfは単なるマニュアル作成ではなく、「現場が自分たちで更新し続けられる仕組みづくり」を重視しました。
+          </p>
+
+          <div class="timeline">
+            <div class="tl-item">
+              <div class="tl-month">Month<br>1</div>
+              <div class="tl-body">
+                <h4>業務棚卸し・ヒアリング</h4>
+                <p>全担当者にインタビューを実施。「頭の中にあること」を言語化し、業務の全体像を可視化しました。</p>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-month">Month<br>2</div>
+              <div class="tl-body">
+                <h4>マニュアル作成・レビューサイクル</h4>
+                <p>週1回のレビュー会議を設置。現場のフィードバックを即反映しながら12本のマニュアルを完成させました。</p>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-month">Month<br>3</div>
+              <div class="tl-body">
+                <h4>運用定着・自走化支援</h4>
+                <p>マニュアルの活用ルールと更新フローを設計。担当者が自律的に管理できる体制を構築しました。</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 画像比較 -->
+          <h2>導入前後の変化</h2>
+          <div class="image-compare">
+            <figure>
+              <img src="blog-company-assets/sokumo-before.png" alt="導入前の状態" />
+              <figcaption>Before：バラバラに管理されていた情報</figcaption>
+            </figure>
+            <figure>
+              <img src="blog-company-assets/sokumo-after.png" alt="導入後の状態" />
+              <figcaption>After：統合された業務ナレッジベース</figcaption>
+            </figure>
+          </div>
+
+          <!-- 担当者の声 -->
+          <h2>担当者の声</h2>
+          <div class="voice-box">
+            <p class="voice-text">
+              最初は「マニュアルを作っても誰も見ない」と思っていました。でも、一緒に作っていく過程で現場のみんなが「自分たちのマニュアル」として感じてくれるようになって。今では新入社員の教育コストも大幅に下がりました。
+            </p>
+            <div class="voice-author">
+              <div class="voice-icon">田</div>
+              <div>
+                <div style="color: var(--text);">田中 様（営業部長）</div>
+                <div style="font-size:12px;">株式会社〇〇</div>
+              </div>
+            </div>
+          </div>
+
+          <h2>まとめ</h2>
+          <p>
+            本事例では、ツール導入よりも先に「業務の言語化と構造化」に集中したことが成功の鍵でした。現場が主体となって作り上げたマニュアルは、組織の財産として機能し続けています。
+          </p>
+          <p>
+            know thyselfでは、同様の課題を抱える企業様への伴走支援を行っています。まずはお気軽にご相談ください。
+          </p>
+
+          <!-- シェア -->
+          <div class="share-row">
+            <span>この記事をシェア</span>
+            <button class="share-btn">𝕏 Xでシェア</button>
+            <button class="share-btn">in LinkedInでシェア</button>
+          </div>
+
+          <!-- 関連事例 -->
+          <div class="related">
+            <h3>他の導入事例</h3>
+            <div class="related-grid">
+              <a class="related-card" href="#">
+                <img src="blog-company-assets/company-dx-initiatives-collage.png" alt="" />
+                <div class="related-card-body">
+                  <span class="tag">事例</span>
+                  <h4>DX伴走で業務プロセスを可視化</h4>
+                  <span>2026.03.28</span>
+                </div>
+              </a>
+              <a class="related-card" href="#">
+                <img src="blog-company-assets/company-regional-photo-collage.png" alt="" />
+                <div class="related-card-body">
+                  <span class="tag">事例</span>
+                  <h4>地域企業との連携で生まれた新サービス</h4>
+                  <span>2026.01.15</span>
+                </div>
+              </a>
+              <a class="related-card" href="#">
+                <img src="blog-company-assets/company-philosophy-diagram.png" alt="" />
+                <div class="related-card-body">
+                  <span class="tag">ナレッジ</span>
+                  <h4>暗黙知を構造知に変える第一歩</h4>
+                  <span>2026.04.12</span>
+                </div>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CTA ── -->
+    <section class="cta-section">
+      <div class="container cta-inner">
+        <div>
+          <h2>貴社の業務改善、一緒に始めませんか。</h2>
+          <p>まずは無料相談で、現状の課題と打ち手をお伝えします。</p>
+        </div>
+        <div class="cta-actions">
+          <a class="btn btn-white" href="../contact.html">無料で相談してみる</a>
+          <a class="btn btn-outline" href="../blog.html">事例一覧を見る</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── Footer ── -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <a href="../index.html">
+        <div class="brand-main" style="font-size:22px;">know thyself</div>
+      </a>
+      <nav class="footer-nav">
+        <a href="../service.html">サービス</a>
+        <a href="../blog.html">導入事例</a>
+        <a href="../company.html">会社紹介</a>
+        <a href="../recruit.html">採用情報</a>
+        <a href="../contact.html">お問い合わせ</a>
+      </nav>
+      <div>© know thyself Inc.</div>
+    </div>
+  </footer>
+
+  <script src="../nav.js"></script>
+</body>
+</html>
