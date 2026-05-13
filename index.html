@@ -7,297 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --green:#1F4D3A;
-      --green-2:#0F3D2F;
-      --gold:#C6A85C;
-      --beige:#F5F3E7;
-      --yellow:#D6E300;
-      --navy:#243A5E;
-      --ink:#17352D;
-      --text:#21342F;
-      --muted:#6B7A75;
-      --line:#E4E2D8;
-      --white:#FFFFFF;
-      --shadow:0 14px 36px rgba(24,45,40,.08);
-      --radius:6px;
-      --max:1180px;
-    }
-
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      font-family:"Inter","Zen Kaku Gothic New",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      color:var(--text);
-      background:#fff;
-      letter-spacing:.02em;
-    }
-    a{color:inherit;text-decoration:none}
-    img,svg{display:block;max-width:100%}
-    .page{overflow-x:clip;overflow-y:visible;background:linear-gradient(90deg,#fff 0%,#fff 55%,#fbfaf4 100%)}
-    .container{width:min(var(--max),calc(100% - 64px));margin:0 auto}
-
-    /* Header */
-    .header{
-      position:relative;
-      z-index:10;
-      height:78px;
-      background:rgba(255,255,255,.84);
-      backdrop-filter:blur(16px);
-      border-bottom:1px solid rgba(228,226,216,.55);
-    }
-    .header-inner{height:78px;display:flex;align-items:center;justify-content:space-between;gap:32px}
-    .brand{min-width:178px;line-height:1}
-    .brand-main{
-      font-size:30px;
-      font-weight:800;
-      letter-spacing:-.04em;
-      color:#213837;
-    }
-    .brand-sub{
-      margin-top:9px;
-      font-family:"Zen Kaku Gothic New",sans-serif;
-      font-size:11px;
-      font-weight:700;
-      color:#56645f;
-      letter-spacing:.08em;
-    }
-    .nav{display:flex;align-items:center;gap:40px;margin-left:auto;font-size:13px;font-weight:800;color:#2F3D3A;white-space:nowrap}
-    .header-actions{display:flex;align-items:center;gap:12px;white-space:nowrap}
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      min-height:52px;
-      padding:0 26px;
-      border-radius:3px;
-      font-family:"Zen Kaku Gothic New",sans-serif;
-      font-size:14px;
-      font-weight:800;
-      letter-spacing:.04em;
-      border:1px solid transparent;
-      transition:.22s ease;
-    }
-    .btn:hover{transform:translateY(-1px);box-shadow:0 12px 28px rgba(31,77,58,.14)}
-    .btn-green{background:var(--green);color:#fff}
-    .btn-white{background:#fff;color:#2A3835;border-color:#C9CEC7}
-    .btn-gold{background:var(--gold);color:#fff}
-    .btn-yellow{background:var(--yellow);color:#203326;box-shadow:0 10px 26px rgba(214,227,0,.2)}
-    .btn-darkline{background:transparent;color:#fff;border-color:rgba(255,255,255,.45)}
-    .arrow{font-size:19px;line-height:1;transform:translateY(-1px)}
-
-    /* Hero */
-    .hero{position:relative;min-height:626px;background:linear-gradient(105deg,#fff 0%,#fff 53%,#faf8ee 100%)}
-    .hero .container{position:relative;display:grid;grid-template-columns:48% 52%;min-height:626px;align-items:center}
-    .hero-copy{padding-top:10px;position:relative;z-index:2;min-width:0}
-    .headline{
-      margin:0;
-      font-family:"Zen Kaku Gothic New",sans-serif;
-      font-size:clamp(36px,5.6vw,64px);
-      line-height:1.31;
-      letter-spacing:.02em;
-      font-weight:900;
-      color:#1D3A35;
-    }
-    .headline span{color:var(--gold)}
-    .subheadline{
-      margin:30px 0 0;
-      font-family:"Zen Kaku Gothic New",sans-serif;
-      font-size:clamp(20px,2.4vw,29px);
-      line-height:1.72;
-      font-weight:900;
-      color:#213A35;
-      letter-spacing:.03em;
-    }
-    .hero-text{
-      margin:33px 0 0;
-      max-width:560px;
-      font-size:15px;
-      line-height:2.15;
-      color:#53635E;
-      font-weight:600;
-    }
-    .hero-actions{display:flex;align-items:center;gap:22px;margin-top:42px}
-    .hero-art{display:block;width:80%;height:auto;object-fit:contain;align-self:center;justify-self:center;opacity:.95}
-    .art-fade{position:absolute;inset:auto -160px -20px auto;width:640px;height:240px;background:linear-gradient(180deg,rgba(255,255,255,0),rgba(255,255,255,.86));z-index:0}
-
-    /* Problem */
-    .section{background:#fff}
-    .problem{padding:48px 0 54px;border-top:1px solid rgba(228,226,216,.55);border-bottom:1px solid rgba(228,226,216,.7)}
-    .section-title{
-      margin:0;
-      text-align:center;
-      font-family:"Zen Kaku Gothic New",sans-serif;
-      font-size:25px;
-      font-weight:900;
-      letter-spacing:.06em;
-      color:#203B36;
-    }
-    .title-line{width:32px;height:2px;background:linear-gradient(90deg,var(--green) 0 46%,var(--gold) 46% 100%);margin:16px auto 0;border-radius:20px}
-    .problem-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:17px;margin-top:29px}
-    .problem-card{
-      min-height:186px;
-      border:1px solid #E4E4DD;
-      background:#fff;
-      box-shadow:0 10px 22px rgba(20,48,42,.045);
-      border-radius:4px;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      padding:24px 18px 20px;
-    }
-    .problem-card svg{width:50px;height:50px;margin-bottom:22px;color:var(--green)}
-    .problem-card:nth-child(1) svg{color:var(--gold)}
-    .problem-card p{margin:0;text-align:center;font-family:"Zen Kaku Gothic New",sans-serif;font-size:14px;line-height:1.85;font-weight:700;color:#495853}
-
-    /* Concept */
-    .concept{position:relative;padding:74px 0 86px;background:linear-gradient(90deg,#fff 0%,#fff 50%,#fbfaf4 100%);overflow:hidden}
-    .concept::before,.concept::after{content:"";position:absolute;border:1px solid rgba(198,168,92,.22);border-radius:50%;pointer-events:none}
-    .concept::before{width:min(1080px,calc(100% - 32px));height:140px;left:50%;top:74px;transform:translateX(-50%) rotate(-3deg)}
-    .concept::after{width:min(980px,calc(100% - 48px));height:96px;left:50%;top:92px;transform:translateX(-50%) rotate(4deg)}
-    .eyebrow{font-size:13px;font-weight:800;color:var(--gold);letter-spacing:.28em;text-transform:uppercase;text-align:center;margin-bottom:20px}
-    .concept h2{margin:0;text-align:center;font-family:"Zen Kaku Gothic New",sans-serif;font-size:34px;line-height:1.42;font-weight:900;color:var(--green)}
-    .concept p{margin:24px auto 0;width:650px;max-width:100%;text-align:center;font-size:15px;line-height:2.2;color:#5B6864;font-weight:600}
-
-    /* Steps */
-    .steps{padding:50px 0 64px;background:#fff;border-top:1px solid rgba(228,226,216,.65)}
-    .steps h2{margin:0;text-align:center;font-family:"Zen Kaku Gothic New",sans-serif;font-size:31px;font-weight:900;color:var(--green)}
-    .step-flow{display:grid;grid-template-columns:1fr 34px 1fr 34px 1fr;gap:24px;align-items:center;margin-top:48px}
-    .step-item{display:grid;grid-template-columns:90px 1fr;gap:23px;align-items:center}
-    .step-icon{width:90px;height:90px;border:1px solid #E1E4DE;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#fff;box-shadow:0 12px 30px rgba(24,45,40,.055)}
-    .step-icon svg{width:44px;height:44px;color:var(--green)}
-    .step-num{font-size:28px;font-weight:800;color:var(--gold);letter-spacing:.04em;margin-bottom:7px}
-    .step-title{font-family:"Zen Kaku Gothic New",sans-serif;font-size:17px;font-weight:900;color:var(--green);margin-bottom:10px}
-    .step-desc{font-size:13px;line-height:1.8;color:#64716D;font-weight:600}
-    .chev{color:#214039;font-size:54px;font-weight:200;text-align:center;line-height:1;opacity:.8}
-
-    /* Ecosystem */
-    .ecosystem{padding:0 0 64px;background:#fff}
-    .ecosystem h2{margin:0;text-align:center;font-family:"Zen Kaku Gothic New",sans-serif;font-size:30px;font-weight:900;color:#263B36}
-    .tool-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:34px}
-    .tool-card{min-height:190px;border:1px solid #E3E3DC;border-radius:5px;background:#fff;box-shadow:0 12px 28px rgba(20,48,42,.05);padding:28px 25px 22px;display:flex;flex-direction:column;justify-content:space-between}
-    .tool-head{display:flex;align-items:center;gap:12px;margin-bottom:15px}
-    .tool-head svg{width:38px;height:38px;color:var(--green)}
-    .tool-name{font-size:27px;font-weight:800;color:#1F4D3A;letter-spacing:.01em}
-    .tool-card:nth-child(2) .tool-name,.tool-card:nth-child(3) .tool-name,.tool-card:nth-child(4) .tool-name{font-size:25px;color:#2E3B38}
-    .tool-card p{margin:0;font-size:13px;line-height:1.85;color:#687470;font-weight:600}
-    .more{margin-top:18px;font-size:14px;font-weight:800;color:#2D403B;display:flex;gap:10px;align-items:center}
-
-    /* Trust */
-    .trust{position:relative;background:linear-gradient(105deg,#183556 0%,#1D3B5C 56%,#203D5D 100%);color:#fff;overflow:hidden}
-    .trust::after{content:"";position:absolute;right:0;bottom:0;width:320px;height:220px;background:linear-gradient(90deg,rgba(36,58,94,.65),rgba(36,58,94,.15)),url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="340" height="220" viewBox="0 0 340 220"><g fill="none" stroke="%23ffffff" stroke-opacity="0.20"><path d="M90 205V78h160v127"/><path d="M110 205V100h20v105M155 205V100h20v105M200 205V100h20v105"/><path d="M70 78h200L170 25 70 78Z"/><path d="M95 78V65h150v13"/><path d="M55 205h230"/></g></svg>') bottom right/320px 220px no-repeat;opacity:.85}
-    .trust-inner{position:relative;z-index:1;display:grid;grid-template-columns:32% 1fr;gap:70px;align-items:center;min-height:250px;padding:45px 0}
-    .trust .eyebrow{text-align:left;margin-bottom:16px;color:var(--gold)}
-    .trust h2{margin:0;font-family:"Zen Kaku Gothic New",sans-serif;font-size:32px;line-height:1.5;font-weight:900;letter-spacing:.04em}
-    .trust p{margin:18px 0 25px;font-size:13px;line-height:2;color:rgba(255,255,255,.82);font-weight:600}
-    .trust-logos{display:grid;grid-template-columns:repeat(3,1fr);gap:34px;align-items:center;padding-right:100px}
-    .gov-logo{min-height:116px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;color:#fff}
-    .gov-mark{display:flex;align-items:center;gap:14px;font-size:30px;font-weight:900;font-family:"Zen Kaku Gothic New",sans-serif;letter-spacing:.02em}
-    .gov-mark svg{width:44px;height:44px;color:#fff}
-    .gov-logo p{margin:18px 0 0;font-size:14px;line-height:1.75;color:#fff;font-weight:800}
-
-    /* Vision */
-    .vision{padding:58px 0 66px;background:linear-gradient(90deg,#fff 0%,#fff 52%,#fbfaf4 100%)}
-    .vision-inner{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:center}
-    .vision .eyebrow{text-align:left;margin-bottom:15px}
-    .vision h2{margin:0;font-family:"Zen Kaku Gothic New",sans-serif;font-size:28px;line-height:1.62;font-weight:900;color:#203D38}
-    .vision p{margin:18px 0 28px;font-size:14px;line-height:2;color:#65716D;font-weight:600;max-width:470px}
-    .vision-inner > *{min-width:0}
-    .vision-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-    .vision-card{height:166px;background:#fff;border:1px solid #E3E3DC;border-radius:5px;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 12px 28px rgba(20,48,42,.05);position:relative;overflow:hidden}
-    .vision-card::before{content:"✦";position:absolute;left:20px;top:18px;color:#D9D5C5;font-size:16px}
-    .vision-card svg{width:48px;height:48px;color:#243A5E;margin-bottom:20px}
-    .vision-card b{font-family:"Zen Kaku Gothic New",sans-serif;font-size:15px;line-height:1.6;text-align:center;color:#2C3C38}
-
-    /* CTA */
-    .cta{background:linear-gradient(105deg,var(--green) 0%,#0F3D2F 100%);color:#fff}
-    .cta-inner{min-height:130px;display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center}
-    .cta h2{margin:0;font-family:"Zen Kaku Gothic New",sans-serif;font-size:31px;font-weight:900;letter-spacing:.03em}
-    .cta p{margin:14px 0 0;font-size:14px;color:rgba(255,255,255,.8);font-weight:600}
-    .cta-actions{display:flex;gap:18px;align-items:center}
-
-    /* Footer */
-    .footer{height:88px;background:#fff;border-top:1px solid #E5E4DC}
-    .footer-inner{height:88px;display:flex;align-items:center;justify-content:space-between;gap:32px}
-    .footer .brand-main{font-size:28px}
-    .footer-nav{display:flex;gap:36px;font-size:12px;font-weight:800;color:#51605B;white-space:nowrap}
-    .copyright{font-size:12px;color:#6C7874;font-weight:600;white-space:nowrap}
-
-    /* SVG line art */
-    .line-art text{font-family:"Inter",sans-serif}
-    .line-art .thin{stroke:#1F4D3A;stroke-width:1.2;fill:none;opacity:.63}
-    .line-art .gold{stroke:#C6A85C;stroke-width:1.1;fill:none;opacity:.72}
-    .line-art .faint{stroke:#C6A85C;stroke-width:.8;fill:none;opacity:.26}
-    .line-art .dot-g{fill:#1F4D3A}
-    .line-art .dot-y{fill:#C6A85C}
-    .line-art .dot-w{fill:#fff;stroke:#1F4D3A;stroke-width:1.2}
-    .sp-only{display:none}
-
-    @media (max-width:1024px){
-      .container{width:min(var(--max),calc(100% - 40px))}
-      .nav{display:none}
-      .hero{padding-bottom:15px}
-      .hero .container{grid-template-columns:1fr;min-height:auto;align-items:start;padding-top:86px;padding-bottom:0}
-      .hero-actions{flex-direction:column;align-items:stretch;gap:16px}
-      .hero-actions .btn{width:100%;white-space:normal;line-height:1.45;text-align:center;overflow-wrap:anywhere}
-      picture{display:block}
-      .hero-art{position:static;inset:auto;width:70%;height:auto;max-width:100%;aspect-ratio:16 / 9;object-fit:cover;object-position:center top;opacity:1;margin:15px auto 0;display:block;z-index:auto;pointer-events:auto}
-      .art-fade{display:none}
-      .problem{padding-top:15px}
-      .problem-grid{grid-template-columns:repeat(3,1fr)}
-      .tool-grid{grid-template-columns:repeat(2,1fr)}
-      .step-flow{grid-template-columns:1fr;gap:20px}.chev{transform:rotate(90deg);font-size:38px}
-      .trust-inner,.vision-inner,.cta-inner{grid-template-columns:1fr}
-      .trust-logos{grid-template-columns:1fr;padding-right:0}.cta-actions{flex-wrap:wrap}
-      .footer{height:auto}.footer-inner{height:auto;padding:26px 0;align-items:flex-start;flex-direction:column}.footer-nav{flex-wrap:wrap;gap:18px 26px}
-    }
-    @media (max-width:768px){
-      .header-actions .btn-green{display:none}
-      .hero .container{min-height:auto;padding-top:72px}
-      .hero-art{margin-top:15px}
-      .hero-actions .btn{min-height:52px;padding:0 14px;gap:6px}
-      .problem-grid{grid-template-columns:repeat(2,1fr)}
-      .trust-logos{grid-template-columns:1fr 1fr;gap:18px 22px;padding-right:0}
-      .trust-logos .gov-logo:nth-child(1){grid-column:1;grid-row:1}
-      .trust-logos .gov-logo:nth-child(2){grid-column:1;grid-row:2}
-      .trust-logos .gov-logo:nth-child(3){grid-column:2;grid-row:1 / span 2;align-self:center}
-      .vision .btn{width:100%;max-width:100%;white-space:normal;padding:0 18px;font-size:13px;line-height:1.45;gap:8px;overflow-wrap:anywhere}
-      .cta-inner{min-height:auto;padding:36px 0 44px}
-      .cta-actions .btn{width:100%}
-      .sp-only{display:inline}
-      .trust::after{display:none}
-    }
-    @media (max-width:680px){
-      .header-actions .btn-gold{display:none}.header{height:70px}.header-inner{height:70px}.brand-main{font-size:24px}.brand-sub{font-size:10px}
-      .hero .container{min-height:auto;padding-top:56px}
-      .headline{font-size:39px}.subheadline{font-size:20px}
-      .problem-grid,.tool-grid,.vision-cards{grid-template-columns:1fr}.problem-card{min-height:150px}
-      .concept h2,.steps h2,.trust h2,.cta h2{font-size:25px}
-      .step-item{grid-template-columns:72px 1fr}.step-icon{width:72px;height:72px}.step-icon svg{width:34px;height:34px}
-    }
-    @media (max-width:430px){
-      .container{width:min(var(--max),calc(100% - 24px))}
-      .brand-main{font-size:22px}
-      .hero .container{min-height:auto;padding-top:48px}
-      .headline{font-size:35px;line-height:1.26}
-      .subheadline{margin-top:22px;font-size:18px;line-height:1.6}
-      .hero-text{margin-top:20px;font-size:13px;line-height:1.9}
-      .hero-art{margin-top:15px}
-      .hero-actions{margin-top:28px}
-      .hero-actions .btn{min-height:48px;font-size:12px;padding:0 12px}
-      .problem .section-title{white-space:nowrap;font-size:22px;letter-spacing:.03em}
-    }
-    @media (max-width:390px){
-      .hero-actions .btn{font-size:11.5px;padding:0 10px}
-      .vision .btn{font-size:12px;padding:0 14px}
-      .cta-inner{padding:32px 0 56px}
-      .problem .section-title{font-size:20px}
-    }
-  </style>
+  <link rel="stylesheet" href="index.css" />
   <link rel="stylesheet" href="responsive.css" />
 </head>
 <body>
@@ -340,6 +50,53 @@
             <img class="hero-art" src="assets/index_top.png" alt="" aria-hidden="true">
           </picture>
           <div class="art-fade"></div>
+        </div>
+      </section>
+
+      <section class="blog-pickup" id="blog">
+        <div class="container">
+          <div class="blog-pickup-head">
+            <div>
+              <div class="eyebrow">BLOG &amp; KNOWLEDGE</div>
+              <h2 class="blog-pickup-title">最新のナレッジ・事例</h2>
+            </div>
+            <a class="btn btn-white blog-pickup-more" href="blog.html">すべての記事を見る <span class="arrow">→</span></a>
+          </div>
+          <div class="blog-cards">
+            <article class="blog-card">
+              <a href="blog.html">
+                <img src="assets/company-dx-initiatives-collage.png" alt="現場起点のDXを3ヶ月で定着させる実践ロードマップ">
+                <div class="blog-card-body">
+                  <span class="blog-tag">FEATURED</span>
+                  <h3>現場起点のDXを3ヶ月で定着させる実践ロードマップ</h3>
+                  <div class="blog-meta"><span>2026.05.01</span></div>
+                  <p>属人化の強い業務でも、構造化アプローチで短期間に成果へつなげる方法を紹介。</p>
+                </div>
+              </a>
+            </article>
+            <article class="blog-card">
+              <a href="blog.html">
+                <img src="assets/company-philosophy-diagram.png" alt="暗黙知を構造知に変える第一歩">
+                <div class="blog-card-body">
+                  <span class="blog-tag">ナレッジ</span>
+                  <h3>暗黙知を構造知に変える第一歩</h3>
+                  <div class="blog-meta"><span>2026.04.12</span></div>
+                  <p>現場知を見える化して再現可能な仕組みに転換する基本ステップ。</p>
+                </div>
+              </a>
+            </article>
+            <article class="blog-card">
+              <a href="blog.html">
+                <img src="assets/company-education-vision-diagram.png" alt="学び続ける組織の仕組みづくり">
+                <div class="blog-card-body">
+                  <span class="blog-tag">組織</span>
+                  <h3>学び続ける組織の仕組みづくり</h3>
+                  <div class="blog-meta"><span>2026.02.15</span></div>
+                  <p>学習文化を事業成果へ結びつける実装パターンを解説します。</p>
+                </div>
+              </a>
+            </article>
+          </div>
         </div>
       </section>
 

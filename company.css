@@ -486,6 +486,50 @@ a {
   padding: 46px 48px 42px;
 }
 
+.company-info-card {
+  padding: 46px 48px 42px;
+}
+
+.company-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 28px;
+  font-size: 15px;
+}
+
+.company-table th,
+.company-table td {
+  padding: 16px 20px;
+  text-align: left;
+  border-bottom: 1px solid rgba(228, 226, 216, 0.7);
+  vertical-align: top;
+  line-height: 1.8;
+}
+
+.company-table th {
+  width: 160px;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-weight: 700;
+  color: #1F4D3A;
+  white-space: nowrap;
+}
+
+.company-table td {
+  color: #3A4A46;
+  font-weight: 600;
+}
+
+.company-table td a {
+  color: #1F4D3A;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.company-table tr:last-child th,
+.company-table tr:last-child td {
+  border-bottom: none;
+}
+
 .timeline {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -803,8 +847,23 @@ a {
   .philosophy-card,
   .regional-card,
   .education-card,
-  .history-card {
+  .history-card,
+  .company-info-card {
     padding: 32px 22px;
+  }
+
+  .company-table th {
+    width: 120px;
+    font-size: 13px;
+  }
+
+  .company-table td {
+    font-size: 13px;
+  }
+
+  .company-table th,
+  .company-table td {
+    padding: 12px 14px;
   }
 
   .education-item {
