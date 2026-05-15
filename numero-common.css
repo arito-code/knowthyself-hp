@@ -936,6 +936,94 @@ a {
   color: var(--accent);
 }
 
+/* ── 相性チェック 生年月日フォーム ───────────────────────── */
+.check-birth-form {
+  margin: 0 auto 28px;
+  max-width: 480px;
+}
+
+.check-form-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1.5px solid var(--check-card-border);
+  border-radius: 16px;
+  padding: 10px 10px 10px 16px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.07);
+  backdrop-filter: blur(6px);
+}
+
+.check-form-icon {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.check-form-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--ink);
+  outline: none;
+  min-width: 0;
+}
+
+.check-form-input::placeholder {
+  color: #aaa;
+  font-weight: 400;
+}
+
+.check-form-btn {
+  flex-shrink: 0;
+  padding: 10px 20px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 10px;
+  background: var(--primary);
+  color: #fff;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.15s;
+  white-space: nowrap;
+}
+
+.check-form-btn:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
+}
+
+.check-date-preview {
+  margin: 6px 0 0;
+  font-size: 0.85rem;
+  color: var(--primary);
+  font-weight: 600;
+  min-height: 1.2em;
+  text-align: center;
+}
+
+.check-or-label {
+  margin: 0 0 20px;
+  font-size: 0.82rem;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.check-or-label::before,
+.check-or-label::after {
+  content: "";
+  flex: 1;
+  max-width: 120px;
+  height: 1px;
+  background: var(--check-card-border);
+}
+
 /* ═══════════════════════════════════════════
    有料レポートセクション
 ═══════════════════════════════════════════ */

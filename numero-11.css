@@ -1,0 +1,193 @@
+/* ═══════════════════════════════════════════
+   RPG数秘 — No.11 魔導士
+   ハイブリッドパレット：月光シルバー × 霜鋼 × 深宇宙
+═══════════════════════════════════════════ */
+
+:root {
+  /* ─── コアカラー ─────────────────────────── */
+  --accent:       #4a6080;
+  --accent-2:     #2c3c52;
+  --deep:         #08101a;
+  --mid:          #182434;
+  --primary:      #90b0d0;
+  --primary-dark: #6888a8;
+
+  /* ─── シルバー・ベース ───────────────────── */
+  --gold:        #d8e8f4;
+  --gold-2:      #eef4fc;
+  --cream:       #f4f8fc;
+  --paper:       #f9fbfe;
+  --ink:         #0e1826;
+  --muted:       #5070a0;
+  --line-gold:   rgba(200, 224, 248, 0.55);
+  --shadow:      0 16px 36px rgba(8, 16, 26, 0.30);
+  --shadow-red:  0 16px 36px rgba(60, 90, 140, 0.28);
+  --body-bg:     #f6f8fc;
+
+  /* ─── Hero セクション ────────────────────── */
+  --hero-bg:
+    radial-gradient(circle at 15% 10%, rgba(180, 210, 240, 0.22), transparent 28%),
+    radial-gradient(circle at 88% 12%, rgba(220, 236, 252, 0.15), transparent 22%),
+    linear-gradient(160deg, #08101a 0%, #0e1e30 40%, #0a1624 100%);
+  --hero-moon-bg:        radial-gradient(circle at 35% 35%, #f0f6ff, #d8e8f4 65%, rgba(216, 232, 244, 0.35) 100%);
+  --hero-moon-glow:      rgba(216, 232, 244, 0.95);
+  --hero-mountain-bg:    linear-gradient(180deg, rgba(8, 16, 26, 0.04), rgba(4, 8, 14, 0.92));
+  --hero-num-color:      rgba(160, 200, 240, 0.16);
+  --hero-star-dot-color: rgba(220, 236, 252, 0.82);
+  --hero-h1-glow:        rgba(200, 220, 248, 0.45);
+  --keyword-border:      rgba(200, 220, 248, 0.48);
+
+  /* ─── ロゴ ──────────────────────────────── */
+  --logo-border: rgba(216, 232, 244, 0.88);
+  --logo-bg:     linear-gradient(180deg, rgba(30, 52, 80, 0.94), rgba(10, 18, 30, 0.97));
+  --logo-inset:  rgba(220, 238, 255, 0.22);
+
+  /* ─── セクション ────────────────────────── */
+  --lavender-end:      #edf4fc;
+  --dark-section-glow: rgba(216, 232, 244, 0.12);
+  --dark-section-bg:   linear-gradient(180deg, #182434 0%, #2c3c52 100%);
+
+  /* ─── types-frame ───────────────────────── */
+  --frame-border: rgba(216, 232, 244, 0.92);
+  --frame-bg:     linear-gradient(180deg, rgba(18, 28, 44, 0.92), rgba(6, 10, 18, 0.98));
+
+  /* ─── バッジ ────────────────────────────── */
+  --badge-border:         rgba(216, 232, 244, 0.90);
+  --badge-text:           #eef4fc;
+  --badge-bg:             linear-gradient(180deg, #4a6888, #1e2e44);
+  --badge-diamond-bg:     #2e4460;
+  --badge-diamond-border: rgba(216, 232, 244, 0.65);
+
+  /* ─── リボンタイトル ────────────────────── */
+  --ribbon-border:         rgba(74, 96, 128, 0.5);
+  --ribbon-bg:             linear-gradient(180deg, rgba(244, 248, 252, 0.9), rgba(228, 240, 252, 0.9));
+  --ribbon-shadow:         rgba(74, 96, 128, 0.1);
+  --ribbon-diamond-border: rgba(74, 96, 128, 0.4);
+
+  /* ─── カード・タイムライン ──────────────── */
+  --point-border:        rgba(216, 232, 244, 0.42);
+  --timeline-glow:       rgba(216, 232, 244, 0.70);
+  --timeline-dot-shadow: 0 0 14px rgba(216, 232, 244, 0.95), 0 0 4px rgba(255, 255, 255, 0.6);
+  --timeline-note-bg:    rgba(216, 232, 244, 0.1);
+
+  /* ─── 相性カード ────────────────────────── */
+  --compat-bg:
+    radial-gradient(circle at 20% 20%, rgba(216, 232, 244, 0.16), transparent 32%),
+    linear-gradient(135deg, #1e2e44, #08101a);
+  --compat-hover-shadow: rgba(8, 16, 26, 0.42);
+
+  /* ─── ボタン ────────────────────────────── */
+  --btn-primary-bg:       linear-gradient(180deg, #a8c4e0 0%, #6890b8 100%);
+  --btn-primary-border:   #c8dff0;
+  --btn-secondary-bg:     linear-gradient(180deg, #7898c0 0%, #3c5878 100%);
+  --btn-secondary-border: rgba(210, 230, 250, 0.9);
+
+  /* ─── CTA ───────────────────────────────── */
+  --cta-divider-bg: rgba(74, 96, 128, 0.2);
+
+  /* ─── 相性チェックカード ────────────────── */
+  --check-card-bg:           linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(237, 244, 252, 0.98));
+  --check-card-border:       rgba(140, 180, 220, 0.65);
+  --check-card-shadow:       rgba(74, 96, 128, 0.1);
+  --check-card-hover-shadow: rgba(74, 96, 128, 0.18);
+  --check-card-hover-border: #b8d4ec;
+
+  /* ─── レアカード ────────────────────────── */
+  --check-rare-border:   rgba(180, 210, 240, 0.90);
+  --check-rare-glow:     rgba(210, 230, 250, 0.44);
+  --check-rare-bg-end:   #eef6ff;
+  --check-rare-badge-bg: linear-gradient(135deg, #5878a8, #1e2e48);
+
+  /* ─── 有料レポート ──────────────────────── */
+  --paid-card-border:  rgba(216, 232, 244, 0.38);
+  --paid-li-border:    rgba(216, 232, 244, 0.65);
+  --paid-price-border: rgba(216, 232, 244, 0.32);
+  --paid-star-2:       rgba(216, 232, 244, 0.44);
+  --paid-star-3:       rgba(180, 210, 248, 0.36);
+
+  /* ─── アニメーション ────────────────────── */
+  --shooting-star-color: rgba(230, 242, 255, 0.75);
+  --pulse-glow-1: rgba(216, 232, 244, 0.38);
+  --pulse-glow-2: rgba(255, 255, 255, 0.90);
+}
+
+/* ─── ウォーターマーク数字（No.11固有） ─── */
+.hero-bg::before {
+  content: "11 11 11";
+}
+
+/* ══════════════════════════════════════
+   魔法陣リング — 銀の二重環（逆回転）
+══════════════════════════════════════ */
+.hero-visual {
+  position: relative;
+  isolation: isolate;
+}
+
+.hero-visual::before,
+.hero-visual::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 外環：銀の破線リング */
+.hero-visual::before {
+  width: 340px;
+  height: 340px;
+  margin: -170px 0 0 -170px;
+  border: 1.5px dashed rgba(216, 232, 244, 0.55);
+  box-shadow: 0 0 20px rgba(216, 232, 244, 0.18), inset 0 0 20px rgba(216, 232, 244, 0.08);
+  animation: silver-ring-cw 16s linear infinite;
+}
+
+/* 内環：細い実線リング（逆回転） */
+.hero-visual::after {
+  width: 240px;
+  height: 240px;
+  margin: -120px 0 0 -120px;
+  border: 1px solid rgba(200, 220, 248, 0.40);
+  box-shadow: 0 0 12px rgba(200, 220, 248, 0.12);
+  animation: silver-ring-ccw 10s linear infinite;
+}
+
+.character-img {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes silver-ring-cw {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes silver-ring-ccw {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(-360deg); }
+}
+
+/* ══════════════════════════════════════
+   タイトルオーラパルス — 銀白の呼吸
+══════════════════════════════════════ */
+@keyframes silver-breath {
+  0%, 100% {
+    text-shadow:
+      0 0 10px rgba(216, 232, 244, 0.45),
+      0 0 24px rgba(200, 220, 255, 0.22);
+  }
+  50% {
+    text-shadow:
+      0 0 18px rgba(240, 250, 255, 0.95),
+      0 0 42px rgba(216, 232, 244, 0.60),
+      0 0 72px rgba(180, 210, 255, 0.28);
+  }
+}
+
+.hero-section .hero-no,
+.hero-section h1 {
+  animation: silver-breath 3.8s ease-in-out infinite;
+}

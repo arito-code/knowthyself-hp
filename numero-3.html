@@ -220,7 +220,26 @@
       <div class="container">
         <p class="eyebrow dark">CHECK OTHERS</p>
         <h2 class="ribbon-title reveal">大切な人との相性もチェック</h2>
-        <p class="check-lead reveal">恋人・家族・友人の生年月日から数秘タイプを調べて、<br>相性をもっと深く知ろう。</p>
+        <p class="check-lead reveal">恋人・家族・友人の生年月日を入力して、<br>数秘タイプと相性をチェックしよう。</p>
+
+        <div class="check-birth-form reveal">
+          <form id="checkBirthForm">
+            <div class="check-form-wrap">
+              <span class="check-form-icon">📅</span>
+              <input type="text" id="checkBirthInput"
+                     class="check-form-input"
+                     placeholder="例）19900523"
+                     maxlength="10"
+                     inputmode="numeric"
+                     autocomplete="off"
+                     required />
+              <button type="submit" class="check-form-btn">相性チェック →</button>
+            </div>
+            <p class="check-date-preview" id="checkDatePreview"></p>
+          </form>
+        </div>
+
+        <p class="check-or-label reveal">または、タイプを直接選ぶ</p>
 
         <div class="check-type-grid reveal">
           <a href="numero-1.html" class="check-type-card">
@@ -417,6 +436,62 @@
       }, { threshold: 0.1 });
 
       document.querySelectorAll('.reveal').forEach(function (el) { obs.observe(el); });
+    }());
+
+    /* ── 相性チェック：生年月日 → キャラページへリダイレクト ── */
+    (function () {
+      var pageMap = {
+        1: 'numero-1.html', 2: 'numero-2.html', 3: 'numero-3.html',
+        4: 'numero-4.html', 5: 'numero-5.html', 6: 'numero-6.html',
+        7: 'numero-7.html', 8: 'numero-8.html', 9: 'numero-9.html',
+        11: 'numero-11.html', 22: 'numero-22.html', 33: 'numero-33.html'
+      };
+
+      function digitSum(n) {
+        return String(n).split('').reduce(function (s, d) { return s + Number(d); }, 0);
+      }
+
+      function calcLifePath(year, month, day) {
+        var total = (String(year) + String(month) + String(day))
+          .split('').reduce(function (s, d) { return s + Number(d); }, 0);
+        while ([11, 22, 33].indexOf(total) === -1 && total > 9) {
+          total = digitSum(total);
+        }
+        return total;
+      }
+
+      var inputEl   = document.getElementById('checkBirthInput');
+      var previewEl = document.getElementById('checkDatePreview');
+      var form      = document.getElementById('checkBirthForm');
+
+      inputEl.addEventListener('input', function () {
+        var digits = this.value.replace(/\D/g, '').slice(0, 8);
+        var fmt = digits;
+        if (digits.length > 6) {
+          fmt = digits.slice(0,4) + '/' + digits.slice(4,6) + '/' + digits.slice(6);
+        } else if (digits.length > 4) {
+          fmt = digits.slice(0,4) + '/' + digits.slice(4);
+        }
+        this.value = fmt;
+        previewEl.textContent = digits.length === 8 ? '→ ' + fmt : '';
+      });
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var digits = inputEl.value.replace(/\D/g, '');
+        if (digits.length !== 8) {
+          previewEl.textContent = '8桁で入力してください（例：19900523）';
+          previewEl.style.color = '#e05';
+          return;
+        }
+        var lp   = calcLifePath(
+          parseInt(digits.slice(0,4), 10),
+          parseInt(digits.slice(4,6), 10),
+          parseInt(digits.slice(6,8), 10)
+        );
+        var dest = pageMap[lp] || 'rpgnumerology.html';
+        window.location.href = dest;
+      });
     }());
   </script>
 </body>

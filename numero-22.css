@@ -1,0 +1,197 @@
+/* ═══════════════════════════════════════════
+   RPG数秘 — No.22 王子
+   ハイブリッドパレット：純金 × 黒曜石 × 覇王の炎金
+═══════════════════════════════════════════ */
+
+:root {
+  /* ─── コアカラー ─────────────────────────── */
+  --accent:       #7a5200;
+  --accent-2:     #4e3200;
+  --deep:         #0c0800;
+  --mid:          #201400;
+  --primary:      #d4a010;
+  --primary-dark: #a87800;
+
+  /* ─── 純金・ベース ───────────────────────── */
+  --gold:        #f5c932;
+  --gold-2:      #fff3c0;
+  --cream:       #fff9e8;
+  --paper:       #fffdf5;
+  --ink:         #200e00;
+  --muted:       #705020;
+  --line-gold:   rgba(245, 201, 50, 0.60);
+  --shadow:      0 16px 36px rgba(12, 8, 0, 0.32);
+  --shadow-red:  0 16px 36px rgba(180, 120, 0, 0.30);
+  --body-bg:     #fdfaf0;
+
+  /* ─── Hero セクション ────────────────────── */
+  --hero-bg:
+    radial-gradient(circle at 20% 8%, rgba(255, 210, 60, 0.30), transparent 26%),
+    radial-gradient(circle at 82% 14%, rgba(245, 180, 20, 0.20), transparent 24%),
+    radial-gradient(circle at 50% 90%, rgba(120, 60, 0, 0.25), transparent 40%),
+    linear-gradient(160deg, #0c0800 0%, #1e1000 45%, #100800 100%);
+  --hero-moon-bg:        radial-gradient(circle at 35% 35%, #fffbe0, #f5c932 60%, rgba(245, 180, 30, 0.30) 100%);
+  --hero-moon-glow:      rgba(255, 210, 60, 0.95);
+  --hero-mountain-bg:    linear-gradient(180deg, rgba(12, 8, 0, 0.04), rgba(4, 2, 0, 0.92));
+  --hero-num-color:      rgba(240, 180, 20, 0.20);
+  --hero-star-dot-color: rgba(255, 215, 60, 0.85);
+  --hero-h1-glow:        rgba(255, 210, 50, 0.50);
+  --keyword-border:      rgba(245, 201, 50, 0.52);
+
+  /* ─── ロゴ ──────────────────────────────── */
+  --logo-border: rgba(245, 201, 50, 0.90);
+  --logo-bg:     linear-gradient(180deg, rgba(80, 50, 0, 0.95), rgba(20, 10, 0, 0.98));
+  --logo-inset:  rgba(255, 230, 100, 0.22);
+
+  /* ─── セクション ────────────────────────── */
+  --lavender-end:      #fff8e0;
+  --dark-section-glow: rgba(245, 201, 50, 0.16);
+  --dark-section-bg:   linear-gradient(180deg, #4e3200 0%, #7a5200 100%);
+
+  /* ─── types-frame ───────────────────────── */
+  --frame-border: rgba(245, 201, 50, 0.92);
+  --frame-bg:     linear-gradient(180deg, rgba(36, 22, 0, 0.93), rgba(10, 6, 0, 0.98));
+
+  /* ─── バッジ ────────────────────────────── */
+  --badge-border:         rgba(245, 201, 50, 0.92);
+  --badge-text:           #fff3c0;
+  --badge-bg:             linear-gradient(180deg, #c08800, #5e3e00);
+  --badge-diamond-bg:     #8a6000;
+  --badge-diamond-border: rgba(245, 201, 50, 0.70);
+
+  /* ─── リボンタイトル ────────────────────── */
+  --ribbon-border:         rgba(122, 82, 0, 0.5);
+  --ribbon-bg:             linear-gradient(180deg, rgba(255, 249, 232, 0.92), rgba(255, 238, 190, 0.92));
+  --ribbon-shadow:         rgba(122, 82, 0, 0.1);
+  --ribbon-diamond-border: rgba(122, 82, 0, 0.4);
+
+  /* ─── カード・タイムライン ──────────────── */
+  --point-border:        rgba(245, 201, 50, 0.45);
+  --timeline-glow:       rgba(245, 201, 50, 0.75);
+  --timeline-dot-shadow: 0 0 16px rgba(255, 210, 50, 0.95), 0 0 5px rgba(255, 200, 0, 0.7);
+  --timeline-note-bg:    rgba(245, 201, 50, 0.1);
+
+  /* ─── 相性カード ────────────────────────── */
+  --compat-bg:
+    radial-gradient(circle at 20% 20%, rgba(255, 200, 50, 0.18), transparent 32%),
+    linear-gradient(135deg, #3a2200, #0c0800);
+  --compat-hover-shadow: rgba(12, 8, 0, 0.44);
+
+  /* ─── ボタン ────────────────────────────── */
+  --btn-primary-bg:       linear-gradient(180deg, #e8b010 0%, #a87800 100%);
+  --btn-primary-border:   #f5c932;
+  --btn-secondary-bg:     linear-gradient(180deg, #c89008 0%, #805800 100%);
+  --btn-secondary-border: rgba(255, 224, 100, 0.9);
+
+  /* ─── CTA ───────────────────────────────── */
+  --cta-divider-bg: rgba(122, 82, 0, 0.2);
+
+  /* ─── 相性チェックカード ────────────────── */
+  --check-card-bg:           linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(255, 249, 225, 0.98));
+  --check-card-border:       rgba(210, 168, 40, 0.68);
+  --check-card-shadow:       rgba(122, 82, 0, 0.1);
+  --check-card-hover-shadow: rgba(122, 82, 0, 0.20);
+  --check-card-hover-border: #f5c932;
+
+  /* ─── レアカード ────────────────────────── */
+  --check-rare-border:   rgba(245, 195, 60, 0.90);
+  --check-rare-glow:     rgba(255, 228, 120, 0.48);
+  --check-rare-bg-end:   #fff8e0;
+  --check-rare-badge-bg: linear-gradient(135deg, #c08800, #5e3a00);
+
+  /* ─── 有料レポート ──────────────────────── */
+  --paid-card-border:  rgba(245, 201, 50, 0.40);
+  --paid-li-border:    rgba(245, 201, 50, 0.68);
+  --paid-price-border: rgba(245, 201, 50, 0.34);
+  --paid-star-2:       rgba(245, 201, 50, 0.45);
+  --paid-star-3:       rgba(255, 190, 80, 0.38);
+
+  /* ─── アニメーション ────────────────────── */
+  --shooting-star-color: rgba(255, 220, 70, 0.75);
+  --pulse-glow-1: rgba(245, 201, 50, 0.40);
+  --pulse-glow-2: rgba(255, 220, 80, 0.92);
+}
+
+/* ─── ウォーターマーク数字（No.22固有） ─── */
+.hero-bg::before {
+  content: "22 22 22";
+}
+
+/* ══════════════════════════════════════
+   魔法陣リング — 黄金の八角形環
+══════════════════════════════════════ */
+.hero-visual {
+  position: relative;
+  isolation: isolate;
+}
+
+.hero-visual::before,
+.hero-visual::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 外環：八角形（border-radius 18%）×ゴールドグロウ */
+.hero-visual::before {
+  width: 300px;
+  height: 300px;
+  margin: -150px 0 0 -150px;
+  border-radius: 18%;
+  border: 2px solid rgba(245, 201, 50, 0.78);
+  box-shadow:
+    0 0 24px rgba(245, 201, 50, 0.38),
+    0 0 48px rgba(245, 180, 20, 0.18),
+    inset 0 0 16px rgba(245, 201, 50, 0.12);
+  animation: gold-ring-cw 18s linear infinite;
+}
+
+/* 内環：細い円形リング（逆回転） */
+.hero-visual::after {
+  width: 210px;
+  height: 210px;
+  margin: -105px 0 0 -105px;
+  border-radius: 50%;
+  border: 1.5px dashed rgba(245, 201, 50, 0.50);
+  animation: gold-ring-ccw 11s linear infinite;
+}
+
+.character-img {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes gold-ring-cw {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes gold-ring-ccw {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(-360deg); }
+}
+
+/* ══════════════════════════════════════
+   タイトルオーラパルス — 黄金の強パルス
+══════════════════════════════════════ */
+@keyframes gold-pulse {
+  0%, 100% {
+    text-shadow:
+      0 0 12px rgba(245, 201, 50, 0.55),
+      0 0 28px rgba(245, 180, 20, 0.28);
+  }
+  50% {
+    text-shadow:
+      0 0 22px rgba(255, 225, 80, 1.00),
+      0 0 50px rgba(245, 201, 50, 0.75),
+      0 0 88px rgba(220, 160, 0, 0.35);
+  }
+}
+
+.hero-section .hero-no,
+.hero-section h1 {
+  animation: gold-pulse 2.8s ease-in-out infinite;
+}
