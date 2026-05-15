@@ -8,7 +8,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Noto+Sans+JP:wght@400;700;900&family=Noto+Serif+JP:wght@500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/air-datepicker@3.6.0/air-datepicker.css" />
   <link rel="stylesheet" href="rpgnumerology.css" />
 </head>
 
@@ -62,12 +61,18 @@
           <form id="lifePathForm" class="birth-form birth-form--picker">
             <div class="picker-row">
               <label class="picker-label">
-                <span>生年月日を選択</span>
+                <span>生年月日を8桁で入力</span>
                 <div class="picker-input-wrap">
                   <span class="picker-icon">📅</span>
-                  <input type="text" id="birthDatePicker" placeholder="例）1990/05/23" readonly required />
+                  <input type="text" id="birthDateInput"
+                         placeholder="例）19900523"
+                         maxlength="10"
+                         inputmode="numeric"
+                         autocomplete="off"
+                         required />
                 </div>
               </label>
+              <p class="date-preview" id="datePreview"></p>
             </div>
 
             <button type="submit" class="btn btn-red submit-btn">診断する</button>
@@ -282,7 +287,6 @@
     <p>© RPG数秘 All Rights Reserved.</p>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/air-datepicker@3.6.0/air-datepicker.js"></script>
   <script>
     /* ── DATA ──────────────────────────────────────────── */
     var typeData = {
@@ -313,30 +317,22 @@
       return total;
     }
 
-    /* ── DATEPICKER ─────────────────────────────────────── */
-    var selectedDate = null;
+    /* ── 8桁入力 → YYYY/MM/DD リアルタイム変換 ─────────── */
+    var inputEl   = document.getElementById('birthDateInput');
+    var previewEl = document.getElementById('datePreview');
 
-    var localeJa = {
-      days: ['日曜日','月曜日','火曜日','水曜日','木曜日','金曜日','土曜日'],
-      daysShort: ['日','月','火','水','木','金','土'],
-      daysMin: ['日','月','火','水','木','金','土'],
-      months: ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'],
-      monthsShort: ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'],
-      today: '今日',
-      clear: 'クリア',
-      dateFormat: 'yyyy/MM/dd',
-      timeFormat: 'HH:mm',
-      firstDay: 0
-    };
+    inputEl.addEventListener('input', function () {
+      var digits = this.value.replace(/\D/g, '').slice(0, 8);
 
-    new AirDatepicker('#birthDatePicker', {
-      locale: localeJa,
-      dateFormat: 'yyyy/MM/dd',
-      maxDate: new Date(),
-      minDate: new Date(1920, 0, 1),
-      autoClose: true,
-      isMobile: true,
-      onSelect: function (d) { selectedDate = d.date || null; }
+      var formatted = digits;
+      if (digits.length > 6) {
+        formatted = digits.slice(0,4) + '/' + digits.slice(4,6) + '/' + digits.slice(6);
+      } else if (digits.length > 4) {
+        formatted = digits.slice(0,4) + '/' + digits.slice(4);
+      }
+
+      this.value = formatted;
+      previewEl.textContent = digits.length === 8 ? '→ ' + formatted : '';
     });
 
     /* ── A: パララックス ─────────────────────────────────── */
@@ -437,11 +433,13 @@
     /* ── フォーム送信（H / J / K / L / M）─────────────── */
     document.getElementById("lifePathForm").addEventListener("submit", function (e) {
       e.preventDefault();
-      if (!selectedDate) return;
 
-      var year     = selectedDate.getFullYear();
-      var month    = selectedDate.getMonth() + 1;
-      var day      = selectedDate.getDate();
+      var digits = document.getElementById('birthDateInput').value.replace(/\D/g, '');
+      if (digits.length !== 8) return;
+
+      var year     = parseInt(digits.slice(0, 4), 10);
+      var month    = parseInt(digits.slice(4, 6), 10);
+      var day      = parseInt(digits.slice(6, 8), 10);
       var lifePath = calcLifePath(year, month, day);
       var data     = typeData[lifePath];
 
