@@ -1,0 +1,117 @@
+/* ═══════════════════════════════════════════
+   RPG数秘 — No.5 冒険者
+   ハイブリッドパレット：ゴールデンアンバー × 深褐 × 陽光
+═══════════════════════════════════════════ */
+
+:root {
+  /* ─── コアカラー ─────────────────────────── */
+  --accent:       #a06010;
+  --accent-2:     #704000;
+  --deep:         #1a0c00;
+  --mid:          #3a1e00;
+  --primary:      #FBAC35;
+  --primary-dark: #d48010;
+
+  /* ─── アンバー・ベース ───────────────────── */
+  --gold:        #FBAC35;
+  --gold-2:      #fdd68a;
+  --cream:       #fff8ec;
+  --paper:       #fffbf3;
+  --ink:         #271400;
+  --muted:       #7a5020;
+  --line-gold:   rgba(251, 172, 53, 0.55);
+  --shadow:      0 16px 36px rgba(26, 12, 0, 0.26);
+  --shadow-red:  0 16px 36px rgba(160, 80, 0, 0.28);
+  --body-bg:     #fffdf6;
+
+  /* ─── Hero セクション ────────────────────── */
+  --hero-bg:
+    radial-gradient(circle at 15% 10%, rgba(251, 172, 53, 0.3), transparent 28%),
+    radial-gradient(circle at 88% 12%, rgba(255, 200, 80, 0.2), transparent 22%),
+    linear-gradient(160deg, #1a0c00 0%, #6a3000 40%, #3a1800 100%);
+  --hero-moon-bg:        radial-gradient(circle at 35% 35%, #fff4cc, #FBAC35 65%, rgba(251, 172, 53, 0.35) 100%);
+  --hero-moon-glow:      rgba(251, 172, 53, 0.9);
+  --hero-mountain-bg:    linear-gradient(180deg, rgba(30, 12, 0, 0.04), rgba(16, 6, 0, 0.88));
+  --hero-num-color:      rgba(251, 172, 53, 0.22);
+  --hero-star-dot-color: rgba(251, 172, 53, 0.75);
+  --hero-h1-glow:        rgba(251, 172, 53, 0.4);
+  --keyword-border:      rgba(251, 172, 53, 0.48);
+
+  /* ─── ロゴ ──────────────────────────────── */
+  --logo-border: rgba(251, 172, 53, 0.82);
+  --logo-bg:     linear-gradient(180deg, rgba(100, 45, 0, 0.94), rgba(50, 20, 0, 0.97));
+  --logo-inset:  rgba(255, 220, 140, 0.2);
+
+  /* ─── セクション ────────────────────────── */
+  --lavender-end:      #fff0cc;
+  --dark-section-glow: rgba(251, 172, 53, 0.15);
+  --dark-section-bg:   linear-gradient(180deg, #4a2000 0%, #8a4200 100%);
+
+  /* ─── types-frame ───────────────────────── */
+  --frame-border: rgba(251, 172, 53, 0.9);
+  --frame-bg:     linear-gradient(180deg, rgba(60, 26, 0, 0.92), rgba(26, 10, 0, 0.98));
+
+  /* ─── バッジ ────────────────────────────── */
+  --badge-border:         rgba(251, 172, 53, 0.9);
+  --badge-text:           #fff0b8;
+  --badge-bg:             linear-gradient(180deg, #9a4a00, #5a2600);
+  --badge-diamond-bg:     #7a3400;
+  --badge-diamond-border: rgba(251, 172, 53, 0.65);
+
+  /* ─── リボンタイトル ────────────────────── */
+  --ribbon-border:         rgba(160, 96, 16, 0.5);
+  --ribbon-bg:             linear-gradient(180deg, rgba(255, 248, 236, 0.9), rgba(255, 234, 190, 0.9));
+  --ribbon-shadow:         rgba(160, 96, 16, 0.1);
+  --ribbon-diamond-border: rgba(160, 96, 16, 0.4);
+
+  /* ─── カード・タイムライン ──────────────── */
+  --point-border:        rgba(251, 172, 53, 0.42);
+  --timeline-glow:       rgba(251, 172, 53, 0.6);
+  --timeline-dot-shadow: 0 0 12px rgba(251, 172, 53, 0.85), 0 0 4px rgba(251, 172, 53, 0.5);
+  --timeline-note-bg:    rgba(251, 172, 53, 0.12);
+
+  /* ─── 相性カード ────────────────────────── */
+  --compat-bg:
+    radial-gradient(circle at 20% 20%, rgba(251, 172, 53, 0.18), transparent 32%),
+    linear-gradient(135deg, #7a3800, #2e1000);
+  --compat-hover-shadow: rgba(26, 12, 0, 0.4);
+
+  /* ─── ボタン ────────────────────────────── */
+  --btn-primary-bg:       linear-gradient(180deg, #FBAC35 0%, #d48010 100%);
+  --btn-primary-border:   #fdd080;
+  --btn-secondary-bg:     linear-gradient(180deg, #c07020 0%, #7a4000 100%);
+  --btn-secondary-border: rgba(255, 215, 120, 0.9);
+
+  /* ─── CTA ───────────────────────────────── */
+  --cta-divider-bg: rgba(160, 96, 16, 0.2);
+
+  /* ─── 相性チェックカード ────────────────── */
+  --check-card-bg:           linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(255, 248, 228, 0.98));
+  --check-card-border:       rgba(220, 155, 40, 0.7);
+  --check-card-shadow:       rgba(160, 96, 16, 0.1);
+  --check-card-hover-shadow: rgba(160, 96, 16, 0.18);
+  --check-card-hover-border: #FBAC35;
+
+  /* ─── レアカード ────────────────────────── */
+  --check-rare-border:   rgba(220, 160, 255, 0.85);
+  --check-rare-glow:     rgba(255, 220, 160, 0.4);
+  --check-rare-bg-end:   #fff8ee;
+  --check-rare-badge-bg: linear-gradient(135deg, #d07010, #8a3a00);
+
+  /* ─── 有料レポート ──────────────────────── */
+  --paid-card-border:  rgba(251, 172, 53, 0.4);
+  --paid-li-border:    rgba(251, 172, 53, 0.62);
+  --paid-price-border: rgba(251, 172, 53, 0.32);
+  --paid-star-2:       rgba(251, 172, 53, 0.42);
+  --paid-star-3:       rgba(255, 205, 110, 0.36);
+
+  /* ─── アニメーション ────────────────────── */
+  --shooting-star-color: rgba(251, 172, 53, 0.65);
+  --pulse-glow-1: rgba(251, 172, 53, 0.38);
+  --pulse-glow-2: rgba(251, 172, 53, 0.82);
+}
+
+/* ─── ウォーターマーク数字（No.5固有） ─── */
+.hero-bg::before {
+  content: "5 5 5";
+}
